@@ -1,0 +1,15 @@
+import { createStackNavigator } from "@react-navigation/stack";
+import FirstScreen from "../screens/FirstScreen";
+import AuthScreen from "../screens/AuthScreen";
+import { RootStackParamList } from "./types";
+
+const Stack = createStackNavigator<RootStackParamList>();
+
+export default function MyStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="FirstScreen" component={FirstScreen} />
+      <Stack.Screen name="Authentication" component={AuthScreen} />
+    </Stack.Navigator>
+  );
+}
