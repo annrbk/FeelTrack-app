@@ -3,28 +3,24 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F9FAFB",
-    padding: 24,
     justifyContent: "center",
-  },
-  logo: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#283b70ff",
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  content: {
-    gap: 16,
+    alignItems: "center",
+    padding: 24,
+    backgroundColor: "#fff",
   },
   title: {
-    fontSize: 20,
-    fontWeight: "600",
-    color: "#222",
+    fontSize: 28,
+    fontWeight: "bold",
+    marginBottom: 16,
   },
-  description: {
+  subtitle: {
     fontSize: 16,
+    marginBottom: 32,
     color: "#555",
+    textAlign: "center",
+  },
+  buttonContainer: {
+    width: "100%",
   },
   button: {
     backgroundColor: "#2e86de",

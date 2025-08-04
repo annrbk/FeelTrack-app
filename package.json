@@ -14,8 +14,11 @@
     "expo": "~53.0.20",
     "expo-router": "^5.1.4",
     "expo-status-bar": "~2.2.3",
+    "formik": "^2.4.6",
+    "lodash": "^4.17.21",
     "react": "19.0.0",
-    "react-native": "0.79.5"
+    "react-native": "0.79.5",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
