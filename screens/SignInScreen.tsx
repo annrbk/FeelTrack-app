@@ -16,7 +16,10 @@ export default function SignInScreen() {
   return (
     <Formik<SignInValues>
       initialValues={{ email: "", password: "" }}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => {
+        console.log(values);
+        navigation.navigate("MainScreen");
+      }}
       validationSchema={Yup.object({
         email: Yup.string()
           .email("Please enter a valid email address")
