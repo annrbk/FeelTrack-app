@@ -18,7 +18,7 @@ export default function SignInScreen() {
       initialValues={{ email: "", password: "" }}
       onSubmit={(values) => {
         console.log(values);
-        navigation.navigate("MainScreen");
+        navigation.navigate("MainApp");
       }}
       validationSchema={Yup.object({
         email: Yup.string()

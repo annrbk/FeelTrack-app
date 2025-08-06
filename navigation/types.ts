@@ -4,4 +4,8 @@ export type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   MainScreen: undefined;
+  MainApp: undefined;
+  Profile: undefined;
+  Statistics: undefined;
+  Care: undefined;
 };

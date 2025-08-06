@@ -5,6 +5,7 @@ import { RootStackParamList } from "./types";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import MainScreen from "../screens/MainScreen";
+import BottomTabs from "./BottomTabs";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -15,6 +16,7 @@ export default function MyStack() {
       <Stack.Screen name="Authentication" component={AuthScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
+      <Stack.Screen name="MainApp" component={BottomTabs} />
       <Stack.Screen name="MainScreen" component={MainScreen} />
     </Stack.Navigator>
   );

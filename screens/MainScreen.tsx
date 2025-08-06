@@ -2,7 +2,7 @@ import { Pressable, Text, View, StyleSheet } from "react-native";
 import { emotions } from "../constants/emotions";
 import { styles } from "../styles/MainScreen.styles";
 
-export default function FirstScreen() {
+export default function MainScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.description}>
