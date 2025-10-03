@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { blue } from "react-native-reanimated/lib/typescript/Colors";
 
 export const styles = StyleSheet.create({
   container: {

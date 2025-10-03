@@ -1,11 +1,5 @@
-import {
-  View,
-  Text,
-  Image,
-  Pressable,
-  ScrollView,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, Image, Pressable, ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../styles/ProfileScreen.styles";
 
 export default function ProfileScreen() {

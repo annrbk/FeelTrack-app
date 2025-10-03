@@ -4,21 +4,31 @@ import * as Yup from "yup";
 import { styles } from "../styles/SignInScreen";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
+import { useRegister } from "../hooks/useRegister";
+import type { SignUpValues } from "../types/signUpValuesType";
+import Button from "../components/Button";
+import FormInput from "../components/FormInput";
 
-type SignUpValues = {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-export default function SignInScreen() {
+export default function SignUpScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const { register, error } = useRegister();
+
+  const submitForm = async (values: SignUpValues) => {
+    try {
+      const newUser = await register(values);
+      if (newUser) {
+        navigation.navigate("MainScreen");
+      }
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   return (
     <Formik<SignUpValues>
       initialValues={{ name: "", email: "", password: "", confirmPassword: "" }}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={submitForm}
       validationSchema={Yup.object({
         name: Yup.string()
           .min(2, "Name must be at least 2 characters")
@@ -45,71 +55,48 @@ export default function SignInScreen() {
       }) => (
         <View style={styles.container}>
           <View style={styles.formContainer}>
-            <Text style={styles.title}>Create account</Text>
+            <Text style={styles.title}>Create an account</Text>
             <Text style={styles.subtitle}>
               Let's get you started — create your account below.
             </Text>
-            {touched.name && errors.name && (
-              <Text style={styles.error}>{errors.name}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.name && errors.name && styles.inputError,
-              ]}
-              onChangeText={handleChange("name")}
-              onBlur={handleBlur("name")}
-              value={values.name}
+            {error && <Text style={styles.error}>{error}</Text>}
+            <FormInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="name"
               placeholder="Name"
             />
-            {touched.email && errors.email && (
-              <Text style={styles.error}>{errors.email}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.email && errors.email && styles.inputError,
-              ]}
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
+            <FormInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="email"
               placeholder="Email"
             />
-            {touched.password && errors.password && (
-              <Text style={styles.error}>{errors.password}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.password && errors.password && styles.inputError,
-              ]}
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
+            <FormInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="password"
               placeholder="Password"
-              secureTextEntry
             />
-            {touched.confirmPassword && errors.confirmPassword && (
-              <Text style={styles.error}>{errors.confirmPassword}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.confirmPassword &&
-                  errors.confirmPassword &&
-                  styles.inputError,
-              ]}
-              onChangeText={handleChange("confirmPassword")}
-              onBlur={handleBlur("confirmPassword")}
-              value={values.confirmPassword}
+            <FormInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="confirmPassword"
               placeholder="Confirm password"
-              secureTextEntry
             />
-            <View style={styles.buttonContainer}>
-              <Pressable style={styles.button} onPress={() => handleSubmit()}>
-                <Text style={styles.buttonText}>Sign up</Text>
-              </Pressable>
-            </View>
+            <Button handleSubmit={handleSubmit} />
           </View>
           <View style={styles.footerContainer}>
             <Text>Already have an account?</Text>
