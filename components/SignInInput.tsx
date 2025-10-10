@@ -1,9 +1,11 @@
 import { TextInput, Text } from "react-native";
 import { styles } from "../styles/SignInScreen";
-import type { FormInputProps } from "../types/signUpValuesType";
-import type { CustomFormikSignUp } from "../types/signUpValuesType";
+import type { CustomFormikSignIn } from "../types/signInValuesType";
+import { SignInInputProps } from "../types/signInValuesType";
 
-export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
+export default function SignInInput(
+  props: CustomFormikSignIn & SignInInputProps
+) {
   const {
     handleChange,
     handleBlur,

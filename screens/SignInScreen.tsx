@@ -1,25 +1,32 @@
-import { Pressable, TextInput, View, Text } from "react-native";
+import { Pressable, View, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "../styles/SignInScreen";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
-
-type SignInValues = {
-  email: string;
-  password: string;
-};
+import type { SignInValues } from "../types/signInValuesType";
+import SignInInput from "../components/SignInInput";
+import { useLogin } from "../hooks/useLogin";
 
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  const { login, error } = useLogin();
+
+  const loginSubmit = async (values: SignInValues) => {
+    try {
+      const user = await login(values);
+      if (user) {
+        navigation.navigate("MainScreen");
+      }
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
   return (
     <Formik<SignInValues>
       initialValues={{ email: "", password: "" }}
-      onSubmit={(values) => {
-        console.log(values);
-        navigation.navigate("MainApp");
-      }}
+      onSubmit={loginSubmit}
       validationSchema={Yup.object({
         email: Yup.string()
           .email("Please enter a valid email address")
@@ -43,32 +50,24 @@ export default function SignInScreen() {
             <Text style={styles.subtitle}>
               Hi! Welcome back, you've been missed
             </Text>
-            {touched.email && errors.email && (
-              <Text style={styles.error}>{errors.email}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.email && errors.email && styles.inputError,
-              ]}
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
+            {error && <Text style={styles.error}>{error}</Text>}
+            <SignInInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="email"
               placeholder="Email"
             />
-            {touched.password && errors.password && (
-              <Text style={styles.error}>{errors.password}</Text>
-            )}
-            <TextInput
-              style={[
-                styles.input,
-                touched.password && errors.password && styles.inputError,
-              ]}
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
+            <SignInInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+              values={values}
+              textField="password"
               placeholder="Password"
-              secureTextEntry
             />
             <View style={styles.buttonContainer}>
               <Pressable style={styles.button} onPress={() => handleSubmit()}>

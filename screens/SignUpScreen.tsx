@@ -1,4 +1,4 @@
-import { Pressable, TextInput, View, Text } from "react-native";
+import { Pressable, View, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { styles } from "../styles/SignInScreen";

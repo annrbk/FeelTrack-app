@@ -12,7 +12,7 @@ export type FormInputProps = {
   placeholder: string;
 };
 
-export type CustomFormik = Pick<
+export type CustomFormikSignUp = Pick<
   FormikProps<SignUpValues>,
   "handleChange" | "handleBlur" | "touched" | "errors" | "values"
 >;
