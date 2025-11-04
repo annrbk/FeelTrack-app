@@ -12,6 +12,7 @@ export const useLogin = () => {
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
+        console.error(error);
       }
     }
   };

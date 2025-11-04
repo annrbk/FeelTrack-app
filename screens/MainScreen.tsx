@@ -1,12 +1,17 @@
-import { Pressable, Text, View, StyleSheet } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { emotions } from "../constants/emotions";
 import { styles } from "../styles/MainScreen.styles";
+import { useSession } from "../ctx";
 
 export default function MainScreen() {
+  const { user, isLoading } = useSession();
+
+  if (isLoading) return <Text>Loading...</Text>;
+
   return (
     <View style={styles.container}>
       <View style={styles.description}>
-        <Text style={styles.title}>Hello, username</Text>
+        <Text style={styles.title}>Hello, {user?.name || "User"}</Text>
         <Text style={styles.subtitle}>Today can be a good day!</Text>
       </View>
       <View style={styles.emotionsContainer}>

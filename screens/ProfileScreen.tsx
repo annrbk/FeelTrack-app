@@ -1,8 +1,19 @@
 import { View, Text, Image, Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../styles/ProfileScreen.styles";
+import { useSession } from "../ctx";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../navigation/types";
 
 export default function ProfileScreen() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { signOut } = useSession();
+
+  const logOut = () => {
+    signOut();
+    navigation.navigate("FirstScreen");
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -31,7 +42,7 @@ export default function ProfileScreen() {
           </Pressable>
           <Pressable
             style={styles.settingItem}
-            onPress={() => console.log("Logout")}
+            onPress={() => logOut()}
             accessibilityRole="button"
           >
             <Text style={[styles.settingText, { color: "red" }]}>Logout</Text>

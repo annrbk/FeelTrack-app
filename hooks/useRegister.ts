@@ -10,8 +10,10 @@ export const useRegister = () => {
       const newUser = await registerUser(values);
       return newUser;
     } catch (error: unknown) {
+      console.log(error);
       if (error instanceof Error) {
         setError(error.message);
+        console.log(error);
       }
     }
   };

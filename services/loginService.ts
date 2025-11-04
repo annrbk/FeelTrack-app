@@ -15,8 +15,12 @@ export const loginUser = async (values: SignInValues) => {
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error(error.response);
-      throw new Error(error.response?.data?.message || "Login failed");
+      const message =
+        error.response && error.response.data && error.response.data.message
+          ? error.response.data.message
+          : "Login failed";
+      console.error("Login error:", message);
+      throw new Error(message);
     } else {
       console.error(error);
       throw new Error("Unexpected error");

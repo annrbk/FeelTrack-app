@@ -17,6 +17,7 @@ export const registerUser = async (values: SignUpValues) => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(error.response);
+      console.log(error);
       throw new Error(error.response?.data?.message || "Registration failed");
     } else {
       console.error(error);

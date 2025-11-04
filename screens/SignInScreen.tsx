@@ -6,23 +6,24 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import type { SignInValues } from "../types/signInValuesType";
 import SignInInput from "../components/SignInInput";
-import { useLogin } from "../hooks/useLogin";
+import { useSession } from "../ctx";
+import { useState } from "react";
 
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
-  const { login, error } = useLogin();
+  const [error, setError] = useState<string | null>(null);
+  const { signIn } = useSession();
 
   const loginSubmit = async (values: SignInValues) => {
     try {
-      const user = await login(values);
-      if (user) {
-        navigation.navigate("MainScreen");
-      }
+      setError(null);
+      await signIn(values);
+      navigation.navigate("MainApp");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
   };
+
   return (
     <Formik<SignInValues>
       initialValues={{ email: "", password: "" }}

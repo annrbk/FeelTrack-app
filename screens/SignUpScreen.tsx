@@ -18,7 +18,7 @@ export default function SignUpScreen() {
     try {
       const newUser = await register(values);
       if (newUser) {
-        navigation.navigate("MainScreen");
+        navigation.navigate("SignIn");
       }
     } catch (error) {
       if (error instanceof Error) alert(error.message);
