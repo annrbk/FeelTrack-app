@@ -6,6 +6,7 @@ import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import BottomTabs from "./BottomTabs";
 import { useSession } from "../ctx";
+import AccountScreen from "../screens/AccountScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -22,7 +23,10 @@ export default function MyStack() {
           <Stack.Screen name="SignUp" component={SignUpScreen} />
         </>
       ) : (
-        <Stack.Screen name="MainApp" component={BottomTabs} />
+        <>
+          <Stack.Screen name="MainApp" component={BottomTabs} />
+          <Stack.Screen name="Account" component={AccountScreen} />
+        </>
       )}
     </Stack.Navigator>
   );

@@ -18,7 +18,6 @@ export default function SignInScreen() {
     try {
       setError(null);
       await signIn(values);
-      navigation.navigate("MainApp");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

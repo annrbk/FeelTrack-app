@@ -9,11 +9,6 @@ export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { signOut } = useSession();
 
-  const logOut = () => {
-    signOut();
-    navigation.navigate("FirstScreen");
-  };
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -27,7 +22,7 @@ export default function ProfileScreen() {
         </View>
         <View style={styles.settingsContainer}>
           <Pressable
-            onPress={() => console.log("My account")}
+            onPress={() => navigation.navigate("Account")}
             style={styles.settingItem}
             accessibilityRole="button"
           >
@@ -42,7 +37,7 @@ export default function ProfileScreen() {
           </Pressable>
           <Pressable
             style={styles.settingItem}
-            onPress={() => logOut()}
+            onPress={signOut}
             accessibilityRole="button"
           >
             <Text style={[styles.settingText, { color: "red" }]}>Logout</Text>
