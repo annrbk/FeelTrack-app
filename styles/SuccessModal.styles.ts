@@ -46,4 +46,8 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
   },
+  emoji: {
+    fontSize: 46,
+    marginBottom: 15,
+  },
 });

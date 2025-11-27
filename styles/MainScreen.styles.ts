@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 24,
   },
+  scrollContent: {
+    paddingBottom: 48,
+  },
   description: {
     padding: 48,
   },
@@ -39,6 +42,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 16,
     backgroundColor: "#f0f0f0",
+    margin: 6,
+  },
+  emotionActiveButton: {
+    width: 80,
+    alignItems: "center",
+    paddingVertical: 10,
+    borderRadius: 16,
+    backgroundColor: "#cee4fbff",
+    borderColor: "#2e86de",
+    borderWidth: 1,
     margin: 6,
   },
   emoji: {

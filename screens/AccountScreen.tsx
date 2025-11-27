@@ -100,7 +100,11 @@ export default function AccountScreen() {
           </View>
         )}
         {showSuccessModal && (
-          <SuccessModal visible={showSuccessModal} onClose={onCloseModal} />
+          <SuccessModal
+            visible={showSuccessModal}
+            onClose={onCloseModal}
+            text={"Changes saved!"}
+          />
         )}
       </SafeAreaView>
     </SafeAreaProvider>

@@ -2,13 +2,14 @@ import React from "react";
 import { Modal, Text, Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "../styles/SuccessModal.styles";
-import type { showModalProps } from "../types/modalType";
+import type { EmotionModalProps } from "../types/emotionTypes";
 
-export default function SuccessModal({
+export default function EmotionModal({
   visible,
+  emotion,
   onClose,
-  text,
-}: showModalProps) {
+  addEmotion,
+}: EmotionModalProps) {
   return (
     <Modal
       animationType="fade"
@@ -24,17 +25,16 @@ export default function SuccessModal({
               <Ionicons name="close-outline" size={24} color="#000" />
             </View>
           </Pressable>
-          <Ionicons
-            name="checkmark-circle-outline"
-            size={48}
-            color="#1dba1dff"
-          />
-          <Text style={styles.modalText}>{text}</Text>
+          <Text style={styles.emoji}>{emotion.emoji}</Text>
+          <Text style={styles.modalText}>
+            {`You have chosen "${emotion.label}". Confirm your choice?`}
+          </Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
-            onPress={() => onClose()}
+            aria-label="Confirm"
+            onPress={() => addEmotion(emotion)}
           >
-            <Text style={styles.textStyle}>Got it</Text>
+            <Text style={styles.textStyle}>Confirm</Text>
           </Pressable>
         </View>
       </View>
