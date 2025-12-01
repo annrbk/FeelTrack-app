@@ -1,13 +1,17 @@
-import { addEmotionToUser } from "../services/emotionService";
+import {
+  addEmotionToUser,
+  getCurrentEmotions,
+} from "../services/emotionService";
 import { useState } from "react";
 import { useSession } from "../ctx";
-import type { Emotion } from "../types/emotionTypes";
+import type { Emotion, EmotionFromDB } from "../types/emotionTypes";
 
 export const useEmotion = () => {
   const { user, isLoading } = useSession();
   const [emotion, setEmotion] = useState<Emotion | null>(null);
   const [modal, setModal] = useState<boolean>(false);
   const [successModal, setSuccessModal] = useState<boolean>(false);
+  const [todayEmotions, setTodayEmotions] = useState<EmotionFromDB[]>([]);
 
   const addEmotion = async (emotion: Emotion) => {
     if (!emotion) return;
@@ -16,6 +20,16 @@ export const useEmotion = () => {
       await addEmotionToUser(emotion.label);
       setModal(false);
       setSuccessModal(true);
+      getEmotions();
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+
+  const getEmotions = async () => {
+    try {
+      const emotions = await getCurrentEmotions();
+      setTodayEmotions(emotions);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -40,5 +54,7 @@ export const useEmotion = () => {
     successModal,
     onCloseEmotionModal,
     onCloseSuccessModal,
+    getEmotions,
+    todayEmotions,
   };
 };

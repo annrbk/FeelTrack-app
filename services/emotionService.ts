@@ -29,3 +29,27 @@ export const addEmotionToUser = async (emotion: string) => {
     }
   }
 };
+
+export const getCurrentEmotions = async () => {
+  try {
+    const token = await SecureStore.getItemAsync("session");
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+
+    const response = await axios.get(`${API_URL}/api/emotions/get`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error getting emotion:", error);
+      throw new Error("Getting emotion failed");
+    } else {
+      console.error(error);
+      throw new Error("Unexpected error");
+    }
+  }
+};

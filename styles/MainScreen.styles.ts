@@ -20,7 +20,6 @@ export const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 16,
-    marginBottom: 16,
     color: "#555",
     textAlign: "center",
   },
@@ -61,5 +60,61 @@ export const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 14,
     color: "#333",
+  },
+  statistics: {
+    width: "100%",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 20,
+    marginTop: 20,
+    shadowColor: "#363636ff",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+
+  statisticsTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#1A1A1A",
+    marginBottom: 16,
+  },
+
+  statisticsContent: {
+    gap: 8,
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+
+  currentEmotion: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#F8F9FA",
+    padding: 4,
+    borderRadius: 8,
+  },
+
+  currentEmotionEmoji: {
+    fontSize: 24,
+  },
+
+  statisticsEmpty: {
+    alignItems: "center",
+    paddingVertical: 32,
+    gap: 12,
+  },
+
+  emptyTitle: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#1A1A1A",
+    textAlign: "center",
+  },
+
+  emptySubtitle: {
+    fontSize: 14,
+    color: "#6B7280",
+    textAlign: "center",
   },
 });
