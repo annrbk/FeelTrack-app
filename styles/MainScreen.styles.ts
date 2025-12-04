@@ -73,45 +73,52 @@ export const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
   },
-
   statisticsTitle: {
     fontSize: 20,
     fontWeight: "700",
     color: "#1A1A1A",
     marginBottom: 16,
   },
-
   statisticsContent: {
     gap: 8,
-    flexDirection: "row",
-    flexWrap: "wrap",
   },
-
   currentEmotion: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#F8F9FA",
-    padding: 4,
+    paddingVertical: 8,
+    paddingLeft: 8,
     borderRadius: 8,
+    backgroundColor: "#f5f2f2ff",
   },
-
   currentEmotionEmoji: {
-    fontSize: 24,
+    fontSize: 26,
   },
-
+  currentEmotionLabel: {
+    fontSize: 16,
+    marginLeft: 8,
+  },
+  timeContainer: {
+    justifyContent: "flex-end",
+    flex: 1,
+    paddingRight: 8,
+  },
+  currentEmotionTime: {
+    textAlign: "right",
+    fontSize: 14,
+    marginLeft: 48,
+    color: "#6B7280",
+  },
   statisticsEmpty: {
     alignItems: "center",
     paddingVertical: 32,
     gap: 12,
   },
-
   emptyTitle: {
     fontSize: 16,
     fontWeight: "600",
     color: "#1A1A1A",
     textAlign: "center",
   },
-
   emptySubtitle: {
     fontSize: 14,
     color: "#6B7280",

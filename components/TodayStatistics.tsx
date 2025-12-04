@@ -15,11 +15,20 @@ export default function TodayStatistics({
             const emotionData = emotions.find(
               (e) => e.label === todayEmotion.label
             );
+            let timeOfEmotion = new Date(
+              todayEmotion?.createdAt
+            ).toLocaleTimeString();
             return (
               <View style={styles.currentEmotion} key={todayEmotion.id}>
                 <Text style={styles.currentEmotionEmoji}>
                   {emotionData?.emoji}
                 </Text>
+                <Text style={styles.currentEmotionLabel}>
+                  {emotionData?.label}
+                </Text>
+                <View style={styles.timeContainer}>
+                  <Text style={styles.currentEmotionTime}>{timeOfEmotion}</Text>
+                </View>
               </View>
             );
           })}
