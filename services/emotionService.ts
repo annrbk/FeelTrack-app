@@ -53,3 +53,29 @@ export const getCurrentEmotions = async () => {
     }
   }
 };
+
+export const deleteEmotion = async (id: number) => {
+  try {
+    const token = await SecureStore.getItemAsync("session");
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+    const response = await axios.delete(
+      `${API_URL}/api/emotions/delete/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Error delete emotion:", error);
+      throw new Error("Deleting emotion failed");
+    } else {
+      console.error(error);
+      throw new Error("Unexpected error");
+    }
+  }
+};

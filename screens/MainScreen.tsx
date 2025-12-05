@@ -20,6 +20,7 @@ export default function MainScreen() {
     onCloseSuccessModal,
     getEmotions,
     todayEmotions,
+    deleteTodayEmotion,
   } = useEmotion();
 
   useEffect(() => {
@@ -42,7 +43,10 @@ export default function MainScreen() {
         onCloseEmotionModal={onCloseEmotionModal}
         addEmotion={addEmotion}
       />
-      <TodayStatistics todayEmotions={todayEmotions} />
+      <TodayStatistics
+        todayEmotions={todayEmotions}
+        deleteTodayEmotion={deleteTodayEmotion}
+      />
       {successModal && (
         <SuccessModal
           visible={successModal}

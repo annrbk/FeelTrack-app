@@ -1,6 +1,7 @@
 import {
   addEmotionToUser,
   getCurrentEmotions,
+  deleteEmotion,
 } from "../services/emotionService";
 import { useState } from "react";
 import { useSession } from "../ctx";
@@ -35,6 +36,18 @@ export const useEmotion = () => {
     }
   };
 
+  const deleteTodayEmotion = async (id: number) => {
+    try {
+      await deleteEmotion(id);
+      const updatedEmotions = todayEmotions.filter(
+        (emotion) => emotion.id !== id
+      );
+      setTodayEmotions(updatedEmotions);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+
   const onCloseEmotionModal = () => {
     setModal(false);
   };
@@ -56,5 +69,6 @@ export const useEmotion = () => {
     onCloseSuccessModal,
     getEmotions,
     todayEmotions,
+    deleteTodayEmotion,
   };
 };

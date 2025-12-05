@@ -21,6 +21,7 @@ export type EmotionModalProps = {
 
 export type TodayStatisticsProps = {
   todayEmotions: EmotionFromDB[];
+  deleteTodayEmotion: (id: number) => Promise<void>;
 };
 
 export type EmotionsSectionProps = {

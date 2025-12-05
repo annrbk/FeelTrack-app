@@ -1,11 +1,31 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { emotions } from "../constants/emotions";
 import { styles } from "../styles/MainScreen.styles";
 import type { TodayStatisticsProps } from "../types/emotionTypes";
+import { moderateScale } from "react-native-size-matters";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 export default function TodayStatistics({
   todayEmotions,
+  deleteTodayEmotion,
 }: TodayStatisticsProps) {
+  const renderRightActions = (todayEmotionId: number) => {
+    return (
+      <TouchableOpacity
+        style={{
+          height: moderateScale(48),
+          alignItems: "center",
+          justifyContent: "center",
+          width: moderateScale(64),
+          backgroundColor: "red",
+          borderRadius: 8,
+        }}
+        onPress={() => deleteTodayEmotion(todayEmotionId)}
+      >
+        <Text style={{ color: "white" }}>Delete</Text>
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={styles.statistics}>
       <Text style={styles.statisticsTitle}>Today's Summary</Text>
@@ -15,21 +35,28 @@ export default function TodayStatistics({
             const emotionData = emotions.find(
               (e) => e.label === todayEmotion.label
             );
-            let timeOfEmotion = new Date(
+            const timeOfEmotion = new Date(
               todayEmotion?.createdAt
             ).toLocaleTimeString();
             return (
-              <View style={styles.currentEmotion} key={todayEmotion.id}>
-                <Text style={styles.currentEmotionEmoji}>
-                  {emotionData?.emoji}
-                </Text>
-                <Text style={styles.currentEmotionLabel}>
-                  {emotionData?.label}
-                </Text>
-                <View style={styles.timeContainer}>
-                  <Text style={styles.currentEmotionTime}>{timeOfEmotion}</Text>
+              <Swipeable
+                key={todayEmotion.id}
+                renderRightActions={() => renderRightActions(todayEmotion.id)}
+              >
+                <View style={styles.currentEmotion}>
+                  <Text style={styles.currentEmotionEmoji}>
+                    {emotionData?.emoji}
+                  </Text>
+                  <Text style={styles.currentEmotionLabel}>
+                    {emotionData?.label}
+                  </Text>
+                  <View style={styles.timeContainer}>
+                    <Text style={styles.currentEmotionTime}>
+                      {timeOfEmotion}
+                    </Text>
+                  </View>
                 </View>
-              </View>
+              </Swipeable>
             );
           })}
         </View>
