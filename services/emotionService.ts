@@ -30,7 +30,7 @@ export const addEmotionToUser = async (emotion: string) => {
   }
 };
 
-export const getCurrentEmotions = async () => {
+export const getCurrentEmotions = async (selectedDate: Date) => {
   try {
     const token = await SecureStore.getItemAsync("session");
     if (!token) {
@@ -38,6 +38,9 @@ export const getCurrentEmotions = async () => {
     }
 
     const response = await axios.get(`${API_URL}/api/emotions/get`, {
+      params: {
+        date: selectedDate.toISOString(),
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },

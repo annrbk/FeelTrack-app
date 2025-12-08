@@ -23,6 +23,10 @@ export const styles = StyleSheet.create({
     color: "#555",
     textAlign: "center",
   },
+  statisticsHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   emotionTitle: {
     fontSize: 20,
     textAlign: "center",

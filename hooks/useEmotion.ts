@@ -13,6 +13,7 @@ export const useEmotion = () => {
   const [modal, setModal] = useState<boolean>(false);
   const [successModal, setSuccessModal] = useState<boolean>(false);
   const [todayEmotions, setTodayEmotions] = useState<EmotionFromDB[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
   const addEmotion = async (emotion: Emotion) => {
     if (!emotion) return;
@@ -29,7 +30,7 @@ export const useEmotion = () => {
 
   const getEmotions = async () => {
     try {
-      const emotions = await getCurrentEmotions();
+      const emotions = await getCurrentEmotions(selectedDate);
       setTodayEmotions(emotions);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
@@ -56,6 +57,18 @@ export const useEmotion = () => {
     setSuccessModal(false);
   };
 
+  const goToNextDate = () => {
+    const nextDate = new Date(selectedDate);
+    nextDate.setDate(nextDate.getDate() + 1);
+    setSelectedDate(nextDate);
+  };
+
+  const goToPreviousDate = () => {
+    const previousDate = new Date(selectedDate);
+    previousDate.setDate(previousDate.getDate() - 1);
+    setSelectedDate(previousDate);
+  };
+
   return {
     user,
     isLoading,
@@ -70,5 +83,8 @@ export const useEmotion = () => {
     getEmotions,
     todayEmotions,
     deleteTodayEmotion,
+    goToNextDate,
+    goToPreviousDate,
+    selectedDate,
   };
 };

@@ -21,11 +21,14 @@ export default function MainScreen() {
     getEmotions,
     todayEmotions,
     deleteTodayEmotion,
+    goToNextDate,
+    goToPreviousDate,
+    selectedDate,
   } = useEmotion();
 
   useEffect(() => {
     getEmotions();
-  }, []);
+  }, [selectedDate]);
 
   if (isLoading) return <Text>Loading...</Text>;
 
@@ -46,6 +49,9 @@ export default function MainScreen() {
       <TodayStatistics
         todayEmotions={todayEmotions}
         deleteTodayEmotion={deleteTodayEmotion}
+        goToNextDate={goToNextDate}
+        goToPreviousDate={goToPreviousDate}
+        selectedDate={selectedDate}
       />
       {successModal && (
         <SuccessModal

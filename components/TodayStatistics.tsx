@@ -1,13 +1,17 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import { emotions } from "../constants/emotions";
 import { styles } from "../styles/MainScreen.styles";
 import type { TodayStatisticsProps } from "../types/emotionTypes";
 import { moderateScale } from "react-native-size-matters";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function TodayStatistics({
   todayEmotions,
   deleteTodayEmotion,
+  goToNextDate,
+  goToPreviousDate,
+  selectedDate,
 }: TodayStatisticsProps) {
   const renderRightActions = (todayEmotionId: number) => {
     return (
@@ -28,7 +32,17 @@ export default function TodayStatistics({
   };
   return (
     <View style={styles.statistics}>
-      <Text style={styles.statisticsTitle}>Today's Summary</Text>
+      <View style={styles.statisticsHeader}>
+        <Pressable onPress={goToPreviousDate}>
+          <Ionicons name="chevron-back-outline" size={24} color="#000" />
+        </Pressable>
+        <Text style={styles.statisticsTitle}>
+          Summary {selectedDate.toLocaleDateString()}
+        </Text>
+        <Pressable onPress={goToNextDate}>
+          <Ionicons name="chevron-forward-outline" size={24} color="#000" />
+        </Pressable>
+      </View>
       {todayEmotions.length > 0 ? (
         <View style={styles.statisticsContent}>
           {todayEmotions.map((todayEmotion) => {
@@ -36,7 +50,7 @@ export default function TodayStatistics({
               (e) => e.label === todayEmotion.label
             );
             const timeOfEmotion = new Date(
-              todayEmotion?.createdAt
+              todayEmotion.createdAt
             ).toLocaleTimeString();
             return (
               <Swipeable

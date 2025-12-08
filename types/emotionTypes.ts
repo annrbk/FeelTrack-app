@@ -22,6 +22,9 @@ export type EmotionModalProps = {
 export type TodayStatisticsProps = {
   todayEmotions: EmotionFromDB[];
   deleteTodayEmotion: (id: number) => Promise<void>;
+  goToNextDate: () => void;
+  goToPreviousDate: () => void;
+  selectedDate: Date;
 };
 
 export type EmotionsSectionProps = {
