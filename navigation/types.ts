@@ -8,4 +8,5 @@ export type RootStackParamList = {
   Statistics: undefined;
   Care: undefined;
   Account: undefined;
+  MeditationList: { id: string };
 };

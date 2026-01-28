@@ -1,13 +1,7 @@
 import { Text, View, FlatList } from "react-native";
 import { styles } from "../styles/SelfCareScreen.styles";
-import { CardItem } from "./ImageCard";
 import ImageCard from "./ImageCard";
-
-type CareSectionItem = {
-  data: CardItem[];
-  title: string;
-  subtitle: string;
-};
+import type { CareSectionItem } from "../types/careSection";
 
 export default function CareSection({
   data,
@@ -23,7 +17,14 @@ export default function CareSection({
         horizontal
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ImageCard id={item.id} image={item.image} />}
+        renderItem={({ item }) => (
+          <ImageCard
+            id={item.id}
+            image={item.image}
+            title={item.title}
+            session={item.session}
+          />
+        )}
         showsHorizontalScrollIndicator={false}
       />
     </View>

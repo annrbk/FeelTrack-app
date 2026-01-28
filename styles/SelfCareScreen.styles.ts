@@ -37,4 +37,25 @@ export const styles = StyleSheet.create({
     height: 200,
     borderRadius: 12,
   },
+  imageTitleContainer: {
+    position: "absolute",
+    backgroundColor: "white",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    top: 10,
+    left: 10,
+  },
+  sessionContainer: {
+    position: "absolute",
+    backgroundColor: "white",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    bottom: 10,
+    right: 10,
+  },
+  imageTitle: {
+    fontSize: 16,
+  },
 });
