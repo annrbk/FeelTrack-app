@@ -9,4 +9,5 @@ export type RootStackParamList = {
   Care: undefined;
   Account: undefined;
   MeditationList: { id: string };
+  TestScreen: { id: string };
 };

@@ -8,6 +8,7 @@ import BottomTabs from "./BottomTabs";
 import { useSession } from "../ctx";
 import AccountScreen from "../screens/AccountScreen";
 import MeditationListScreen from "../screens/MeditationListScreen";
+import TestScreen from "../screens/TestScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -31,6 +32,7 @@ export default function MyStack() {
             name="MeditationList"
             component={MeditationListScreen}
           />
+          <Stack.Screen name="TestScreen" component={TestScreen} />
         </>
       )}
     </Stack.Navigator>
