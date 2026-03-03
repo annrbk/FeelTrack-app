@@ -1,3 +1,5 @@
+import { TestResult } from "../types/tests";
+
 export type RootStackParamList = {
   FirstScreen: undefined;
   Authentication: undefined;
@@ -10,4 +12,5 @@ export type RootStackParamList = {
   Account: undefined;
   MeditationList: { id: string };
   TestScreen: { id: string };
+  ResultScreen: { result: TestResult };
 };

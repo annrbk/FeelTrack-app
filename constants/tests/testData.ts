@@ -8,8 +8,8 @@ export const testData = [
   {
     id: "2",
     image: require("../../assets/meditation/3.jpg"),
-    title: "Anxiety Test",
-    summaryQuestion: "7",
+    title: "Forms of Self-Criticism (FSCRS)",
+    summaryQuestion: "22",
   },
   {
     id: "3",
