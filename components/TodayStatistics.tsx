@@ -47,10 +47,10 @@ export default function TodayStatistics({
         <View style={styles.statisticsContent}>
           {todayEmotions.map((todayEmotion) => {
             const emotionData = emotions.find(
-              (e) => e.label === todayEmotion.label
+              (e) => e.label === todayEmotion.label,
             );
             const timeOfEmotion = new Date(
-              todayEmotion.createdAt
+              todayEmotion.createdAt,
             ).toLocaleTimeString();
             return (
               <Swipeable

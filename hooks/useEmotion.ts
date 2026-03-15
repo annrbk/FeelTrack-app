@@ -17,7 +17,6 @@ export const useEmotion = () => {
 
   const addEmotion = async (emotion: Emotion) => {
     if (!emotion) return;
-
     try {
       await addEmotionToUser(emotion.label);
       setModal(false);
@@ -41,7 +40,7 @@ export const useEmotion = () => {
     try {
       await deleteEmotion(id);
       const updatedEmotions = todayEmotions.filter(
-        (emotion) => emotion.id !== id
+        (emotion) => emotion.id !== id,
       );
       setTodayEmotions(updatedEmotions);
     } catch (error) {

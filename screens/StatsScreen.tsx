@@ -1,32 +1,21 @@
-import { useState, useEffect } from "react";
 import { Calendar } from "react-native-calendars";
 import { View, Text } from "react-native";
 import { styles } from "../styles/StatsScreen.styles";
-import getCurrentDate from "../utils/getCurrentDate";
-
-type DateData = {
-  year: number;
-  month: number;
-  day: number;
-  timestamp: number;
-  dateString: string;
-};
+import StatsModal from "../components/StatsModal";
+import { useStats } from "../hooks/useStats";
 
 export default function StatsScreen() {
-  const [currentDay, setCurrentDay] = useState("");
-  const [currentMonth, setCurrentMonth] = useState("");
-
-  useEffect(() => {
-    const { dayOfMonth, monthName } = getCurrentDate();
-    setCurrentDay(dayOfMonth);
-    setCurrentMonth(monthName);
-  }, []);
-
-  const handleMonthChange = (month: DateData) => {
-    const date = new Date(month.dateString);
-    const monthName = date.toLocaleString("default", { month: "long" });
-    setCurrentMonth(monthName);
-  };
+  const {
+    currentDay,
+    currentMonth,
+    emotionByDate,
+    visible,
+    chosenDate,
+    formatDates,
+    handleMonthChange,
+    filterEmotionByDate,
+    onClose,
+  } = useStats();
 
   return (
     <View style={styles.container}>
@@ -38,6 +27,11 @@ export default function StatsScreen() {
         style={styles.calendarStyle}
         onMonthChange={handleMonthChange}
         hideExtraDays={true}
+        onDayPress={(day) => {
+          filterEmotionByDate(day.dateString);
+        }}
+        markingType={"multi-dot"}
+        markedDates={formatDates()}
         renderHeader={() => {
           return (
             <View style={styles.monthContainer}>
@@ -46,6 +40,14 @@ export default function StatsScreen() {
           );
         }}
       />
+      {emotionByDate && (
+        <StatsModal
+          emotionsByDate={emotionByDate}
+          visible={visible}
+          onClose={onClose}
+          text={`Emotions for ${chosenDate}:`}
+        />
+      )}
     </View>
   );
 }

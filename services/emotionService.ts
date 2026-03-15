@@ -16,7 +16,7 @@ export const addEmotionToUser = async (emotion: string) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
@@ -69,7 +69,7 @@ export const deleteEmotion = async (id: number) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     return response.data;
   } catch (error) {
