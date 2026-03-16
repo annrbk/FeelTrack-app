@@ -7,7 +7,7 @@ import { RootStackParamList } from "../navigation/types";
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const { signOut } = useSession();
+  const { user, signOut } = useSession();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -15,9 +15,9 @@ export default function ProfileScreen() {
         <View style={styles.header}>
           <Image style={styles.avatar} />
           <View>
-            <Text style={styles.name}>Username</Text>
-            <Text style={styles.email}>+375 29 555 55 55</Text>
-            <Text style={styles.email}>email@example.com</Text>
+            <Text style={styles.name}>{user?.name || "User"}</Text>
+            <Text style={styles.email}>{user?.number || null}</Text>
+            <Text style={styles.email}>{user?.email}</Text>
           </View>
         </View>
         <View style={styles.settingsContainer}>

@@ -21,13 +21,33 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   emotionView: {
-    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
   },
-  emotionItem: {
+  emotionLabel: {
     paddingVertical: 6,
-    fontSize: 20,
+    fontSize: 16,
+  },
+  emotionTime: {
+    fontSize: 14,
+    color: "#a3a3a3",
+  },
+  emotionEmoji: {
+    fontSize: 24,
+  },
+  itemsContainer: {
+    gap: 24,
+    marginHorizontal: 8,
+    marginVertical: 4,
+  },
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    borderWidth: 1,
+    borderColor: "#e6e6e6",
+    borderRadius: 10,
+    padding: 12,
+    gap: 24,
   },
   button: {
     marginTop: 16,

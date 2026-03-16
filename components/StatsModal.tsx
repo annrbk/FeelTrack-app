@@ -23,13 +23,23 @@ export default function StatsModal({
           <Text style={styles.title}>{text}</Text>
           <View style={styles.emotionView}>
             {emotionsByDate.length > 0 ? (
-              emotionsByDate.map((emotion) => (
-                <View key={emotion.id}>
-                  <Text style={styles.emotionItem}>
-                    {emotions.find((e) => emotion.label === e.label)?.emoji}
-                  </Text>
-                </View>
-              ))
+              emotionsByDate.map((emotion) => {
+                const emotionEmoji = emotions.find(
+                  (e) => e.label === emotion.label,
+                )?.emoji;
+                const timeOfEmotion = new Date(
+                  emotion.createdAt,
+                ).toLocaleTimeString();
+                return (
+                  <View style={styles.itemsContainer} key={emotion.id}>
+                    <View style={styles.itemContainer}>
+                      <Text style={styles.emotionEmoji}>{emotionEmoji}</Text>
+                      <Text style={styles.emotionLabel}>{emotion.label}</Text>
+                      <Text style={styles.emotionTime}>{timeOfEmotion}</Text>
+                    </View>
+                  </View>
+                );
+              })
             ) : (
               <View>
                 <Text>Emotions were not selected</Text>
