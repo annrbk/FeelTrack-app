@@ -39,7 +39,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
             const token = response.token;
             setSession(token);
             setStoredUser(
-              JSON.stringify({ id, email, name, number, dateOfBirth })
+              JSON.stringify({ id, email, name, number, dateOfBirth }),
             );
           } catch (error) {
             console.error("Error signIn:", error);

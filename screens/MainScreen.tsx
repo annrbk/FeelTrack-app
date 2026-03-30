@@ -5,6 +5,8 @@ import { useEmotion } from "../hooks/useEmotion";
 import { useEffect } from "react";
 import TodayStatistics from "../components/TodayStatistics";
 import EmotionsSection from "../components/EmotionsSection";
+import { useTheme } from "../context/ThemeContext";
+import { ThemeColors } from "../constants/theme";
 
 export default function MainScreen() {
   const {
@@ -26,6 +28,8 @@ export default function MainScreen() {
     selectedDate,
   } = useEmotion();
 
+  const { theme } = useTheme();
+
   useEffect(() => {
     getEmotions();
   }, [selectedDate]);
@@ -34,7 +38,13 @@ export default function MainScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
+      style={[
+        styles.container,
+        {
+          backgroundColor:
+            theme === "dark" ? ThemeColors.dark : ThemeColors.light,
+        },
+      ]}
       contentContainerStyle={styles.scrollContent}
     >
       <EmotionsSection

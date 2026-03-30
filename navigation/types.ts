@@ -13,4 +13,5 @@ export type RootStackParamList = {
   MeditationList: { id: string };
   TestScreen: { id: string };
   ResultScreen: { result: TestResult };
+  Settings: undefined;
 };

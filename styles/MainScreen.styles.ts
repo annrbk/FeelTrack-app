@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     padding: 24,
   },
   scrollContent: {
@@ -44,7 +43,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     borderRadius: 16,
-    backgroundColor: "#f0f0f0",
     margin: 6,
   },
   emotionActiveButton: {
@@ -52,7 +50,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     borderRadius: 16,
-    backgroundColor: "#cee4fbff",
     borderColor: "#2e86de",
     borderWidth: 1,
     margin: 6,
@@ -63,11 +60,9 @@ export const styles = StyleSheet.create({
   emotionLabel: {
     marginTop: 4,
     fontSize: 14,
-    color: "#333",
   },
   statistics: {
     width: "100%",
-    backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 20,
     marginTop: 20,
@@ -80,7 +75,6 @@ export const styles = StyleSheet.create({
   statisticsTitle: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#1A1A1A",
     marginBottom: 16,
   },
   statisticsContent: {
@@ -92,7 +86,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingLeft: 8,
     borderRadius: 8,
-    backgroundColor: "#f5f2f2ff",
   },
   currentEmotionEmoji: {
     fontSize: 26,
@@ -120,12 +113,10 @@ export const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#1A1A1A",
     textAlign: "center",
   },
   emptySubtitle: {
     fontSize: 14,
-    color: "#6B7280",
     textAlign: "center",
   },
 });

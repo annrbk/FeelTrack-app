@@ -30,7 +30,7 @@ export default function ProfileScreen() {
           </Pressable>
           <Pressable
             style={styles.settingItem}
-            onPress={() => console.log("Settings")}
+            onPress={() => navigation.navigate("Settings")}
             accessibilityRole="button"
           >
             <Text style={styles.settingText}>Settings</Text>

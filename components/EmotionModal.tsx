@@ -3,6 +3,8 @@ import { Modal, Text, Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "../styles/SuccessModal.styles";
 import type { EmotionModalProps } from "../types/emotionTypes";
+import { ThemeColors } from "../constants/theme";
+import { useTheme } from "../context/ThemeContext";
 
 export default function EmotionModal({
   visible,
@@ -10,6 +12,8 @@ export default function EmotionModal({
   onClose,
   addEmotion,
 }: EmotionModalProps) {
+  const { theme } = useTheme();
+
   return (
     <Modal
       animationType="fade"
@@ -19,14 +23,36 @@ export default function EmotionModal({
       statusBarTranslucent={true}
     >
       <View style={styles.centeredView}>
-        <View style={styles.modalView}>
+        <View
+          style={[
+            styles.modalView,
+            {
+              backgroundColor:
+                theme === "dark" ? ThemeColors.dark : ThemeColors.iconGray,
+            },
+          ]}
+        >
           <Pressable style={styles.closeIcon} onPress={() => onClose()}>
             <View>
-              <Ionicons name="close-outline" size={24} color="#000" />
+              <Ionicons
+                name="close-outline"
+                size={24}
+                color={
+                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark
+                }
+              />
             </View>
           </Pressable>
           <Text style={styles.emoji}>{emotion.emoji}</Text>
-          <Text style={styles.modalText}>
+          <Text
+            style={[
+              styles.modalText,
+              {
+                color:
+                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
+              },
+            ]}
+          >
             {`You have chosen "${emotion.label}". Confirm your choice?`}
           </Text>
           <Pressable

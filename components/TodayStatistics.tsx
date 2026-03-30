@@ -5,6 +5,8 @@ import type { TodayStatisticsProps } from "../types/emotionTypes";
 import { moderateScale } from "react-native-size-matters";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useTheme } from "../context/ThemeContext";
+import { ThemeColors } from "../constants/theme";
 
 export default function TodayStatistics({
   todayEmotions,
@@ -13,6 +15,7 @@ export default function TodayStatistics({
   goToPreviousDate,
   selectedDate,
 }: TodayStatisticsProps) {
+  const { theme } = useTheme();
   const renderRightActions = (todayEmotionId: number) => {
     return (
       <TouchableOpacity
@@ -31,16 +34,40 @@ export default function TodayStatistics({
     );
   };
   return (
-    <View style={styles.statistics}>
+    <View
+      style={[
+        styles.statistics,
+        {
+          backgroundColor:
+            theme === "dark" ? ThemeColors.secondaryDark : ThemeColors.light,
+        },
+      ]}
+    >
       <View style={styles.statisticsHeader}>
         <Pressable onPress={goToPreviousDate}>
-          <Ionicons name="chevron-back-outline" size={24} color="#000" />
+          <Ionicons
+            name="chevron-back-outline"
+            size={24}
+            color={theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark}
+          />
         </Pressable>
-        <Text style={styles.statisticsTitle}>
+        <Text
+          style={[
+            styles.statisticsTitle,
+            {
+              color:
+                theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
+            },
+          ]}
+        >
           Summary {selectedDate.toLocaleDateString()}
         </Text>
         <Pressable onPress={goToNextDate}>
-          <Ionicons name="chevron-forward-outline" size={24} color="#000" />
+          <Ionicons
+            name="chevron-forward-outline"
+            size={24}
+            color={theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark}
+          />
         </Pressable>
       </View>
       {todayEmotions.length > 0 ? (
@@ -57,11 +84,31 @@ export default function TodayStatistics({
                 key={todayEmotion.id}
                 renderRightActions={() => renderRightActions(todayEmotion.id)}
               >
-                <View style={styles.currentEmotion}>
+                <View
+                  style={[
+                    styles.currentEmotion,
+                    {
+                      backgroundColor:
+                        theme === "dark"
+                          ? ThemeColors.dark
+                          : ThemeColors.iconGray,
+                    },
+                  ]}
+                >
                   <Text style={styles.currentEmotionEmoji}>
                     {emotionData?.emoji}
                   </Text>
-                  <Text style={styles.currentEmotionLabel}>
+                  <Text
+                    style={[
+                      styles.currentEmotionLabel,
+                      {
+                        color:
+                          theme === "dark"
+                            ? ThemeColors.lightGray
+                            : ThemeColors.dark,
+                      },
+                    ]}
+                  >
                     {emotionData?.label}
                   </Text>
                   <View style={styles.timeContainer}>
@@ -76,8 +123,26 @@ export default function TodayStatistics({
         </View>
       ) : (
         <View style={styles.statisticsEmpty}>
-          <Text style={styles.emptyTitle}>No emotions tracked yet today</Text>
-          <Text style={styles.emptySubtitle}>
+          <Text
+            style={[
+              styles.emptyTitle,
+              {
+                color:
+                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
+              },
+            ]}
+          >
+            No emotions tracked yet today
+          </Text>
+          <Text
+            style={[
+              styles.emptySubtitle,
+              {
+                color:
+                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
+              },
+            ]}
+          >
             Start by selecting how you feel!
           </Text>
         </View>
