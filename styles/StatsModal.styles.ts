@@ -9,45 +9,13 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     width: 300,
-    margin: 20,
+    height: 150,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 14,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 24,
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 16,
-  },
-  emotionView: {
-    flexWrap: "wrap",
-  },
-  emotionLabel: {
-    paddingVertical: 6,
-    fontSize: 16,
-  },
-  emotionTime: {
-    fontSize: 14,
-    color: "#a3a3a3",
-  },
-  emotionEmoji: {
-    fontSize: 24,
-  },
-  itemsContainer: {
-    gap: 24,
-    marginHorizontal: 8,
-    marginVertical: 4,
-  },
-  itemContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 10,
-    padding: 12,
-    gap: 24,
   },
   button: {
     marginTop: 16,

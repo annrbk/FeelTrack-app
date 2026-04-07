@@ -1,3 +1,4 @@
+import { EmotionFromDB } from "../types/emotionTypes";
 import { TestResult } from "../types/tests";
 
 export type RootStackParamList = {
@@ -14,4 +15,8 @@ export type RootStackParamList = {
   TestScreen: { id: string };
   ResultScreen: { result: TestResult };
   Settings: undefined;
+  StatsByDay: {
+    emotionsForDay: EmotionFromDB[];
+    chosenDate: string;
+  };
 };

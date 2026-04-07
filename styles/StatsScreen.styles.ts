@@ -8,6 +8,23 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "stretch",
   },
+  dayContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 30,
+    height: 30,
+    margin: 8,
+  },
+  emotionContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#d9f2fe",
+    borderRadius: 6,
+    width: 36,
+    height: 32,
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
@@ -23,11 +40,21 @@ export const styles = StyleSheet.create({
     marginBottom: 24,
   },
   monthContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
     marginBottom: 12,
     padding: 6,
+    gap: 8,
   },
   monthText: {
     fontSize: 18,
+  },
+  emotionText: {
+    fontSize: 10,
+    marginLeft: 2,
+  },
+  emotionTextSmile: {
+    fontSize: 10,
   },
   calendarStyle: {
     height: 380,
