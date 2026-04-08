@@ -1,7 +1,7 @@
 export const selfCriticismScale = [
   {
     id: "2",
-    name: "Forms of Self-Criticism (FSCRS)",
+    name: "Forms of Self-Criticism",
     description:
       "Measures self-criticism and the ability to reassure oneself during difficulties.",
     instruction:

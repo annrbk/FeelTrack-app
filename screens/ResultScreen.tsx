@@ -7,6 +7,7 @@ import useTestInterpretation from "../hooks/useTestInterpretation";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import ResultScore from "../components/ResultScore";
 import ResultSubscale from "../components/ResultSubscale";
+import BackButton from "../components/BackButton";
 
 export default function ResultScreen({
   route,
@@ -21,11 +22,11 @@ export default function ResultScreen({
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable onPress={() => navigation.goBack()} accessibilityRole="button">
-        <Text>Back</Text>
-      </Pressable>
-      <Text style={styles.title}>View your results</Text>
-      {result.testId === "1" ? (
+      <View style={styles.headerContainer}>
+        <BackButton />
+        <Text style={styles.title}>View your results</Text>
+      </View>
+      {result.testId === "1" || result.testId === "3" ? (
         <ResultScore result={result} interpretation={interpretation} />
       ) : (
         <ResultSubscale result={result} />

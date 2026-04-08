@@ -3,10 +3,10 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    padding: 12,
   },
   scrollContent: {
-    paddingBottom: 48,
+    paddingBottom: 24,
   },
   description: {
     padding: 48,
@@ -29,24 +29,23 @@ export const styles = StyleSheet.create({
   emotionTitle: {
     fontSize: 20,
     textAlign: "center",
-    padding: 12,
   },
   emotionsContainer: {},
   emotions: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    gap: 16,
+    gap: 6,
   },
   emotionButton: {
-    width: 80,
+    width: 86,
     alignItems: "center",
     paddingVertical: 10,
     borderRadius: 16,
     margin: 6,
   },
   emotionActiveButton: {
-    width: 80,
+    width: 86,
     alignItems: "center",
     paddingVertical: 10,
     borderRadius: 16,

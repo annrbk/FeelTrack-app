@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  buttonContainer: {},
-  backButton: {
-    padding: 10,
+  buttonContainer: {
+    zIndex: 1,
   },
+  backButton: {},
 });

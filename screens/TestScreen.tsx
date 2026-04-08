@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native";
+import { useState } from "react";
 import { RootStackParamList } from "../navigation/types";
 import { RouteProp, useNavigation } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -6,6 +7,9 @@ import { styles } from "../styles/TestScreen.styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useTestActions } from "../hooks/useTestActions";
 import useTestFinish from "../hooks/useTestFinish";
+import BackButton from "../components/BackButton";
+import WarningNoteScreen from "./WarningNote";
+import { useShowWarning } from "../hooks/useShowWarning";
 
 export default function TestScreen({
   route,
@@ -33,6 +37,8 @@ export default function TestScreen({
     setResult,
   });
 
+  const { showWarning, handleStart } = useShowWarning();
+
   if (!selectedTest) {
     return (
       <View>
@@ -41,16 +47,17 @@ export default function TestScreen({
     );
   }
 
+  if (showWarning) {
+    return <WarningNoteScreen onStart={handleStart} />;
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          accessibilityRole="button"
-        >
-          <Text>Back</Text>
-        </Pressable>
-        <Text style={styles.title}>{selectedTest?.name}</Text>
+        <View style={styles.headerContainer}>
+          <BackButton />
+          <Text style={styles.title}>{selectedTest?.name}</Text>
+        </View>
         <View>
           <Text style={styles.instruction}>{selectedTest.instruction}</Text>
           <View style={styles.questionCounterContainer}>

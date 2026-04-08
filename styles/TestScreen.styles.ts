@@ -5,8 +5,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   title: {
-    fontSize: 24,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    fontSize: 18,
     fontWeight: "bold",
   },
   instruction: {

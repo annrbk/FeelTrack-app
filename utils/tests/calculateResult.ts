@@ -1,4 +1,5 @@
 import scoreGenAnxDis from "./generalAnxietyDisorder";
+import scorePatientHealthQuestionnaire from "./patientHealthQuestionnaire";
 import scoreSelfCriticism from "./selfCriticismScale";
 
 export default function calculateResult(
@@ -24,6 +25,11 @@ export default function calculateResult(
         sumHS: subscaleResults?.sumHS,
         sumRS: subscaleResults?.sumRS,
       };
+    }
+
+    case "3": {
+      const score = scorePatientHealthQuestionnaire(answers);
+      return { testId: "3", score };
     }
 
     default: {

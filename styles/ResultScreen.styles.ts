@@ -6,11 +6,18 @@ export const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: "#ffffff",
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
   title: {
-    fontSize: 22,
-    fontWeight: "700",
-    color: "#111827",
-    marginBottom: 8,
+    position: "absolute",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   score: {
     fontSize: 16,
