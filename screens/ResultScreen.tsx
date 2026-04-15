@@ -26,7 +26,9 @@ export default function ResultScreen({
         <BackButton />
         <Text style={styles.title}>View your results</Text>
       </View>
-      {result.testId === "1" || result.testId === "3" ? (
+      {result.testId === "1" ||
+      result.testId === "3" ||
+      result.testId === "4" ? (
         <ResultScore result={result} interpretation={interpretation} />
       ) : (
         <ResultSubscale result={result} />

@@ -2,7 +2,8 @@ export const generalAnxietyDisorder = [
   {
     id: "1",
     name: "Generalized Anxiety Disorder",
-    description: "description1",
+    description:
+      "Evaluate anxiety levels and identify symptoms of anxiety disorders, especially generalized anxiety disorder.",
     instruction:
       "Over the last 2 weeks, how often have you been bothered by any of the following problems?",
     questions: [

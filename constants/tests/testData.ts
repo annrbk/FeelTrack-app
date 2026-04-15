@@ -17,4 +17,10 @@ export const testData = [
     title: "Patient Health Questionnaire (PHQ-9)",
     summaryQuestion: "9",
   },
+  {
+    id: "4",
+    image: require("../../assets/meditation/2.jpg"),
+    title: "Rosenberg Self-Esteem Scale",
+    summaryQuestion: "10",
+  },
 ];

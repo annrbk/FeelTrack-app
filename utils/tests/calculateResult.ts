@@ -1,6 +1,7 @@
 import scoreGenAnxDis from "./generalAnxietyDisorder";
 import scorePatientHealthQuestionnaire from "./patientHealthQuestionnaire";
 import scoreSelfCriticism from "./selfCriticismScale";
+import scoreRosenbergSelfEsteem from "./rosenbergSelfEsteemScale";
 
 export default function calculateResult(
   id: string,
@@ -30,6 +31,11 @@ export default function calculateResult(
     case "3": {
       const score = scorePatientHealthQuestionnaire(answers);
       return { testId: "3", score };
+    }
+
+    case "4": {
+      const score = scoreRosenbergSelfEsteem(answers);
+      return { testId: "4", score };
     }
 
     default: {
