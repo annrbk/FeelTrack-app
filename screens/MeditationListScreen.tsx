@@ -1,11 +1,4 @@
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Pressable,
-  FlatList,
-} from "react-native";
+import { Text, View, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
@@ -16,6 +9,7 @@ import { usePlayer } from "../PlayerContext";
 import { useEffect } from "react";
 import { careData } from "../constants/careData";
 import formatTime from "../utils/formatTime";
+import BackButton from "../components/BackButton";
 
 export default function MeditationListScreen({
   route,
@@ -36,35 +30,29 @@ export default function MeditationListScreen({
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Pressable
-          onPress={() => navigation.goBack()}
-          accessibilityRole="button"
-        >
-          <Text>Back</Text>
-        </Pressable>
+        <BackButton />
+        <View style={styles.header}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={require("../assets/meditation/2.jpg")}
+              resizeMode="cover"
+            />
+          </View>
+          <View style={styles.headerTextContainer}>
+            <Text key={id} style={styles.headerTitle}>
+              {currentCategory?.title}
+            </Text>
+
+            <Text style={styles.headerSubtitle}>
+              {filteredMeditations.length} tracks
+            </Text>
+          </View>
+        </View>
         <FlatList
           data={filteredMeditations}
           keyExtractor={(item) => item.id}
-          ListHeaderComponent={
-            <View style={styles.header}>
-              <View style={styles.imageContainer}>
-                <Image
-                  style={styles.image}
-                  source={require("../assets/meditation/2.jpg")}
-                  resizeMode="cover"
-                />
-              </View>
-              <View style={styles.headerTextContainer}>
-                <Text key={id} style={styles.headerTitle}>
-                  {currentCategory?.title}
-                </Text>
-
-                <Text style={styles.headerSubtitle}>
-                  {filteredMeditations.length} tracks
-                </Text>
-              </View>
-            </View>
-          }
+          contentContainerStyle={styles.listContainer}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => player.playTrack(item)}

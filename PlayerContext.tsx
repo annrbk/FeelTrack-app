@@ -14,6 +14,8 @@ const PlayerContext = createContext<{
   isPlaying: boolean;
   currentTime: number;
   duration: number;
+  repeatMode: "off" | "one";
+  isShuffled: boolean;
   queue: Meditation[];
   playTrack: (track: Meditation) => void;
   pauseTrack: () => void;
@@ -23,6 +25,9 @@ const PlayerContext = createContext<{
   playPrevious: () => void;
   setQueue: (tracks: Meditation[]) => void;
   seekTo: (seconds: number) => void;
+  clearTrack: () => void;
+  toggleRepeat: () => void;
+  shuffleQueue: () => void;
 } | null>(null);
 
 export function usePlayer() {
@@ -40,9 +45,12 @@ export function PlayerProvider({ children }: PropsWithChildren) {
   const [duration, setDuration] = useState(0);
   const [queue, setQueue] = useState<Meditation[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isShuffled, setIsShuffled] = useState(false);
+  const [repeatMode, setRepeatMode] = useState<"off" | "one">("off");
 
   const playerRef = useRef<AudioPlayer | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const originalQueueRef = useRef<Meditation[]>([]);
 
   useEffect(() => {
     return () => {
@@ -84,7 +92,9 @@ export function PlayerProvider({ children }: PropsWithChildren) {
   }, [isPlaying, currentIndex]);
 
   const handleTrackEnd = () => {
-    if (currentIndex < queue.length - 1) {
+    if (repeatMode === "one") {
+      replayTrack();
+    } else if (currentIndex < queue.length - 1) {
       playNext();
     } else {
       setIsPlaying(false);
@@ -155,6 +165,35 @@ export function PlayerProvider({ children }: PropsWithChildren) {
       playerRef.current.seekTo(seconds);
     }
   };
+  const clearTrack = () => {
+    if (playerRef.current) {
+      playerRef.current.pause();
+      playerRef.current.remove();
+      playerRef.current = null;
+    }
+    setCurrentTrack(null);
+    setIsPlaying(false);
+  };
+
+  const shuffleQueue = () => {
+    if (isShuffled) {
+      setQueue(originalQueueRef.current);
+      setIsShuffled(false);
+    } else {
+      originalQueueRef.current = [...queue];
+      const shuffled = [...queue];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      setQueue(shuffled);
+      setIsShuffled(true);
+    }
+  };
+
+  const toggleRepeat = () => {
+    setRepeatMode((prev) => (prev === "off" ? "one" : "off"));
+  };
 
   return (
     <PlayerContext.Provider
@@ -162,6 +201,8 @@ export function PlayerProvider({ children }: PropsWithChildren) {
         currentTrack,
         isPlaying,
         currentTime,
+        repeatMode,
+        isShuffled,
         duration,
         queue,
         playTrack,
@@ -172,6 +213,9 @@ export function PlayerProvider({ children }: PropsWithChildren) {
         playPrevious,
         setQueue,
         seekTo,
+        clearTrack,
+        toggleRepeat,
+        shuffleQueue,
       }}
     >
       {children}

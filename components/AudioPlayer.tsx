@@ -5,6 +5,7 @@ import { usePlayer } from "../PlayerContext";
 import { useAudio } from "../hooks/useAudio";
 import ControlsButtons from "./ControlButtons";
 import AudioProgressBar from "./AudioProgressBar";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function AudioPlayer({
   toggleExpand,
@@ -13,15 +14,23 @@ export default function AudioPlayer({
 }) {
   const { currentTrack } = usePlayer();
 
-  if (!currentTrack) return null;
-
   const currentCategory = useAudio();
 
+  const insets = useSafeAreaInsets();
+
+  if (!currentTrack) return null;
+
   return (
-    <View style={styles.container}>
-      <Pressable style={styles.closeButton} onPress={toggleExpand}>
-        <Ionicons name="chevron-down-outline" size={24} color="#000" />
-      </Pressable>
+    <View style={[styles.container, { paddingBottom: insets.bottom + 16 }]}>
+      <View style={styles.topHeader}>
+        <Pressable style={styles.closeButton} onPress={toggleExpand}>
+          <Ionicons name="chevron-down-outline" size={24} color="#000" />
+        </Pressable>
+        <View style={styles.titleContainer}>
+          <Text style={styles.nowPlayingText}>Now Playing</Text>
+        </View>
+        <View style={styles.rightPart} />
+      </View>
       <View style={styles.headerContainer}>
         <Image
           style={styles.image}

@@ -4,10 +4,10 @@ const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    flex: 1,
     backgroundColor: "#ffffffff",
     paddingHorizontal: 24,
-    paddingTop: 100,
+    paddingTop: 24,
   },
 
   headerContainer: {
@@ -16,8 +16,28 @@ export const styles = StyleSheet.create({
     marginTop: 24,
   },
 
+  topHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 24,
+  },
+
+  nowPlayingText: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+
   closeButton: {
-    marginTop: 16,
+    width: 40,
+  },
+
+  titleContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+
+  rightPart: {
+    width: 40,
   },
 
   image: {
@@ -25,6 +45,7 @@ export const styles = StyleSheet.create({
     height: width * 0.8,
     borderRadius: 16,
     marginBottom: 24,
+    marginTop: 16,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
@@ -65,9 +86,10 @@ export const styles = StyleSheet.create({
 
   musicControls: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     width: "100%",
-    paddingHorizontal: 32,
+    paddingHorizontal: 12,
+    marginTop: 18,
   },
 });

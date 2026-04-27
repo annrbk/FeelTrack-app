@@ -61,4 +61,12 @@ export const meditations = [
     audio: require("../assets/meditation/music/7.mp3"),
     duration: 135,
   },
+  {
+    id: "8",
+    categoryId: "1",
+    title: "Inner Peace",
+    description: "Cultivate a deep sense of inner peace and tranquility",
+    audio: require("../assets/meditation/music/8.mp3"),
+    duration: 192,
+  },
 ];

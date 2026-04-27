@@ -37,7 +37,6 @@ export const styles = StyleSheet.create({
   listContainer: {
     paddingHorizontal: 16,
     paddingTop: 16,
-    paddingBottom: 100,
   },
   listItem: {
     flexDirection: "row",

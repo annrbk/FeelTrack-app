@@ -11,5 +11,4 @@ export type CardItem = {
   image: ImageSourcePropType;
   title?: string;
   session?: string;
-  summaryQuestion?: string;
 };

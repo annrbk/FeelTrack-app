@@ -4,11 +4,27 @@ import { styles } from "../styles/AudioPlayer.style";
 import { usePlayer } from "../PlayerContext";
 
 export default function ControlsButtons() {
-  const { isPlaying, resumeTrack, pauseTrack, playNext, playPrevious } =
-    usePlayer();
+  const {
+    isPlaying,
+    repeatMode,
+    isShuffled,
+    resumeTrack,
+    pauseTrack,
+    playNext,
+    playPrevious,
+    toggleRepeat,
+    shuffleQueue,
+  } = usePlayer();
 
   return (
     <View style={styles.musicControls}>
+      <TouchableOpacity onPress={shuffleQueue}>
+        <Ionicons
+          name="shuffle-outline"
+          size={38}
+          color={isShuffled ? "pink" : "black"}
+        />
+      </TouchableOpacity>
       <TouchableOpacity onPress={playPrevious}>
         <Ionicons name="play-skip-back" size={38} color="black" />
       </TouchableOpacity>
@@ -23,6 +39,13 @@ export default function ControlsButtons() {
       )}
       <TouchableOpacity onPress={playNext}>
         <Ionicons name="play-skip-forward" size={38} color="black" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={toggleRepeat}>
+        <Ionicons
+          name="repeat-outline"
+          size={38}
+          color={repeatMode === "off" ? "black" : "pink"}
+        />
       </TouchableOpacity>
     </View>
   );

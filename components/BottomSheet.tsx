@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, Dimensions } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -15,11 +15,14 @@ import { styles as sheetStyles } from "../styles/BottomSheet.styles";
 export default function BottomSheet({ duration = 400 }) {
   const { currentTrack } = usePlayer();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showFullPlayer, setShowFullPlayer] = useState(false);
 
   const height = useSharedValue(0);
   const isVisible = useSharedValue(false);
   const isExpandedAnimated = useSharedValue(false);
   const animatedHeight = useSharedValue(80);
+
+  const { height: screenHeight } = Dimensions.get("window");
 
   useEffect(() => {
     if (currentTrack !== null) {
@@ -31,11 +34,13 @@ export default function BottomSheet({ duration = 400 }) {
 
   useEffect(() => {
     isExpandedAnimated.value = isExpanded;
-    animatedHeight.value = withTiming(isExpanded ? 800 : 80, { duration });
+    animatedHeight.value = withTiming(isExpanded ? screenHeight - 8 : 80, {
+      duration,
+    });
   }, [isExpanded]);
 
   const progress = useDerivedValue(() =>
-    withTiming(isVisible.value ? 0 : 1, { duration })
+    withTiming(isVisible.value ? 0 : 1, { duration }),
   );
 
   const sheetStyle = useAnimatedStyle(() => ({
@@ -50,7 +55,13 @@ export default function BottomSheet({ duration = 400 }) {
   }));
 
   const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
+    if (isExpanded) {
+      setIsExpanded(false);
+      setTimeout(() => setShowFullPlayer(false), duration);
+    } else {
+      setShowFullPlayer(true);
+      setIsExpanded(true);
+    }
   };
 
   return (
@@ -71,7 +82,7 @@ export default function BottomSheet({ duration = 400 }) {
           useAnimatedStyle(() => ({ height: animatedHeight.value })),
         ]}
       >
-        {isExpanded ? (
+        {showFullPlayer ? (
           <AudioPlayer toggleExpand={toggleExpand} />
         ) : (
           <MiniPlayer toggleExpand={toggleExpand} />

@@ -1,6 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
-
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,11 +9,15 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   section: {
-    marginBottom: 32,
+    flex: 1,
     paddingVertical: 16,
   },
-  list: {
-    paddingHorizontal: 10,
+  grid: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignContent: "space-evenly",
+    paddingHorizontal: 8,
   },
   title: {
     fontSize: 20,
@@ -30,11 +32,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
   },
   imageWrapper: {
-    marginHorizontal: 8,
+    width: "46%",
+    margin: "2%",
   },
   image: {
-    width: width * 0.7,
-    height: 200,
+    width: "100%",
+    height: 150,
     borderRadius: 12,
   },
   imageTitleContainer: {
