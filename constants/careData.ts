@@ -9,7 +9,7 @@ export const careData = [
     id: "2",
     image: require("../assets/meditation/2.jpg"),
     title: "Energize",
-    session: "10",
+    session: "9",
   },
   {
     id: "3",

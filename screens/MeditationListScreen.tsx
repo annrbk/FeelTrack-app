@@ -1,6 +1,5 @@
 import { Text, View, Image, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { RouteProp } from "@react-navigation/native";
 import { meditations } from "../constants/meditations";
@@ -16,12 +15,13 @@ export default function MeditationListScreen({
 }: {
   route: RouteProp<RootStackParamList, "MeditationList">;
 }) {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { id } = route.params;
   const player = usePlayer();
 
   const filteredMeditations = meditations.filter((m) => m.categoryId === id);
   const currentCategory = careData.find((careItem) => careItem.id === id);
+
+  const miniPlayerHeight = player.currentTrack ? 70 : 0;
 
   useEffect(() => {
     player.setQueue(filteredMeditations);
@@ -52,7 +52,10 @@ export default function MeditationListScreen({
         <FlatList
           data={filteredMeditations}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.listContainer}
+          contentContainerStyle={[
+            styles.listContainer,
+            { paddingBottom: miniPlayerHeight },
+          ]}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => player.playTrack(item)}
