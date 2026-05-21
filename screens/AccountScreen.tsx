@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Image, Pressable, TextInput } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../styles/AccountScreen.styles";
 import Calendar from "../components/Calendar";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "../navigation/types";
+
 import Loading from "../components/Loading";
 import SuccessModal from "../components/SuccessModal";
 import { useAccount } from "../hooks/useAccount";
+import BackButton from "../components/BackButton";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import AvatarModal from "../components/AvatarModal";
+import { useSession } from "../ctx";
+import { avatars } from "../constants/avatars";
 
 export default function AccountScreen() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const {
     name,
     email,
@@ -27,6 +30,9 @@ export default function AccountScreen() {
     addChanges,
     onCloseModal,
   } = useAccount();
+  const { user } = useSession();
+
+  const [changeAvatar, setChangeAvatar] = useState(false);
 
   if (loading) {
     return <Loading />;
@@ -36,19 +42,38 @@ export default function AccountScreen() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            accessibilityRole="button"
-          >
-            <Text>Back</Text>
-          </Pressable>
+          <BackButton />
+          <Text>My account</Text>
           <Pressable onPress={toEdit} accessibilityRole="button">
             <Text>{edit ? "Cancel" : "Edit"}</Text>
           </Pressable>
         </View>
         <View style={styles.avatarContainer}>
-          <Image style={styles.avatar} />
+          {user?.avatar ? (
+            <Image
+              style={styles.avatar}
+              source={avatars.find((a) => a.id === user.avatar)?.image}
+            />
+          ) : (
+            <View style={[styles.avatar, { backgroundColor: "#d0d0d0" }]} />
+          )}
+          <View style={styles.buttonContainer}>
+            <Pressable
+              accessibilityRole="button"
+              style={styles.addIcon}
+              onPress={() => setChangeAvatar(true)}
+            >
+              <Ionicons name="add-outline" size={24} color="#1c3249" />
+            </Pressable>
+          </View>
         </View>
+        {changeAvatar && (
+          <AvatarModal
+            visible={changeAvatar}
+            onClose={() => setChangeAvatar(false)}
+            text={"Choose your avatar"}
+          />
+        )}
         <View style={styles.formContainer}>
           <View>
             <Text style={styles.inputLabel}>Username</Text>

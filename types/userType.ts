@@ -4,4 +4,5 @@ export type User = {
   email: string;
   number?: string;
   dateOfBirth?: string | null;
+  avatar?: string | null;
 };

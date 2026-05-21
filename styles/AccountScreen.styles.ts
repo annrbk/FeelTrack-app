@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: "#877f7fff",
   },
   formContainer: {
     padding: 24,
@@ -49,5 +48,13 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 8,
     alignItems: "center",
+  },
+  addIcon: {
+    position: "absolute",
+    bottom: 0,
+    transform: [{ translateX: 30 }, { translateY: 14 }],
+    backgroundColor: "#fff",
+    borderRadius: 18,
+    padding: 4,
   },
 });

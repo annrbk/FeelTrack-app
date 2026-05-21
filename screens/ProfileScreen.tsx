@@ -4,6 +4,7 @@ import { styles } from "../styles/ProfileScreen.styles";
 import { useSession } from "../ctx";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
+import { avatars } from "../constants/avatars";
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -13,7 +14,10 @@ export default function ProfileScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <Image style={styles.avatar} />
+          <Image
+            style={styles.avatar}
+            source={avatars.find((a) => a.id === user?.avatar)?.image}
+          />
           <View>
             <Text style={styles.name}>{user?.name || "User"}</Text>
             <Text style={styles.email}>{user?.number || null}</Text>

@@ -35,11 +35,12 @@ export function SessionProvider({ children }: PropsWithChildren) {
         signIn: async (values: SignInValues) => {
           try {
             const response = await loginUser(values);
-            const { id, email, name, number, dateOfBirth } = response.user;
+            const { id, email, name, number, dateOfBirth, avatar } =
+              response.user;
             const token = response.token;
             setSession(token);
             setStoredUser(
-              JSON.stringify({ id, email, name, number, dateOfBirth }),
+              JSON.stringify({ id, email, name, number, dateOfBirth, avatar }),
             );
           } catch (error) {
             console.error("Error signIn:", error);

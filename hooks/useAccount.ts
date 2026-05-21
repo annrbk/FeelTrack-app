@@ -8,7 +8,7 @@ export const useAccount = () => {
   const [email, setEmail] = useState<string>(user?.email || "");
   const [number, setNumber] = useState<string>(user?.number || "");
   const [dateOfBirth, setDateOfBirth] = useState<Date | null>(
-    user?.dateOfBirth ? new Date(user.dateOfBirth) : null
+    user?.dateOfBirth ? new Date(user.dateOfBirth) : null,
   );
   const [edit, setEdit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);

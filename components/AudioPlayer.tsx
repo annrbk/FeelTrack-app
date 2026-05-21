@@ -27,7 +27,7 @@ export default function AudioPlayer({
           <Ionicons name="chevron-down-outline" size={24} color="#000" />
         </Pressable>
         <View style={styles.titleContainer}>
-          <Text style={styles.nowPlayingText}>Now Playing</Text>
+          <Text style={styles.nowPlayingText}>Now playing</Text>
         </View>
         <View style={styles.rightPart} />
       </View>
