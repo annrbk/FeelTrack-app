@@ -25,8 +25,18 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   settingTitleContainer: { flex: 1, alignItems: "center" },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
+  mainSettingContainer: { gap: 12, marginBottom: 24 },
+  passwordContainer: {
+    padding: 10,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 10,
+  },
+  settingTitle: {
+    fontSize: 16,
+  },
+  buttonArrowRight: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });

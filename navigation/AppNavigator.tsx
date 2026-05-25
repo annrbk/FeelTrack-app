@@ -10,6 +10,7 @@ import AccountScreen from "../screens/AccountScreen";
 import MeditationListScreen from "../screens/MeditationListScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import StatsByDayScreen from "../screens/StatsByDayScreen";
+import ChangePasswordScreen from "../screens/ChangePasswordScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -35,6 +36,10 @@ export default function MyStack() {
           />
           <Stack.Screen name="Settings" component={SettingsScreen} />
           <Stack.Screen name="StatsByDay" component={StatsByDayScreen} />
+          <Stack.Screen
+            name="ChangePassword"
+            component={ChangePasswordScreen}
+          />
         </>
       )}
     </Stack.Navigator>

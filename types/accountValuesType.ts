@@ -4,3 +4,8 @@ export type updateUserData = {
   number: string;
   dateOfBirth: string | null;
 };
+
+export type Passwords = {
+  currentPassword: string;
+  newPassword: string;
+};

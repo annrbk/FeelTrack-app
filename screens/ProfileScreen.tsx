@@ -30,7 +30,7 @@ export default function ProfileScreen() {
             style={styles.settingItem}
             accessibilityRole="button"
           >
-            <Text style={styles.settingText}>My account</Text>
+            <Text style={styles.settingText}>Edit profile</Text>
           </Pressable>
           <Pressable
             style={styles.settingItem}

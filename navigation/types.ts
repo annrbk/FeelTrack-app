@@ -16,4 +16,5 @@ export type RootStackParamList = {
     emotionsForDay: EmotionFromDB[];
     chosenDate: string;
   };
+  ChangePassword: undefined;
 };

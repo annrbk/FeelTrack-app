@@ -1,36 +1,45 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { Pressable } from "react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "../navigation/types";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import SwitchTheme from "../components/SwitchTheme";
 import { useTheme } from "../context/ThemeContext";
 import { styles } from "../styles/SettingsScreen.styles";
+import BackButton from "../components/BackButton";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../navigation/types";
 
 export default function SettingsScreen() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { theme, switchTheme } = useTheme();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.settingHeader}>
-          <Pressable
-            onPress={() => navigation.goBack()}
-            accessibilityRole="button"
-            style={styles.backButton}
-          >
-            <Text>Back</Text>
-          </Pressable>
+          <BackButton />
           <View style={styles.settingTitleContainer}>
-            <Text style={styles.title}>Settings</Text>
+            <Text>Settings</Text>
           </View>
-
           <View style={styles.rightPart}></View>
         </View>
-
+        <View style={styles.mainSettingContainer}>
+          <View style={styles.passwordContainer}>
+            <Pressable
+              style={styles.buttonArrowRight}
+              accessibilityRole="button"
+              onPress={() => navigation.navigate("ChangePassword")}
+            >
+              <Text style={styles.settingTitle}>Change password</Text>
+              <Ionicons
+                name="chevron-forward-outline"
+                size={24}
+                color="#1c3249"
+              />
+            </Pressable>
+          </View>
+        </View>
         <View style={styles.themeContainer}>
-          <Text>Theme</Text>
+          <Text style={styles.settingTitle}>Theme</Text>
           <SwitchTheme value={theme} onValueChange={switchTheme} />
         </View>
       </SafeAreaView>
