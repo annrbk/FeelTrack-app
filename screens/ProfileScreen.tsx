@@ -9,18 +9,20 @@ import { avatars } from "../constants/avatars";
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { user, signOut } = useSession();
+  const selectedAvatar = avatars.find((a) => a.id === user?.avatar)?.image;
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <Image
-            style={styles.avatar}
-            source={avatars.find((a) => a.id === user?.avatar)?.image}
-          />
+          {selectedAvatar ? (
+            <Image style={styles.avatar} source={selectedAvatar} />
+          ) : (
+            <View style={styles.avatarPlaceholder} />
+          )}
           <View>
             <Text style={styles.name}>{user?.name || "User"}</Text>
-            <Text style={styles.email}>{user?.number || null}</Text>
+            {user?.number && <Text style={styles.email}>{user.number}</Text>}
             <Text style={styles.email}>{user?.email}</Text>
           </View>
         </View>
@@ -40,11 +42,13 @@ export default function ProfileScreen() {
             <Text style={styles.settingText}>Settings</Text>
           </Pressable>
           <Pressable
-            style={styles.settingItem}
+            style={styles.settingItemLast}
             onPress={signOut}
             accessibilityRole="button"
           >
-            <Text style={[styles.settingText, { color: "red" }]}>Logout</Text>
+            <Text style={[styles.settingText, { color: "#e05555" }]}>
+              Logout
+            </Text>
           </Pressable>
         </View>
       </ScrollView>

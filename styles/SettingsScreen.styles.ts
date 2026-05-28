@@ -39,4 +39,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  settingItem: {
+    paddingVertical: 12,
+    paddingLeft: 10,
+  },
+  settingText: {
+    fontSize: 16,
+    color: "red",
+  },
 });
