@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSession } from "../ctx";
-import { updateAccount } from "../services/accountService";
+import { deleteAccount, updateAccount } from "../services/accountService";
 
 export const useAccount = () => {
-  const { user, updateUser } = useSession();
+  const { user, updateUser, signOut } = useSession();
   const [name, setName] = useState<string>(user?.name || "");
   const [email, setEmail] = useState<string>(user?.email || "");
   const [number, setNumber] = useState<string>(user?.number || "");
@@ -13,6 +13,8 @@ export const useAccount = () => {
   const [edit, setEdit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [isDeleteAccountModalVisible, setDeleteAccountModalVisible] =
+    useState(false);
 
   const toEdit = () => {
     if (edit) {
@@ -50,6 +52,15 @@ export const useAccount = () => {
     setShowSuccessModal(false);
   };
 
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteAccount();
+      signOut();
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
+
   return {
     name,
     email,
@@ -65,5 +76,8 @@ export const useAccount = () => {
     toEdit,
     addChanges,
     onCloseModal,
+    handleDeleteAccount,
+    isDeleteAccountModalVisible,
+    setDeleteAccountModalVisible,
   };
 };

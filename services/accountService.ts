@@ -30,3 +30,26 @@ export const updateAccount = async (editedData: updateUserData) => {
     }
   }
 };
+
+export const deleteAccount = async () => {
+  try {
+    const token = await SecureStore.getItemAsync("session");
+    if (!token) {
+      throw new Error("No authentication token found");
+    }
+    const response = await axios.delete(`${API_URL}/api/account/delete`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Account delete error:", error);
+      throw new Error("Account delete failed");
+    } else {
+      console.error(error);
+      throw new Error("Unexpected error");
+    }
+  }
+};

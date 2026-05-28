@@ -7,10 +7,18 @@ import { styles } from "../styles/SettingsScreen.styles";
 import BackButton from "../components/BackButton";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
+import DeleteAccountModal from "../components/DeleteAccountModal";
+import { useAccount } from "../hooks/useAccount";
 
 export default function SettingsScreen() {
   const { theme, switchTheme } = useTheme();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const {
+    handleDeleteAccount,
+    isDeleteAccountModalVisible,
+    setDeleteAccountModalVisible,
+  } = useAccount();
 
   return (
     <SafeAreaProvider>
@@ -42,6 +50,25 @@ export default function SettingsScreen() {
           <Text style={styles.settingTitle}>Theme</Text>
           <SwitchTheme value={theme} onValueChange={switchTheme} />
         </View>
+        <View>
+          <Pressable
+            style={styles.settingItem}
+            onPress={() => setDeleteAccountModalVisible(true)}
+            accessibilityRole="button"
+          >
+            <Text style={styles.settingText}>Delete account</Text>
+          </Pressable>
+        </View>
+        {isDeleteAccountModalVisible && (
+          <DeleteAccountModal
+            visible={isDeleteAccountModalVisible}
+            onClose={() => setDeleteAccountModalVisible(false)}
+            text={
+              "Delete account?\n\nThis action cannot be undone. All your data will be permanently removed."
+            }
+            onConfirm={handleDeleteAccount}
+          />
+        )}
       </SafeAreaView>
     </SafeAreaProvider>
   );
