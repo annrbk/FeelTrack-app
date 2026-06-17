@@ -1,31 +1,36 @@
 export const careData = [
   {
     id: "1",
-    image: require("../assets/meditation/1.jpg"),
+    image:
+      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684263/calm_ttpzth.jpg",
     title: "Calm",
     session: "8",
   },
   {
     id: "2",
-    image: require("../assets/meditation/2.jpg"),
+    image:
+      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684270/energize_nhc5qy.jpg",
     title: "Energize",
     session: "9",
   },
   {
     id: "3",
-    image: require("../assets/meditation/3.jpg"),
+    image:
+      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684277/sleep_qbpdrl.jpg",
     title: "Sleep",
     session: "9",
   },
   {
     id: "4",
-    image: require("../assets/meditation/4.jpg"),
+    image:
+      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684254/balance_ukhswp.jpg",
     title: "Balance",
     session: "7",
   },
   {
     id: "5",
-    image: require("../assets/meditation/5.jpg"),
+    image:
+      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684280/focus_qe6vle.jpg",
     title: "Focus",
     session: "8",
   },

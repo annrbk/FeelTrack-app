@@ -8,7 +8,7 @@ export type CareSectionItem = {
 
 export type CardItem = {
   id: string;
-  image: ImageSourcePropType;
+  image: string;
   title?: string;
   session?: string;
 };
