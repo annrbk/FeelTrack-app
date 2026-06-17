@@ -37,7 +37,9 @@ export default function SuccessModal({
                 name="close-outline"
                 size={24}
                 color={
-                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark
+                  theme === "dark"
+                    ? ThemeColors.lightGray
+                    : ThemeColors.textPrimary
                 }
               />
             </View>
@@ -45,14 +47,16 @@ export default function SuccessModal({
           <Ionicons
             name="checkmark-circle-outline"
             size={48}
-            color="#1dba1dff"
+            color={theme === "dark" ? ThemeColors.lightGray : "#088f3a"}
           />
           <Text
             style={[
               styles.modalText,
               {
                 color:
-                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
+                  theme === "dark"
+                    ? ThemeColors.lightGray
+                    : ThemeColors.textPrimary,
               },
             ]}
           >

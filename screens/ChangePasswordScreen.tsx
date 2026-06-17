@@ -26,29 +26,31 @@ export default function ChangePasswordScreen() {
         <View style={styles.passwordHeader}>
           <BackButton />
           <View style={styles.passwordTitleContainer}>
-            <Text>Change Password</Text>
+            <Text style={styles.headerTitle}>Change password</Text>
           </View>
           <View style={styles.rightPart}></View>
         </View>
-        <View>
-          <Text style={styles.inputLabel}>Current password</Text>
-          <TextInput
-            style={[styles.input, edit && styles.editInput]}
-            onChangeText={setPassword}
-            value={password}
-            editable={edit}
-            placeholder="Enter password"
-          />
-        </View>
-        <View>
-          <Text style={styles.inputLabel}>New password</Text>
-          <TextInput
-            style={[styles.input, edit && styles.editInput]}
-            onChangeText={setNewPassword}
-            value={newPassword}
-            editable={edit}
-            placeholder="Enter new password"
-          />
+        <View style={styles.formCard}>
+          <View style={styles.field}>
+            <Text style={styles.inputLabel}>Current password</Text>
+            <TextInput
+              style={[styles.input, edit && styles.editInput]}
+              onChangeText={setPassword}
+              value={password}
+              editable={edit}
+              placeholder="Enter password"
+            />
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.inputLabel}>New password</Text>
+            <TextInput
+              style={[styles.input, edit && styles.editInput]}
+              onChangeText={setNewPassword}
+              value={newPassword}
+              editable={edit}
+              placeholder="Enter new password"
+            />
+          </View>
         </View>
         <View style={styles.buttonContainer}>
           <Pressable
@@ -56,7 +58,7 @@ export default function ChangePasswordScreen() {
             accessibilityRole="button"
             onPress={changePassword}
           >
-            <Text>Change password</Text>
+            <Text style={styles.buttonText}>Change password</Text>
           </Pressable>
         </View>
         {showSuccessModal && (

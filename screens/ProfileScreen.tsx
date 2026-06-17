@@ -5,6 +5,7 @@ import { useSession } from "../ctx";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { avatars } from "../constants/avatars";
+import { ThemeColors } from "../constants/theme";
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -46,7 +47,9 @@ export default function ProfileScreen() {
             onPress={signOut}
             accessibilityRole="button"
           >
-            <Text style={[styles.settingText, { color: "#e05555" }]}>
+            <Text
+              style={[styles.settingText, { color: ThemeColors.btnWarning }]}
+            >
               Logout
             </Text>
           </Pressable>

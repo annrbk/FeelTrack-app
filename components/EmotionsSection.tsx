@@ -69,12 +69,6 @@ export default function EmotionsSection({
                 key={index}
                 style={({ pressed }) => [
                   pressed ? styles.emotionActiveButton : styles.emotionButton,
-                  {
-                    backgroundColor:
-                      theme === "dark"
-                        ? ThemeColors.secondaryDark
-                        : ThemeColors.iconGray,
-                  },
                 ]}
                 onPress={() => {
                   setEmotion({ label: item.label, emoji: item.emoji });

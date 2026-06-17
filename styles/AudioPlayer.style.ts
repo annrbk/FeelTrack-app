@@ -1,11 +1,13 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffffff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     paddingHorizontal: 24,
     paddingTop: 24,
   },
@@ -24,7 +26,8 @@ export const styles = StyleSheet.create({
 
   nowPlayingText: {
     fontSize: 16,
-    fontWeight: "600",
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
   },
 
   closeButton: {
@@ -46,24 +49,21 @@ export const styles = StyleSheet.create({
     borderRadius: 16,
     marginBottom: 24,
     marginTop: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 12,
-    elevation: 8,
+    ...shadow,
   },
 
   trackTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#1a1a1a",
+    fontSize: 22,
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
     textAlign: "center",
-    marginBottom: 8,
+    marginBottom: 6,
   },
 
   trackCategory: {
-    fontSize: 16,
-    color: "#666",
+    fontSize: 15,
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
     textAlign: "center",
   },
 
@@ -81,7 +81,8 @@ export const styles = StyleSheet.create({
 
   progressLabelText: {
     fontSize: 12,
-    color: "#999",
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
   },
 
   musicControls: {

@@ -1,50 +1,80 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
   },
   settingHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 24,
+    justifyContent: "space-between",
+    marginBottom: 16,
+    paddingBottom: 10,
+  },
+  headerTitle: {
+    fontSize: 16,
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
   },
   backButton: {
     borderRadius: 8,
     width: 48,
   },
-  rightPart: { width: 48 },
-  themeContainer: {
-    flexDirection: "row",
+  rightPart: { width: 24 },
+  settingTitleContainer: {
+    flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
-    padding: 8,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 10,
   },
-  settingTitleContainer: { flex: 1, alignItems: "center" },
-  mainSettingContainer: { gap: 12, marginBottom: 24 },
+  mainSettingContainer: {
+    gap: 12,
+    marginBottom: 14,
+  },
   passwordContainer: {
-    padding: 10,
-    backgroundColor: "#f0f0f0",
-    borderRadius: 10,
-  },
-  settingTitle: {
-    fontSize: 16,
+    padding: 12,
+    backgroundColor: ThemeColors.surfacePrimary,
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
   },
   buttonArrowRight: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
+  themeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 12,
+    backgroundColor: ThemeColors.surfacePrimary,
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
+  },
+  settingTitle: {
+    fontSize: 16,
+    ...typography.regular,
+    color: ThemeColors.textPrimary,
+  },
   settingItem: {
+    marginTop: 14,
     paddingVertical: 12,
-    paddingLeft: 10,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    backgroundColor: ThemeColors.surfacePrimary,
+    ...shadow,
   },
   settingText: {
     fontSize: 16,
-    color: "red",
+    ...typography.regular,
+    color: ThemeColors.btnWarning,
   },
 });

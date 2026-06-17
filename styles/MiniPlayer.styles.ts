@@ -1,18 +1,20 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
     left: 0,
     right: 0,
     height: 70,
-    backgroundColor: "#ffffffff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingVertical: 8,
-    borderTopWidth: 1,
-    borderTopColor: "#e0e0e0",
+    borderTopWidth: 0.5,
+    borderTopColor: ThemeColors.borderPrimary,
   },
 
   leftSection: {
@@ -24,24 +26,28 @@ export const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50,
-    borderRadius: 6,
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.dividerPrimary,
   },
 
   textContainer: {
     flex: 1,
     marginRight: 48,
+    marginLeft: 10,
   },
 
   title: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#1a1a1a",
+    fontSize: 14,
+    ...typography.medium,
+    color: ThemeColors.textPrimary,
     marginBottom: 2,
   },
 
   subtitle: {
     fontSize: 12,
-    color: "#757575",
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
   },
 
   playButton: {
@@ -55,12 +61,12 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 2,
-    backgroundColor: "#838383ff",
+    backgroundColor: ThemeColors.borderPrimary,
   },
 
   progressBar: {
     position: "absolute",
     height: "100%",
-    backgroundColor: "#2e86de",
+    backgroundColor: ThemeColors.btnPrimary,
   },
 });

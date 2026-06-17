@@ -3,6 +3,8 @@ import { showModalProps } from "../types/modalType";
 import { styles } from "../styles/AvatarModal.styles";
 import { Image } from "react-native";
 import { useAvatar } from "../hooks/useAvatar";
+import { avatars } from "../constants/avatars";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function AvatarModal({
   visible,
@@ -21,31 +23,23 @@ export default function AvatarModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <Pressable style={styles.closeIcon} onPress={onClose}>
+            <Ionicons name="close-outline" size={24} color="#3d403b" />
+          </Pressable>
           <View style={styles.avatarContainer}>
-            <Text>{text}</Text>
+            <Text style={styles.modalText}>{text}</Text>
             <View style={styles.avatars}>
-              <Pressable
-                onPress={() => setAvatar("1")}
-                style={
-                  avatar === "1" ? styles.avatarActive : styles.avatarButton
-                }
-              >
-                <Image
-                  source={require("../assets/avatars/avatar_1.png")}
-                  style={styles.avatar}
-                />
-              </Pressable>
-              <Pressable
-                onPress={() => setAvatar("2")}
-                style={
-                  avatar === "2" ? styles.avatarActive : styles.avatarButton
-                }
-              >
-                <Image
-                  source={require("../assets/avatars/avatar_2.png")}
-                  style={styles.avatar}
-                />
-              </Pressable>
+              {avatars.map((a) => (
+                <Pressable
+                  key={a.id}
+                  onPress={() => setAvatar(a.id)}
+                  style={
+                    avatar === a.id ? styles.avatarActive : styles.avatarButton
+                  }
+                >
+                  <Image source={a.image} style={styles.avatar} />
+                </Pressable>
+              ))}
             </View>
           </View>
           <Pressable

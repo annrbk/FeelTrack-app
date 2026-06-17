@@ -24,6 +24,10 @@ export default function DeleteAccountModal({
           </Pressable>
           <Ionicons name="warning-outline" size={48} color="#e05555" />
           <Text style={styles.modalText}>{text}</Text>
+          <Text style={styles.modalSubText}>
+            This action cannot be undone. All your data will be permanently
+            removed.
+          </Text>
           <View style={styles.buttonsContainer}>
             <Pressable style={styles.cancelButton} onPress={onClose}>
               <Text style={styles.cancelText}>Cancel</Text>

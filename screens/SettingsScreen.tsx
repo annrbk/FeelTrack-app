@@ -26,7 +26,7 @@ export default function SettingsScreen() {
         <View style={styles.settingHeader}>
           <BackButton />
           <View style={styles.settingTitleContainer}>
-            <Text>Settings</Text>
+            <Text style={styles.headerTitle}>Settings</Text>
           </View>
           <View style={styles.rightPart}></View>
         </View>
@@ -63,9 +63,7 @@ export default function SettingsScreen() {
           <DeleteAccountModal
             visible={isDeleteAccountModalVisible}
             onClose={() => setDeleteAccountModalVisible(false)}
-            text={
-              "Delete account?\n\nThis action cannot be undone. All your data will be permanently removed."
-            }
+            text={"Delete account?"}
             onConfirm={handleDeleteAccount}
           />
         )}

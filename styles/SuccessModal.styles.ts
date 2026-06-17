@@ -1,27 +1,25 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(70, 70, 70, 0.3)",
+    backgroundColor: "rgba(24, 28, 24, 0.25)",
   },
   modalView: {
-    width: 250,
+    width: 260,
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: ThemeColors.surfacePrimary,
     borderRadius: 20,
-    padding: 35,
+    paddingVertical: 30,
+    paddingHorizontal: 24,
     alignItems: "center",
-    shadowColor: "#000000ff",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
   },
   closeIcon: {
     position: "absolute",
@@ -29,25 +27,30 @@ export const styles = StyleSheet.create({
     right: 10,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: ThemeColors.btnPrimary,
   },
   textStyle: {
-    color: "white",
-    fontWeight: "bold",
+    color: ThemeColors.white,
+    ...typography.semiBold,
     textAlign: "center",
     width: 100,
+    fontSize: 15,
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: 20,
     textAlign: "center",
+    color: ThemeColors.textPrimary,
+    ...typography.regular,
+    fontSize: 15,
+    lineHeight: 21,
   },
   emoji: {
     fontSize: 46,
-    marginBottom: 15,
+    marginBottom: 20,
   },
 });

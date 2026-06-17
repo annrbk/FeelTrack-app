@@ -11,12 +11,16 @@ export default function ImageCard({ id, image, title, session }: CardItem) {
       <Pressable
         onPress={() => navigation.navigate("MeditationList", { id: id })}
       >
-        <Image source={image} style={styles.image} resizeMode="cover" />
+        <Image
+          source={{ uri: image }}
+          style={styles.image}
+          resizeMode="cover"
+        />
         <View style={styles.imageTitleContainer}>
           <Text style={styles.imageTitle}>{title}</Text>
         </View>
         <View style={styles.sessionContainer}>
-          <Text>{session} sessions</Text>
+          <Text style={styles.sessionText}>{session} sessions</Text>
         </View>
       </Pressable>
     </View>

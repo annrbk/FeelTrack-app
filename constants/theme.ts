@@ -3,7 +3,6 @@ export const ThemeColors = {
   dark: "#121212",
   white: "#ffffff",
   secondaryDark: "#232323",
-  btnLight: "#2e86de",
   btnDark: "#d8e8ff",
   black: "#000000",
   lightGray: "#d8d5d5",
@@ -13,6 +12,9 @@ export const ThemeColors = {
   dividerPrimary: "#d2d6cf",
   backgroundColorPrimary: "#f6f6f6",
   textPrimary: "#3d403b",
+  textSecondary: "#7a7e76",
+  btnPrimary: "#7e8e7a",
+  btnWarning: "#ca4848",
 };
 
 export const shadow = {

@@ -1,55 +1,74 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(70, 70, 70, 0.3)",
+    backgroundColor: "rgba(82, 110, 99, 0.16)",
   },
   modalView: {
-    width: 300,
+    width: 280,
     alignItems: "center",
     justifyContent: "center",
-    gap: 16,
-    backgroundColor: "white",
+    gap: 14,
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     borderRadius: 20,
-    padding: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 18,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+  },
+  closeIcon: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    zIndex: 1,
+  },
+  modalText: {
+    color: ThemeColors.textPrimary,
+    ...typography.semiBold,
+    fontSize: 16,
   },
   button: {
-    backgroundColor: "#2e86de",
-    borderRadius: 20,
+    backgroundColor: ThemeColors.btnPrimary,
+    borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 24,
     alignSelf: "center",
   },
   buttonText: {
-    color: "white",
-    fontWeight: "bold",
+    color: ThemeColors.white,
+    ...typography.semiBold,
     textAlign: "center",
+    fontSize: 15,
   },
   avatarContainer: {
     alignItems: "center",
-    gap: 12,
+    gap: 8,
     width: "100%",
   },
   avatars: {
     flexDirection: "row",
     justifyContent: "center",
-    gap: 16,
-    width: "100%",
+    flexWrap: "wrap",
+    gap: 6,
   },
   avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    width: 74,
+    height: 74,
+    borderRadius: 37,
   },
   avatarActive: {
-    borderWidth: 2,
-    borderColor: "#2e86de",
-    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: ThemeColors.btnPrimary,
+    borderRadius: 37,
+    padding: 2,
   },
   avatarButton: {
-    borderRadius: 40,
+    borderRadius: 37,
+    padding: 2,
   },
 });

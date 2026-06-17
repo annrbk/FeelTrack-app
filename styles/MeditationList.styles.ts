@@ -1,16 +1,22 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
+  },
+  backButtonContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   header: {
     flexDirection: "row",
     padding: 16,
     alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: "#f0f0f0",
+    borderBottomWidth: 0.5,
+    borderBottomColor: ThemeColors.borderPrimary,
   },
   imageContainer: {
     marginRight: 16,
@@ -18,20 +24,21 @@ export const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: 8,
+    borderRadius: 12,
   },
   headerTextContainer: {
     flex: 1,
     justifyContent: "center",
   },
   headerTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#1a1a1a",
+    fontSize: 22,
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
   },
   headerSubtitle: {
     fontSize: 14,
-    color: "#666",
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
     marginTop: 4,
   },
   listContainer: {
@@ -41,36 +48,39 @@ export const styles = StyleSheet.create({
   listItem: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.white,
     padding: 12,
     marginBottom: 8,
-    borderRadius: 8,
-    shadowColor: "#474747ff",
-    shadowOffset: { width: 0, height: 1 },
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.dividerPrimary,
+    ...shadow,
   },
   trackNumber: {
     width: 30,
-    fontSize: 16,
-    color: "#999",
-    fontWeight: "500",
+    fontSize: 15,
+    ...typography.medium,
+    color: ThemeColors.textSecondary,
   },
   trackInfo: {
     flex: 1,
     marginLeft: 12,
   },
   trackTitle: {
-    fontSize: 16,
-    fontWeight: "500",
-    color: "#1a1a1a",
+    fontSize: 15,
+    ...typography.medium,
+    color: ThemeColors.textPrimary,
     marginBottom: 2,
   },
   trackAlbum: {
     fontSize: 13,
-    color: "#666",
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
   },
   trackDuration: {
-    fontSize: 14,
-    color: "#999",
+    fontSize: 13,
+    ...typography.regular,
+    color: ThemeColors.textSecondary,
     marginLeft: 12,
   },
 });

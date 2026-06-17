@@ -29,9 +29,9 @@ export default function StatsByDayScreen({
               const emotionEmoji = emotions.find(
                 (e) => e.label === emotion.label,
               )?.emoji;
-              const timeOfEmotion = new Date(
-                emotion.createdAt,
-              ).toLocaleTimeString();
+              const timeOfEmotion = new Date(emotion.createdAt)
+                .toLocaleTimeString()
+                .slice(0, 5);
               return (
                 <EmotionItem
                   key={emotion.id}

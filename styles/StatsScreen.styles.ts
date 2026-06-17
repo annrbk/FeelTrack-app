@@ -1,11 +1,13 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 24,
     paddingTop: 50,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     alignItems: "stretch",
   },
   dayContainer: {
@@ -20,22 +22,23 @@ export const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#d9f2fe",
+    backgroundColor: ThemeColors.surfacePrimary,
     borderRadius: 6,
     width: 36,
     height: 32,
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    ...typography.semiBold,
     marginHorizontal: 16,
     marginBottom: 6,
     marginTop: 20,
-    color: "#222",
+    color: ThemeColors.textPrimary,
   },
   subtitle: {
     fontSize: 14,
-    color: "#666",
+    ...typography.regular,
+    color: ThemeColors.textPrimary,
     marginHorizontal: 16,
     marginBottom: 24,
   },
@@ -48,19 +51,25 @@ export const styles = StyleSheet.create({
   },
   monthText: {
     fontSize: 18,
+    ...typography.medium,
+    color: ThemeColors.textPrimary,
   },
   emotionText: {
     fontSize: 10,
     marginLeft: 2,
+    color: ThemeColors.textPrimary,
   },
   emotionTextSmile: {
     fontSize: 10,
+    color: ThemeColors.textPrimary,
   },
   calendarStyle: {
-    height: 380,
+    height: 470,
     marginHorizontal: 16,
     borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "#f0f0f0",
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
+    overflow: "hidden",
   },
 });

@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 24,
     alignItems: "stretch",
     paddingTop: 50,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
   },
   section: {
     flex: 1,
@@ -21,13 +23,15 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
     marginHorizontal: 16,
     marginBottom: 6,
   },
   subtitle: {
     fontSize: 14,
-    color: "#666",
+    ...typography.regular,
+    color: ThemeColors.textPrimary,
     marginHorizontal: 16,
     marginBottom: 12,
   },
@@ -42,23 +46,32 @@ export const styles = StyleSheet.create({
   },
   imageTitleContainer: {
     position: "absolute",
-    backgroundColor: "white",
+    backgroundColor: ThemeColors.white,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
     top: 10,
     left: 10,
+    ...shadow,
   },
   sessionContainer: {
     position: "absolute",
-    backgroundColor: "white",
+    backgroundColor: ThemeColors.white,
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 6,
     bottom: 10,
     right: 10,
+    ...shadow,
   },
   imageTitle: {
-    fontSize: 16,
+    fontSize: 14,
+    ...typography.medium,
+    color: ThemeColors.textPrimary,
+  },
+  sessionText: {
+    fontSize: 14,
+    ...typography.medium,
+    color: ThemeColors.textPrimary,
   },
 });

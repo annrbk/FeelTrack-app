@@ -1,9 +1,11 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     paddingVertical: 48,
   },
   headerContainer: {
@@ -17,31 +19,39 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     textAlign: "center",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 16,
+    ...typography.semiBold,
+    color: ThemeColors.textPrimary,
   },
   mainContainer: {
     flexDirection: "column",
     flexWrap: "nowrap",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f2f1f1",
-    borderRadius: 12,
+    backgroundColor: ThemeColors.surfacePrimary,
+    borderRadius: 16,
     padding: 8,
     marginHorizontal: 12,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
   },
   titleContainer: {
     justifyContent: "center",
     alignItems: "flex-start",
     marginBottom: 16,
-    backgroundColor: "#d9f2fe",
-    borderRadius: 12,
+    backgroundColor: ThemeColors.surfacePrimary,
+    borderRadius: 16,
     padding: 18,
     marginHorizontal: 12,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
   },
   title: {
     fontSize: 16,
-    fontWeight: "bold",
+    ...typography.regular,
+    color: ThemeColors.textPrimary,
   },
   emotionView: {
     width: "100%",
@@ -49,10 +59,13 @@ export const styles = StyleSheet.create({
   emotionLabel: {
     paddingVertical: 6,
     fontSize: 16,
+    ...typography.regular,
+    color: ThemeColors.textPrimary,
   },
   emotionTime: {
     fontSize: 14,
-    color: "#a3a3a3",
+    ...typography.regular,
+    color: ThemeColors.dividerPrimary,
   },
   emotionEmoji: {
     fontSize: 24,
@@ -61,15 +74,15 @@ export const styles = StyleSheet.create({
     gap: 24,
     marginHorizontal: 8,
     marginVertical: 4,
-    backgroundColor: "#fff",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     borderRadius: 10,
   },
   itemContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    borderWidth: 1,
-    borderColor: "#e6e6e6",
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
     borderRadius: 10,
     padding: 12,
     gap: 24,

@@ -6,6 +6,7 @@ import { emotions } from "../constants/emotions";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import StatsModal from "../components/StatsModal";
+import { ThemeColors } from "../constants/theme";
 
 export default function StatsScreen() {
   const {
@@ -33,6 +34,14 @@ export default function StatsScreen() {
         onMonthChange={handleMonthChange}
         hideExtraDays={true}
         markingType={"custom"}
+        theme={{
+          textDayFontFamily: "Montserrat_400Regular",
+          textMonthFontFamily: "Montserrat_600SemiBold",
+          textDayHeaderFontFamily: "Montserrat_500Medium",
+          todayTextColor: ThemeColors.btnPrimary,
+          arrowColor: ThemeColors.btnPrimary,
+          selectedDayBackgroundColor: ThemeColors.btnPrimary,
+        }}
         renderHeader={() => {
           return (
             <View style={styles.monthContainer}>

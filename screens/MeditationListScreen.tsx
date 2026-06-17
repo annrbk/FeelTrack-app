@@ -30,12 +30,14 @@ export default function MeditationListScreen({
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <BackButton />
+        <View style={styles.backButtonContainer}>
+          <BackButton />
+        </View>
         <View style={styles.header}>
           <View style={styles.imageContainer}>
             <Image
               style={styles.image}
-              source={require("../assets/meditation/2.jpg")}
+              source={{ uri: currentCategory?.image }}
               resizeMode="cover"
             />
           </View>
@@ -45,7 +47,7 @@ export default function MeditationListScreen({
             </Text>
 
             <Text style={styles.headerSubtitle}>
-              {filteredMeditations.length} tracks
+              {filteredMeditations.length} sessions
             </Text>
           </View>
         </View>

@@ -2,6 +2,7 @@ import { View, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styles } from "../styles/AudioPlayer.style";
 import { usePlayer } from "../PlayerContext";
+import { ThemeColors } from "../constants/theme";
 
 export default function ControlsButtons() {
   const {
@@ -22,29 +23,49 @@ export default function ControlsButtons() {
         <Ionicons
           name="shuffle-outline"
           size={38}
-          color={isShuffled ? "pink" : "black"}
+          color={isShuffled ? ThemeColors.btnPrimary : ThemeColors.textPrimary}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={playPrevious}>
-        <Ionicons name="play-skip-back" size={38} color="black" />
+        <Ionicons
+          name="play-skip-back"
+          size={38}
+          color={ThemeColors.textPrimary}
+        />
       </TouchableOpacity>
       {isPlaying ? (
         <TouchableOpacity onPress={pauseTrack}>
-          <Ionicons name="pause-circle" size={78} color="black" />
+          <Ionicons
+            name="pause-circle"
+            size={78}
+            color={ThemeColors.textPrimary}
+          />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={resumeTrack}>
-          <Ionicons name="play-circle" size={78} color="black" />
+          <Ionicons
+            name="play-circle"
+            size={78}
+            color={ThemeColors.textPrimary}
+          />
         </TouchableOpacity>
       )}
       <TouchableOpacity onPress={playNext}>
-        <Ionicons name="play-skip-forward" size={38} color="black" />
+        <Ionicons
+          name="play-skip-forward"
+          size={38}
+          color={ThemeColors.textPrimary}
+        />
       </TouchableOpacity>
       <TouchableOpacity onPress={toggleRepeat}>
         <Ionicons
           name="repeat-outline"
           size={38}
-          color={repeatMode === "off" ? "black" : "pink"}
+          color={
+            repeatMode === "off"
+              ? ThemeColors.textPrimary
+              : ThemeColors.btnPrimary
+          }
         />
       </TouchableOpacity>
     </View>

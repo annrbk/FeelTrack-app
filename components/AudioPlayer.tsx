@@ -34,7 +34,7 @@ export default function AudioPlayer({
       <View style={styles.headerContainer}>
         <Image
           style={styles.image}
-          source={require("../assets/meditation/1.jpg")}
+          source={{ uri: currentCategory?.image }}
           resizeMode="cover"
         ></Image>
         <Text style={styles.trackTitle}>{currentTrack?.title}</Text>

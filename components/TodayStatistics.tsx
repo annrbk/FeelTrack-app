@@ -7,6 +7,7 @@ import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useTheme } from "../context/ThemeContext";
 import { ThemeColors } from "../constants/theme";
+import { typography } from "../styles/typography";
 
 export default function TodayStatistics({
   todayEmotions,
@@ -24,25 +25,19 @@ export default function TodayStatistics({
           alignItems: "center",
           justifyContent: "center",
           width: moderateScale(64),
-          backgroundColor: "red",
-          borderRadius: 8,
+          backgroundColor: ThemeColors.btnWarning,
+          borderRadius: 10,
         }}
         onPress={() => deleteTodayEmotion(todayEmotionId)}
       >
-        <Text style={{ color: "white" }}>Delete</Text>
+        <Text style={{ color: ThemeColors.white, ...typography.regular }}>
+          Delete
+        </Text>
       </TouchableOpacity>
     );
   };
   return (
-    <View
-      style={[
-        styles.statistics,
-        {
-          backgroundColor:
-            theme === "dark" ? ThemeColors.secondaryDark : ThemeColors.light,
-        },
-      ]}
-    >
+    <View style={[styles.statistics]}>
       <View style={styles.statisticsHeader}>
         <Pressable onPress={goToPreviousDate}>
           <Ionicons
@@ -76,25 +71,15 @@ export default function TodayStatistics({
             const emotionData = emotions.find(
               (e) => e.label === todayEmotion.label,
             );
-            const timeOfEmotion = new Date(
-              todayEmotion.createdAt,
-            ).toLocaleTimeString();
+            const timeOfEmotion = new Date(todayEmotion.createdAt)
+              .toLocaleTimeString()
+              .slice(0, 5);
             return (
               <Swipeable
                 key={todayEmotion.id}
                 renderRightActions={() => renderRightActions(todayEmotion.id)}
               >
-                <View
-                  style={[
-                    styles.currentEmotion,
-                    {
-                      backgroundColor:
-                        theme === "dark"
-                          ? ThemeColors.dark
-                          : ThemeColors.iconGray,
-                    },
-                  ]}
-                >
+                <View style={styles.currentEmotion}>
                   <Text style={styles.currentEmotionEmoji}>
                     {emotionData?.emoji}
                   </Text>

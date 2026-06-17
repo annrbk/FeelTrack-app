@@ -1,32 +1,44 @@
 import { StyleSheet } from "react-native";
+import { ThemeColors, shadow } from "../constants/theme";
+import { typography } from "./typography";
 
 export const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(70, 70, 70, 0.3)",
+    backgroundColor: "rgba(82, 110, 99, 0.18)",
   },
   modalView: {
-    width: 300,
-    height: 150,
+    width: 280,
     alignItems: "center",
     justifyContent: "center",
     gap: 14,
-    backgroundColor: "white",
+    backgroundColor: ThemeColors.backgroundColorPrimary,
     borderRadius: 20,
-    padding: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 18,
+    borderWidth: 0.5,
+    borderColor: ThemeColors.borderPrimary,
+    ...shadow,
+  },
+  text: {
+    textAlign: "center",
+    color: ThemeColors.textPrimary,
+    ...typography.regular,
+    fontSize: 15,
   },
   button: {
-    marginTop: 16,
-    backgroundColor: "#2e86de",
-    borderRadius: 20,
+    backgroundColor: ThemeColors.btnPrimary,
+    borderRadius: 14,
     paddingVertical: 10,
     paddingHorizontal: 24,
+    alignSelf: "center",
   },
   buttonText: {
-    color: "white",
-    fontWeight: "bold",
+    color: ThemeColors.white,
+    ...typography.semiBold,
     textAlign: "center",
+    fontSize: 15,
   },
 });

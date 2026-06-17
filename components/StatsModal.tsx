@@ -14,7 +14,7 @@ export default function StatsModal({ visible, onClose, text }: showModalProps) {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <View>
-            <Text>{text}</Text>
+            <Text style={styles.text}>{text}</Text>
           </View>
           <Pressable style={styles.button} onPress={() => onClose()}>
             <Text style={styles.buttonText}>Got it</Text>

@@ -21,7 +21,7 @@ export default function MiniPlayer({
         <View style={styles.leftSection}>
           <Image
             style={styles.image}
-            source={require("../assets/meditation/1.jpg")}
+            source={{ uri: currentCategory?.image }}
           ></Image>
         </View>
         <View style={styles.textContainer}>

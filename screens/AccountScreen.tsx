@@ -3,7 +3,6 @@ import { View, Text, Image, Pressable, TextInput } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../styles/AccountScreen.styles";
 import Calendar from "../components/Calendar";
-
 import Loading from "../components/Loading";
 import SuccessModal from "../components/SuccessModal";
 import { useAccount } from "../hooks/useAccount";
@@ -41,29 +40,33 @@ export default function AccountScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <BackButton />
-          <Text>My account</Text>
-          <Pressable onPress={toEdit} accessibilityRole="button">
-            <Text>{edit ? "Cancel" : "Edit"}</Text>
-          </Pressable>
+        <View style={styles.headerCard}>
+          <View style={styles.header}>
+            <BackButton />
+            <Text style={styles.headerTitle}>My account</Text>
+            <Pressable onPress={toEdit} accessibilityRole="button">
+              <Text style={styles.headerAction}>
+                {edit ? "Cancel" : "Edit"}
+              </Text>
+            </Pressable>
+          </View>
         </View>
-        <View style={styles.avatarContainer}>
-          {user?.avatar ? (
-            <Image
-              style={styles.avatar}
-              source={avatars.find((a) => a.id === user.avatar)?.image}
-            />
-          ) : (
-            <View style={[styles.avatar, { backgroundColor: "#d0d0d0" }]} />
-          )}
-          <View style={styles.buttonContainer}>
+        <View style={styles.avatarCard}>
+          <View style={styles.avatarContainer}>
+            {user?.avatar ? (
+              <Image
+                style={styles.avatar}
+                source={avatars.find((a) => a.id === user.avatar)?.image}
+              />
+            ) : (
+              <View style={styles.avatar} />
+            )}
             <Pressable
               accessibilityRole="button"
               style={styles.addIcon}
               onPress={() => setChangeAvatar(true)}
             >
-              <Ionicons name="add-outline" size={24} color="#1c3249" />
+              <Ionicons name="add-outline" size={22} color="#1c3249" />
             </Pressable>
           </View>
         </View>
@@ -74,8 +77,8 @@ export default function AccountScreen() {
             text={"Choose your avatar"}
           />
         )}
-        <View style={styles.formContainer}>
-          <View>
+        <View style={styles.formCard}>
+          <View style={styles.field}>
             <Text style={styles.inputLabel}>Username</Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
@@ -84,7 +87,7 @@ export default function AccountScreen() {
               editable={edit}
             />
           </View>
-          <View>
+          <View style={styles.field}>
             <Text style={styles.inputLabel}>Email</Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
@@ -93,7 +96,7 @@ export default function AccountScreen() {
               editable={edit}
             />
           </View>
-          <View>
+          <View style={styles.field}>
             <Text style={styles.inputLabel}>Phone number</Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
@@ -104,7 +107,7 @@ export default function AccountScreen() {
               editable={edit}
             />
           </View>
-          <View>
+          <View style={styles.field}>
             <Text style={styles.inputLabel}>Date of Birth</Text>
             <Calendar
               onDateChange={setDateOfBirth}
@@ -114,13 +117,13 @@ export default function AccountScreen() {
           </View>
         </View>
         {edit && (
-          <View style={styles.buttonContainer}>
+          <View style={styles.saveContainer}>
             <Pressable
               style={styles.button}
               accessibilityRole="button"
               onPress={addChanges}
             >
-              <Text>Save changes</Text>
+              <Text style={styles.buttonText}>Save changes</Text>
             </Pressable>
           </View>
         )}
