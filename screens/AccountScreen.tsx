@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, Pressable, TextInput } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../styles/AccountScreen.styles";
 import Calendar from "../components/Calendar";
 import Loading from "../components/Loading";
 import SuccessModal from "../components/SuccessModal";
@@ -11,6 +10,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import AvatarModal from "../components/AvatarModal";
 import { useSession } from "../ctx";
 import { avatars } from "../constants/avatars";
+import { getStyles } from "../styles/AccountScreen.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function AccountScreen() {
   const {
@@ -36,6 +37,8 @@ export default function AccountScreen() {
   if (loading) {
     return <Loading />;
   }
+
+  const { colors, styles } = useAppStyle(getStyles);
 
   return (
     <SafeAreaProvider>
@@ -66,7 +69,11 @@ export default function AccountScreen() {
               style={styles.addIcon}
               onPress={() => setChangeAvatar(true)}
             >
-              <Ionicons name="add-outline" size={22} color="#1c3249" />
+              <Ionicons
+                name="add-outline"
+                size={22}
+                color={colors.btnPrimary}
+              />
             </Pressable>
           </View>
         </View>

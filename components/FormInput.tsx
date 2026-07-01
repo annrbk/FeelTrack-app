@@ -1,9 +1,11 @@
 import { TextInput, Text } from "react-native";
-import { styles } from "../styles/SignInScreen";
+import { getStyles } from "../styles/SignInScreen";
 import type { FormInputProps } from "../types/signUpValuesType";
 import type { CustomFormikSignUp } from "../types/signUpValuesType";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
+  const { styles } = useAppStyle(getStyles);
   const {
     handleChange,
     handleBlur,

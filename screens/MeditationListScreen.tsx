@@ -1,14 +1,15 @@
-import { Text, View, Image, TouchableOpacity, FlatList } from "react-native";
+import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../navigation/types";
 import { RouteProp } from "@react-navigation/native";
 import { meditations } from "../constants/meditations";
-import { styles } from "../styles/MeditationList.styles";
+import { getStyles } from "../styles/MeditationList.styles";
 import { usePlayer } from "../PlayerContext";
 import { useEffect } from "react";
 import { careData } from "../constants/careData";
 import formatTime from "../utils/formatTime";
 import BackButton from "../components/BackButton";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function MeditationListScreen({
   route,
@@ -18,10 +19,14 @@ export default function MeditationListScreen({
   const { id } = route.params;
   const player = usePlayer();
 
+  const { styles, colors } = useAppStyle(getStyles);
+
   const filteredMeditations = meditations.filter((m) => m.categoryId === id);
   const currentCategory = careData.find((careItem) => careItem.id === id);
 
   const miniPlayerHeight = player.currentTrack ? 70 : 0;
+
+  const meditationBg = currentCategory?.color || colors.bgCalm;
 
   useEffect(() => {
     player.setQueue(filteredMeditations);
@@ -33,19 +38,11 @@ export default function MeditationListScreen({
         <View style={styles.backButtonContainer}>
           <BackButton />
         </View>
-        <View style={styles.header}>
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{ uri: currentCategory?.image }}
-              resizeMode="cover"
-            />
-          </View>
+        <View style={[styles.header, { backgroundColor: meditationBg }]}>
           <View style={styles.headerTextContainer}>
             <Text key={id} style={styles.headerTitle}>
               {currentCategory?.title}
             </Text>
-
             <Text style={styles.headerSubtitle}>
               {filteredMeditations.length} sessions
             </Text>

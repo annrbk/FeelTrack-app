@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native";
+import { AppThemeColors } from "../types/themeType";
 
-export const styles = StyleSheet.create({
-  buttonContainer: {
-    zIndex: 1,
-  },
-  backButton: {},
-});
+export const getStyles = (colors: AppThemeColors) =>
+  StyleSheet.create({
+    buttonContainer: {
+      zIndex: 1,
+    },
+    backButton: {},
+  });

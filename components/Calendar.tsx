@@ -1,10 +1,11 @@
 import React from "react";
 import { Pressable, TextInput, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { styles } from "../styles/Calendar.styles";
+import { getStyles } from "../styles/Calendar.styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { CalendarProps } from "../types/dateOfBirthType";
 import { useCalendar } from "../hooks/useCalendar";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function Calendar({
   onDateChange,
@@ -16,6 +17,8 @@ export default function Calendar({
     onDateChange,
     disabled,
   });
+
+  const { colors, styles } = useAppStyle(getStyles);
 
   return (
     <>
@@ -36,7 +39,7 @@ export default function Calendar({
             style={styles.calendarInputIcon}
             name="calendar"
             size={24}
-            color="#2e86de"
+            color={colors.btnPrimary}
           />
         </View>
       </Pressable>

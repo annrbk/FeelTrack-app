@@ -1,10 +1,13 @@
 import { View, Text, Pressable } from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
-import { styles } from "../styles/FirstScreen.styles";
+import { getStyles } from "../styles/FirstScreen.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function FirstScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const { styles } = useAppStyle(getStyles);
 
   return (
     <View style={styles.container}>
@@ -14,8 +17,8 @@ export default function FirstScreen() {
           Track your emotional well-being every day.
         </Text>
         <Text style={styles.description}>
-          Log your mood, write down your thoughts, take short tests, and
-          discover ways to support yourself when you need it most
+          Log your daily mood, listen to relaxing meditations, and track your
+          emotional journey in the calendar
         </Text>
         <Pressable
           onPress={() => navigation.navigate("Authentication")}

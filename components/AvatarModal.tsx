@@ -1,10 +1,11 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import { showModalProps } from "../types/modalType";
-import { styles } from "../styles/AvatarModal.styles";
+import { getStyles } from "../styles/AvatarModal.styles";
 import { Image } from "react-native";
 import { useAvatar } from "../hooks/useAvatar";
 import { avatars } from "../constants/avatars";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function AvatarModal({
   visible,
@@ -12,6 +13,8 @@ export default function AvatarModal({
   text,
 }: showModalProps) {
   const { avatar, setAvatar, changeAvatar } = useAvatar();
+
+  const { styles } = useAppStyle(getStyles);
 
   return (
     <Modal
@@ -24,7 +27,11 @@ export default function AvatarModal({
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Pressable style={styles.closeIcon} onPress={onClose}>
-            <Ionicons name="close-outline" size={24} color="#3d403b" />
+            <Ionicons
+              name="close-outline"
+              size={24}
+              color={styles.modalText.color}
+            />
           </Pressable>
           <View style={styles.avatarContainer}>
             <Text style={styles.modalText}>{text}</Text>

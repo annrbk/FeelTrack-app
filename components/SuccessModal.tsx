@@ -1,17 +1,16 @@
 import React from "react";
 import { Modal, Text, Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { styles } from "../styles/SuccessModal.styles";
+import { getStyles } from "../styles/SuccessModal.styles";
 import type { showModalProps } from "../types/modalType";
-import { useTheme } from "../context/ThemeContext";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function SuccessModal({
   visible,
   onClose,
   text,
 }: showModalProps) {
-  const { theme } = useTheme();
+  const { styles, colors } = useAppStyle(getStyles);
 
   return (
     <Modal
@@ -22,49 +21,23 @@ export default function SuccessModal({
       statusBarTranslucent={true}
     >
       <View style={styles.centeredView}>
-        <View
-          style={[
-            styles.modalView,
-            {
-              backgroundColor:
-                theme === "dark" ? ThemeColors.dark : ThemeColors.iconGray,
-            },
-          ]}
-        >
-          <Pressable style={styles.closeIcon} onPress={() => onClose()}>
-            <View>
-              <Ionicons
-                name="close-outline"
-                size={24}
-                color={
-                  theme === "dark"
-                    ? ThemeColors.lightGray
-                    : ThemeColors.textPrimary
-                }
-              />
-            </View>
+        <View style={styles.modalView}>
+          <Pressable style={styles.closeIcon} onPress={onClose}>
+            <Ionicons
+              name="close-outline"
+              size={24}
+              color={colors.textSecondary}
+            />
           </Pressable>
           <Ionicons
-            name="checkmark-circle-outline"
+            name="checkmark-outline"
             size={48}
-            color={theme === "dark" ? ThemeColors.lightGray : "#088f3a"}
+            color={colors.btnSuccess}
           />
-          <Text
-            style={[
-              styles.modalText,
-              {
-                color:
-                  theme === "dark"
-                    ? ThemeColors.lightGray
-                    : ThemeColors.textPrimary,
-              },
-            ]}
-          >
-            {text}
-          </Text>
+          <Text style={styles.modalText}>{text}</Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
-            onPress={() => onClose()}
+            onPress={onClose}
           >
             <Text style={styles.textStyle}>Got it</Text>
           </Pressable>

@@ -1,10 +1,13 @@
 import { View, Text, Pressable } from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
-import { styles } from "../styles/AuthScreen.styles";
+import { getStyles } from "../styles/AuthScreen.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function AuthScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const { styles } = useAppStyle(getStyles);
 
   return (
     <View style={styles.container}>

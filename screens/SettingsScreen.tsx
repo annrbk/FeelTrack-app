@@ -3,12 +3,13 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import SwitchTheme from "../components/SwitchTheme";
 import { useTheme } from "../context/ThemeContext";
-import { styles } from "../styles/SettingsScreen.styles";
+import { getStyles } from "../styles/SettingsScreen.styles";
 import BackButton from "../components/BackButton";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useAccount } from "../hooks/useAccount";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function SettingsScreen() {
   const { theme, switchTheme } = useTheme();
@@ -19,6 +20,8 @@ export default function SettingsScreen() {
     isDeleteAccountModalVisible,
     setDeleteAccountModalVisible,
   } = useAccount();
+
+  const { styles, colors } = useAppStyle(getStyles);
 
   return (
     <SafeAreaProvider>
@@ -41,7 +44,7 @@ export default function SettingsScreen() {
               <Ionicons
                 name="chevron-forward-outline"
                 size={24}
-                color="#1c3249"
+                color={colors.textSecondary}
               />
             </Pressable>
           </View>

@@ -5,7 +5,7 @@ export const useAudio = () => {
   const { currentTrack } = usePlayer();
 
   const currentCategory = careData.find(
-    (item) => item.id === currentTrack?.categoryId
+    (item) => item.id === currentTrack?.categoryId,
   );
   return currentCategory;
 };

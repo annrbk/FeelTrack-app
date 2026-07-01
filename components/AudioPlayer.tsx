@@ -1,11 +1,12 @@
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { styles } from "../styles/AudioPlayer.style";
+import { getStyles } from "../styles/AudioPlayer.style";
 import { usePlayer } from "../PlayerContext";
 import { useAudio } from "../hooks/useAudio";
 import ControlsButtons from "./ControlButtons";
 import AudioProgressBar from "./AudioProgressBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function AudioPlayer({
   toggleExpand,
@@ -18,13 +19,19 @@ export default function AudioPlayer({
 
   const insets = useSafeAreaInsets();
 
+  const { styles, colors, isDark } = useAppStyle(getStyles);
+
   if (!currentTrack) return null;
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom + 16 }]}>
       <View style={styles.topHeader}>
         <Pressable style={styles.closeButton} onPress={toggleExpand}>
-          <Ionicons name="chevron-down-outline" size={24} color="#000" />
+          <Ionicons
+            name="chevron-down-outline"
+            size={24}
+            color={isDark ? colors.textPrimary : colors.textSecondary}
+          />
         </Pressable>
         <View style={styles.titleContainer}>
           <Text style={styles.nowPlayingText}>Now playing</Text>
@@ -32,11 +39,19 @@ export default function AudioPlayer({
         <View style={styles.rightPart} />
       </View>
       <View style={styles.headerContainer}>
-        <Image
-          style={styles.image}
-          source={{ uri: currentCategory?.image }}
-          resizeMode="cover"
-        ></Image>
+        <View
+          style={[
+            styles.coverContainer,
+            { backgroundColor: currentCategory?.color },
+          ]}
+        >
+          <Ionicons
+            name="musical-notes-outline"
+            size={72}
+            color={isDark ? colors.textPrimary : colors.textSecondary}
+            style={{ opacity: 0.2 }}
+          />
+        </View>
         <Text style={styles.trackTitle}>{currentTrack?.title}</Text>
         <Text style={styles.trackCategory}>{currentCategory?.title}</Text>
       </View>

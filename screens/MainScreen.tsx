@@ -1,12 +1,12 @@
 import { Text, ScrollView } from "react-native";
-import { styles } from "../styles/MainScreen.styles";
+import { getStyles } from "../styles/MainScreen.styles";
 import SuccessModal from "../components/SuccessModal";
 import { useEmotion } from "../hooks/useEmotion";
 import { useEffect } from "react";
 import TodayStatistics from "../components/TodayStatistics";
 import EmotionsSection from "../components/EmotionsSection";
-import { useTheme } from "../context/ThemeContext";
-import { ThemeColors } from "../constants/theme";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function MainScreen() {
   const {
@@ -28,7 +28,7 @@ export default function MainScreen() {
     selectedDate,
   } = useEmotion();
 
-  const { theme } = useTheme();
+  const { styles } = useAppStyle(getStyles);
 
   useEffect(() => {
     getEmotions();
@@ -37,39 +37,35 @@ export default function MainScreen() {
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
-    <ScrollView
-      style={[
-        styles.container,
-        {
-          backgroundColor:
-            theme === "dark" ? ThemeColors.dark : ThemeColors.light,
-        },
-      ]}
-      contentContainerStyle={styles.scrollContent}
-    >
-      <EmotionsSection
-        user={user}
-        emotion={emotion}
-        setEmotion={setEmotion}
-        modal={modal}
-        setModal={setModal}
-        onCloseEmotionModal={onCloseEmotionModal}
-        addEmotion={addEmotion}
-      />
-      <TodayStatistics
-        todayEmotions={todayEmotions}
-        deleteTodayEmotion={deleteTodayEmotion}
-        goToNextDate={goToNextDate}
-        goToPreviousDate={goToPreviousDate}
-        selectedDate={selectedDate}
-      />
-      {successModal && (
-        <SuccessModal
-          visible={successModal}
-          onClose={onCloseSuccessModal}
-          text={"Your emotion added successfully!"}
+    <SafeAreaProvider>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.scrollContent}
+      >
+        <EmotionsSection
+          user={user}
+          emotion={emotion}
+          setEmotion={setEmotion}
+          modal={modal}
+          setModal={setModal}
+          onCloseEmotionModal={onCloseEmotionModal}
+          addEmotion={addEmotion}
         />
-      )}
-    </ScrollView>
+        <TodayStatistics
+          todayEmotions={todayEmotions}
+          deleteTodayEmotion={deleteTodayEmotion}
+          goToNextDate={goToNextDate}
+          goToPreviousDate={goToPreviousDate}
+          selectedDate={selectedDate}
+        />
+        {successModal && (
+          <SuccessModal
+            visible={successModal}
+            onClose={onCloseSuccessModal}
+            text={"Your emotion added successfully!"}
+          />
+        )}
+      </ScrollView>
+    </SafeAreaProvider>
   );
 }

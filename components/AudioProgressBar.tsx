@@ -1,12 +1,18 @@
 import { View, Text } from "react-native";
 import Slider from "@react-native-community/slider";
-import { styles } from "../styles/AudioPlayer.style";
+import { getStyles } from "../styles/AudioPlayer.style";
 import { usePlayer } from "../PlayerContext";
 import formatTime from "../utils/formatTime";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
+import { useAudio } from "../hooks/useAudio";
 
 export default function AudioProgressBar() {
   const { currentTime, duration, seekTo } = usePlayer();
+  const { styles, colors } = useAppStyle(getStyles);
+  const currentCategory = useAudio();
+
+  const trackColor = currentCategory?.color || colors.btnActive;
+
   return (
     <View>
       <Slider
@@ -14,9 +20,9 @@ export default function AudioProgressBar() {
         value={currentTime}
         minimumValue={0}
         maximumValue={duration}
-        thumbTintColor={ThemeColors.textPrimary}
-        minimumTrackTintColor={ThemeColors.btnPrimary}
-        maximumTrackTintColor={ThemeColors.textSecondary}
+        thumbTintColor={colors.textPrimary}
+        minimumTrackTintColor={trackColor}
+        maximumTrackTintColor={colors.textSecondary}
         onSlidingComplete={seekTo}
       ></Slider>
       <View style={styles.progressLabelContainer}>

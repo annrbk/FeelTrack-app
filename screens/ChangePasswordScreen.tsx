@@ -1,9 +1,11 @@
+import React from "react";
 import { Text, View, TextInput, Pressable } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../styles/ChangePassword.styles";
+import { getStyles } from "../styles/ChangePassword.styles";
 import BackButton from "../components/BackButton";
 import SuccessModal from "../components/SuccessModal";
 import { useChangePassword } from "../hooks/useChangePassword";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function ChangePasswordScreen() {
   const {
@@ -12,13 +14,12 @@ export default function ChangePasswordScreen() {
     newPassword,
     setNewPassword,
     edit,
-    setEdit,
     showSuccessModal,
-    setShowSuccessModal,
-    toEdit,
     changePassword,
     onCloseModal,
   } = useChangePassword();
+
+  const { colors, styles } = useAppStyle(getStyles);
 
   return (
     <SafeAreaProvider>
@@ -39,6 +40,8 @@ export default function ChangePasswordScreen() {
               value={password}
               editable={edit}
               placeholder="Enter password"
+              placeholderTextColor={colors.textSecondary}
+              secureTextEntry
             />
           </View>
           <View style={styles.field}>
@@ -49,6 +52,8 @@ export default function ChangePasswordScreen() {
               value={newPassword}
               editable={edit}
               placeholder="Enter new password"
+              placeholderTextColor={colors.textSecondary}
+              secureTextEntry
             />
           </View>
         </View>

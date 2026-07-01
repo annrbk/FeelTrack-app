@@ -1,10 +1,12 @@
 import { View, TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { styles } from "../styles/AudioPlayer.style";
+import { getStyles } from "../styles/AudioPlayer.style";
 import { usePlayer } from "../PlayerContext";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function ControlsButtons() {
+  const { styles, colors } = useAppStyle(getStyles);
+
   const {
     isPlaying,
     repeatMode,
@@ -23,49 +25,33 @@ export default function ControlsButtons() {
         <Ionicons
           name="shuffle-outline"
           size={38}
-          color={isShuffled ? ThemeColors.btnPrimary : ThemeColors.textPrimary}
+          color={isShuffled ? colors.btnControl : colors.textPrimary}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={playPrevious}>
-        <Ionicons
-          name="play-skip-back"
-          size={38}
-          color={ThemeColors.textPrimary}
-        />
+        <Ionicons name="play-skip-back" size={38} color={colors.textPrimary} />
       </TouchableOpacity>
       {isPlaying ? (
         <TouchableOpacity onPress={pauseTrack}>
-          <Ionicons
-            name="pause-circle"
-            size={78}
-            color={ThemeColors.textPrimary}
-          />
+          <Ionicons name="pause-circle" size={78} color={colors.textPrimary} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={resumeTrack}>
-          <Ionicons
-            name="play-circle"
-            size={78}
-            color={ThemeColors.textPrimary}
-          />
+          <Ionicons name="play-circle" size={78} color={colors.textPrimary} />
         </TouchableOpacity>
       )}
       <TouchableOpacity onPress={playNext}>
         <Ionicons
           name="play-skip-forward"
           size={38}
-          color={ThemeColors.textPrimary}
+          color={colors.textPrimary}
         />
       </TouchableOpacity>
       <TouchableOpacity onPress={toggleRepeat}>
         <Ionicons
           name="repeat-outline"
           size={38}
-          color={
-            repeatMode === "off"
-              ? ThemeColors.textPrimary
-              : ThemeColors.btnPrimary
-          }
+          color={repeatMode === "off" ? colors.textPrimary : colors.btnControl}
         />
       </TouchableOpacity>
     </View>

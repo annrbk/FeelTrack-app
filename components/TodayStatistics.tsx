@@ -1,13 +1,11 @@
+import React from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import { emotions } from "../constants/emotions";
-import { styles } from "../styles/MainScreen.styles";
 import type { TodayStatisticsProps } from "../types/emotionTypes";
-import { moderateScale } from "react-native-size-matters";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useTheme } from "../context/ThemeContext";
-import { ThemeColors } from "../constants/theme";
-import { typography } from "../styles/typography";
+import { getStyles } from "../styles/MainScreen.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function TodayStatistics({
   todayEmotions,
@@ -16,52 +14,36 @@ export default function TodayStatistics({
   goToPreviousDate,
   selectedDate,
 }: TodayStatisticsProps) {
-  const { theme } = useTheme();
+  const { styles, colors } = useAppStyle(getStyles);
+
   const renderRightActions = (todayEmotionId: number) => {
     return (
       <TouchableOpacity
-        style={{
-          height: moderateScale(48),
-          alignItems: "center",
-          justifyContent: "center",
-          width: moderateScale(64),
-          backgroundColor: ThemeColors.btnWarning,
-          borderRadius: 10,
-        }}
+        style={styles.deleteButton}
         onPress={() => deleteTodayEmotion(todayEmotionId)}
       >
-        <Text style={{ color: ThemeColors.white, ...typography.regular }}>
-          Delete
-        </Text>
+        <Text style={styles.deleteButtonText}>Delete</Text>
       </TouchableOpacity>
     );
   };
   return (
-    <View style={[styles.statistics]}>
+    <View style={styles.statistics}>
       <View style={styles.statisticsHeader}>
         <Pressable onPress={goToPreviousDate}>
           <Ionicons
             name="chevron-back-outline"
             size={24}
-            color={theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark}
+            color={colors.textPrimary}
           />
         </Pressable>
-        <Text
-          style={[
-            styles.statisticsTitle,
-            {
-              color:
-                theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
-            },
-          ]}
-        >
+        <Text style={styles.statisticsTitle}>
           Summary {selectedDate.toLocaleDateString()}
         </Text>
         <Pressable onPress={goToNextDate}>
           <Ionicons
             name="chevron-forward-outline"
             size={24}
-            color={theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark}
+            color={colors.textPrimary}
           />
         </Pressable>
       </View>
@@ -83,17 +65,7 @@ export default function TodayStatistics({
                   <Text style={styles.currentEmotionEmoji}>
                     {emotionData?.emoji}
                   </Text>
-                  <Text
-                    style={[
-                      styles.currentEmotionLabel,
-                      {
-                        color:
-                          theme === "dark"
-                            ? ThemeColors.lightGray
-                            : ThemeColors.dark,
-                      },
-                    ]}
-                  >
+                  <Text style={styles.currentEmotionLabel}>
                     {emotionData?.label}
                   </Text>
                   <View style={styles.timeContainer}>
@@ -108,26 +80,8 @@ export default function TodayStatistics({
         </View>
       ) : (
         <View style={styles.statisticsEmpty}>
-          <Text
-            style={[
-              styles.emptyTitle,
-              {
-                color:
-                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
-              },
-            ]}
-          >
-            No emotions tracked yet today
-          </Text>
-          <Text
-            style={[
-              styles.emptySubtitle,
-              {
-                color:
-                  theme === "dark" ? ThemeColors.lightGray : ThemeColors.dark,
-              },
-            ]}
-          >
+          <Text style={styles.emptyTitle}>No emotions tracked yet today</Text>
+          <Text style={styles.emptySubtitle}>
             Start by selecting how you feel!
           </Text>
         </View>

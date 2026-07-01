@@ -1,77 +1,70 @@
 import { StyleSheet } from "react-native";
-import { ThemeColors, shadow } from "../constants/theme";
 import { typography } from "./typography";
+import { AppThemeColors } from "../types/themeType";
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 24,
-    alignItems: "stretch",
-    paddingTop: 50,
-    backgroundColor: ThemeColors.backgroundColorPrimary,
-  },
-  section: {
-    flex: 1,
-    paddingVertical: 16,
-  },
-  grid: {
-    flex: 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignContent: "space-evenly",
-    paddingHorizontal: 8,
-  },
-  title: {
-    fontSize: 20,
-    ...typography.semiBold,
-    color: ThemeColors.textPrimary,
-    marginHorizontal: 16,
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 14,
-    ...typography.regular,
-    color: ThemeColors.textPrimary,
-    marginHorizontal: 16,
-    marginBottom: 12,
-  },
-  imageWrapper: {
-    width: "46%",
-    margin: "2%",
-  },
-  image: {
-    width: "100%",
-    height: 150,
-    borderRadius: 12,
-  },
-  imageTitleContainer: {
-    position: "absolute",
-    backgroundColor: ThemeColors.white,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    top: 10,
-    left: 10,
-    ...shadow,
-  },
-  sessionContainer: {
-    position: "absolute",
-    backgroundColor: ThemeColors.white,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    bottom: 10,
-    right: 10,
-    ...shadow,
-  },
-  imageTitle: {
-    fontSize: 14,
-    ...typography.medium,
-    color: ThemeColors.textPrimary,
-  },
-  sessionText: {
-    fontSize: 14,
-    ...typography.medium,
-    color: ThemeColors.textPrimary,
-  },
-});
+export const getStyles = (colors: AppThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingVertical: 24,
+      paddingTop: 50,
+      backgroundColor: colors.backgroundColorPrimary,
+    },
+    section: {
+      flex: 1,
+      paddingVertical: 16,
+    },
+    grid: {
+      flex: 1,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      alignContent: "space-evenly",
+      paddingHorizontal: 8,
+    },
+    title: {
+      fontSize: 28,
+      ...typography.medium,
+      color: colors.textPrimary,
+      marginHorizontal: 16,
+    },
+    subtitle: {
+      fontSize: 16,
+      ...typography.regular,
+      color: colors.textPrimary,
+      marginHorizontal: 16,
+      marginBottom: 8,
+    },
+    imageWrapper: {
+      width: "98%",
+      justifyContent: "center",
+      borderRadius: 12,
+      borderWidth: 0.5,
+      borderColor: colors.borderPrimary,
+      marginBottom: 16,
+    },
+    iconContainer: {
+      padding: 8,
+    },
+    categoryContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: 4,
+      margin: 4,
+      gap: 4,
+      marginLeft: 8,
+    },
+    informContainer: {
+      flexDirection: "column",
+    },
+    imageTitle: {
+      fontSize: 18,
+      ...typography.medium,
+      color: colors.textPrimary,
+    },
+    sessionText: {
+      fontSize: 16,
+      ...typography.regular,
+      color: colors.textPrimary,
+    },
+  });

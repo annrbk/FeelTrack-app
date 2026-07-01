@@ -1,36 +1,31 @@
 export const careData = [
   {
     id: "1",
-    image:
-      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684263/calm_ttpzth.jpg",
+    color: "#dee9f093",
     title: "Calm",
     session: "8",
   },
   {
     id: "2",
-    image:
-      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684270/energize_nhc5qy.jpg",
+    color: "#fbece3ae",
     title: "Energize",
     session: "9",
   },
   {
     id: "3",
-    image:
-      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684277/sleep_qbpdrl.jpg",
+    color: "#ebe4ed9f",
     title: "Sleep",
     session: "9",
   },
   {
     id: "4",
-    image:
-      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684254/balance_ukhswp.jpg",
+    color: "#f1f5c5a2",
     title: "Balance",
     session: "7",
   },
   {
     id: "5",
-    image:
-      "https://res.cloudinary.com/dvrz3k3yt/image/upload/v1781684280/focus_qe6vle.jpg",
+    color: "#e1e9dea7",
     title: "Focus",
     session: "8",
   },

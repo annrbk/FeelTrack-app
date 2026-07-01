@@ -1,11 +1,12 @@
 import { TouchableOpacity } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { styles } from "../styles/MiniPlayer.styles";
+import { getStyles } from "../styles/MiniPlayer.styles";
 import { usePlayer } from "../PlayerContext";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function MiniControlButtons() {
   const { isPlaying, pauseTrack, resumeTrack } = usePlayer();
+  const { styles, colors, isDark } = useAppStyle(getStyles);
 
   return (
     <>
@@ -14,7 +15,7 @@ export default function MiniControlButtons() {
           <Ionicons
             name="pause-circle-outline"
             size={35}
-            color={ThemeColors.textPrimary}
+            color={isDark ? colors.textSecondary : colors.btnPrimary}
           />
         </TouchableOpacity>
       ) : (
@@ -22,7 +23,7 @@ export default function MiniControlButtons() {
           <Ionicons
             name="play-circle-outline"
             size={35}
-            color={ThemeColors.textPrimary}
+            color={isDark ? colors.textSecondary : colors.btnPrimary}
           />
         </TouchableOpacity>
       )}

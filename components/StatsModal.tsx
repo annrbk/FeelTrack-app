@@ -1,8 +1,10 @@
 import { Modal, View, Text, Pressable } from "react-native";
 import { showModalProps } from "../types/modalType";
-import { styles } from "../styles/StatsModal.styles";
+import { getStyles } from "../styles/StatsModal.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function StatsModal({ visible, onClose, text }: showModalProps) {
+  const { styles } = useAppStyle(getStyles);
   return (
     <Modal
       animationType="fade"

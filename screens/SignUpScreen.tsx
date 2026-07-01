@@ -1,18 +1,21 @@
 import { Pressable, View, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { styles } from "../styles/SignInScreen";
+import { getStyles } from "../styles/SignInScreen";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { useRegister } from "../hooks/useRegister";
 import type { SignUpValues } from "../types/signUpValuesType";
 import Button from "../components/Button";
 import FormInput from "../components/FormInput";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function SignUpScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const { register, error } = useRegister();
+
+  const { styles } = useAppStyle(getStyles);
 
   const submitForm = async (values: SignUpValues) => {
     try {

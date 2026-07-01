@@ -36,3 +36,9 @@ export type EmotionsSectionProps = {
   onCloseEmotionModal: () => void;
   addEmotion: (emotion: Emotion) => Promise<void>;
 };
+
+export type EmotionItemProps = {
+  emotionEmoji: string;
+  emotion: EmotionFromDB;
+  timeOfEmotion: string;
+};

@@ -1,12 +1,12 @@
 import { Calendar } from "react-native-calendars";
 import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "../styles/StatsScreen.styles";
+import { getStyles } from "../styles/StatsScreen.styles";
 import { useStats } from "../hooks/useStats";
 import { emotions } from "../constants/emotions";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import StatsModal from "../components/StatsModal";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function StatsScreen() {
   const {
@@ -23,6 +23,8 @@ export default function StatsScreen() {
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  const { styles, colors, isDark } = useAppStyle(getStyles);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Mood Statistics</Text>
@@ -30,6 +32,7 @@ export default function StatsScreen() {
         Track your emotional journey day by day
       </Text>
       <Calendar
+        key={isDark ? "dark" : "light"}
         style={styles.calendarStyle}
         onMonthChange={handleMonthChange}
         hideExtraDays={true}
@@ -38,9 +41,11 @@ export default function StatsScreen() {
           textDayFontFamily: "Montserrat_400Regular",
           textMonthFontFamily: "Montserrat_600SemiBold",
           textDayHeaderFontFamily: "Montserrat_500Medium",
-          todayTextColor: ThemeColors.btnPrimary,
-          arrowColor: ThemeColors.btnPrimary,
-          selectedDayBackgroundColor: ThemeColors.btnPrimary,
+          todayTextColor: colors.btnPrimary,
+          arrowColor: colors.btnPrimary,
+          selectedDayBackgroundColor: colors.btnPrimary,
+          calendarBackground: colors.surfacePrimary,
+          backgroundColor: colors.surfacePrimary,
         }}
         renderHeader={() => {
           return (
@@ -50,7 +55,7 @@ export default function StatsScreen() {
             </View>
           );
         }}
-        dayComponent={({ date, marking }) => {
+        dayComponent={({ date }) => {
           const emotionsForDay =
             groupedEmotionsByDate[date?.dateString ?? ""] || [];
           return (
@@ -67,7 +72,7 @@ export default function StatsScreen() {
               }}
             >
               <View style={styles.dayContainer}>
-                <Text>{date?.day}</Text>
+                <Text style={styles.dayText}>{date?.day}</Text>
                 <View style={styles.emotionContainer}>
                   {emotionsForDay.length > 0
                     ? emotionsForDay.slice(0, 3).map((emotion) => {

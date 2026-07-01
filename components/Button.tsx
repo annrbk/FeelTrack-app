@@ -1,11 +1,13 @@
 import { Pressable, View, Text } from "react-native";
-import { styles } from "../styles/SignInScreen";
+import { getStyles } from "../styles/SignInScreen";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export type ButtonProps = {
   handleSubmit: () => void;
 };
 
 export default function Button({ handleSubmit }: ButtonProps) {
+  const { styles } = useAppStyle(getStyles);
   return (
     <View style={styles.buttonContainer}>
       <Pressable

@@ -1,7 +1,8 @@
 import { Modal, Pressable, Text, View } from "react-native";
-import { styles } from "../styles/DeleteAccountModal.styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { DeleteAccountModalProps } from "../types/accountValuesType";
+import { getStyles } from "../styles/DeleteAccountModal.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function DeleteAccountModal({
   visible,
@@ -9,6 +10,8 @@ export default function DeleteAccountModal({
   text,
   onConfirm,
 }: DeleteAccountModalProps) {
+  const { colors, styles } = useAppStyle(getStyles);
+
   return (
     <Modal
       animationType="fade"
@@ -20,9 +23,17 @@ export default function DeleteAccountModal({
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Pressable style={styles.closeIcon} onPress={onClose}>
-            <Ionicons name="close-outline" size={24} color="#1a1a1a" />
+            <Ionicons
+              name="close-outline"
+              size={24}
+              color={colors.textSecondary}
+            />
           </Pressable>
-          <Ionicons name="warning-outline" size={48} color="#e05555" />
+          <Ionicons
+            name="warning-outline"
+            size={48}
+            color={colors.btnWarning}
+          />
           <Text style={styles.modalText}>{text}</Text>
           <Text style={styles.modalSubText}>
             This action cannot be undone. All your data will be permanently

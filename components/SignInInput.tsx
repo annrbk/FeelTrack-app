@@ -1,10 +1,11 @@
 import { TextInput, Text } from "react-native";
-import { styles } from "../styles/SignInScreen";
+import { getStyles } from "../styles/SignInScreen";
 import type { CustomFormikSignIn } from "../types/signInValuesType";
 import { SignInInputProps } from "../types/signInValuesType";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function SignInInput(
-  props: CustomFormikSignIn & SignInInputProps
+  props: CustomFormikSignIn & SignInInputProps,
 ) {
   const {
     handleChange,
@@ -15,6 +16,7 @@ export default function SignInInput(
     textField,
     placeholder,
   } = props;
+  const { styles } = useAppStyle(getStyles);
   return (
     <>
       {touched[textField] && errors[textField] && (

@@ -5,7 +5,7 @@ import StatsScreen from "../screens/StatsScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import getTabIconName from "../utils/getTabIconName";
 import { useTheme } from "../context/ThemeContext";
-import { ThemeColors } from "../constants/theme";
+import { DarkThemeColors, ThemeColors } from "../constants/theme";
 import { usePlayer } from "../PlayerContext";
 import CareStack from "./CareStack";
 
@@ -14,6 +14,9 @@ const Tab = createBottomTabNavigator();
 export default function BottomTabs() {
   const { theme } = useTheme();
   const player = usePlayer();
+
+  const isDark = theme === "dark";
+  const colors = isDark ? DarkThemeColors : ThemeColors;
 
   return (
     <Tab.Navigator
@@ -28,12 +31,14 @@ export default function BottomTabs() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarStyle: {
-          borderTopWidth: 0,
-          backgroundColor:
-            theme === "dark" ? ThemeColors.secondaryDark : ThemeColors.light,
+          borderTopWidth: 0.5,
+          borderTopColor: colors.borderPrimary,
+          backgroundColor: colors.backgroundColorPrimary,
+          elevation: 0,
+          shadowOpacity: 0,
         },
-        tabBarActiveTintColor: "#2e86de",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: colors.btnPrimary,
+        tabBarInactiveTintColor: colors.btnInactive,
         headerShown: false,
       })}
     >

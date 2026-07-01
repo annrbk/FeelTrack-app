@@ -1,5 +1,3 @@
-import { ImageSourcePropType } from "react-native";
-
 export type CareSectionItem = {
   data: CardItem[];
   title: string;
@@ -8,7 +6,7 @@ export type CareSectionItem = {
 
 export type CardItem = {
   id: string;
-  image: string;
+  color: string;
   title?: string;
   session?: string;
 };

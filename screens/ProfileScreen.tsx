@@ -1,16 +1,18 @@
 import { View, Text, Image, Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../styles/ProfileScreen.styles";
+import { getStyles } from "../styles/ProfileScreen.styles";
 import { useSession } from "../ctx";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { avatars } from "../constants/avatars";
-import { ThemeColors } from "../constants/theme";
+import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { user, signOut } = useSession();
   const selectedAvatar = avatars.find((a) => a.id === user?.avatar)?.image;
+
+  const { styles, colors } = useAppStyle(getStyles);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -47,9 +49,7 @@ export default function ProfileScreen() {
             onPress={signOut}
             accessibilityRole="button"
           >
-            <Text
-              style={[styles.settingText, { color: ThemeColors.btnWarning }]}
-            >
+            <Text style={[styles.settingText, { color: colors.btnWarning }]}>
               Logout
             </Text>
           </Pressable>
