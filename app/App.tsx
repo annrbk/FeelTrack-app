@@ -1,3 +1,4 @@
+import "../i18next/i18next";
 import { NavigationContainer } from "@react-navigation/native";
 import MyStack from "../navigation/AppNavigator";
 import { SessionProvider } from "../ctx";
