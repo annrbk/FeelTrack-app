@@ -6,10 +6,7 @@ export const useAccount = () => {
   const { user, updateUser, signOut } = useSession();
   const [name, setName] = useState<string>(user?.name || "");
   const [email, setEmail] = useState<string>(user?.email || "");
-  const [number, setNumber] = useState<string>(user?.number || "");
-  const [dateOfBirth, setDateOfBirth] = useState<Date | null>(
-    user?.dateOfBirth ? new Date(user.dateOfBirth) : null,
-  );
+
   const [edit, setEdit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
@@ -20,8 +17,6 @@ export const useAccount = () => {
     if (edit) {
       setName(user?.name || "");
       setEmail(user?.email || "");
-      setNumber(user?.number || "");
-      setDateOfBirth(user?.dateOfBirth ? new Date(user.dateOfBirth) : null);
       setEdit(false);
     } else {
       setEdit(true);
@@ -33,8 +28,6 @@ export const useAccount = () => {
       const editedData = {
         name,
         email,
-        number,
-        dateOfBirth: dateOfBirth?.toISOString() || null,
       };
       setLoading(true);
       await updateAccount(editedData);
@@ -64,15 +57,11 @@ export const useAccount = () => {
   return {
     name,
     email,
-    number,
-    dateOfBirth,
     edit,
     loading,
     showSuccessModal,
     setName,
     setEmail,
-    setNumber,
-    setDateOfBirth,
     toEdit,
     addChanges,
     onCloseModal,
