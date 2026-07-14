@@ -3,7 +3,7 @@ import { View, Text, Image, Pressable, TextInput } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Calendar from "../components/Calendar";
 import Loading from "../components/Loading";
-import SuccessModal from "../components/SuccessModal";
+import SuccessChangesModal from "../components/SuccessChangesModal";
 import { useAccount } from "../hooks/useAccount";
 import BackButton from "../components/BackButton";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -12,6 +12,7 @@ import { useSession } from "../ctx";
 import { avatars } from "../constants/avatars";
 import { getStyles } from "../styles/AccountScreen.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function AccountScreen() {
   const {
@@ -34,11 +35,13 @@ export default function AccountScreen() {
 
   const [changeAvatar, setChangeAvatar] = useState(false);
 
+  const { colors, styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
+
   if (loading) {
     return <Loading />;
   }
-
-  const { colors, styles } = useAppStyle(getStyles);
 
   return (
     <SafeAreaProvider>
@@ -46,10 +49,14 @@ export default function AccountScreen() {
         <View style={styles.headerCard}>
           <View style={styles.header}>
             <BackButton />
-            <Text style={styles.headerTitle}>My account</Text>
+            <Text style={styles.headerTitle}>
+              {t("accountScreen.headerTitle")}
+            </Text>
             <Pressable onPress={toEdit} accessibilityRole="button">
               <Text style={styles.headerAction}>
-                {edit ? "Cancel" : "Edit"}
+                {edit
+                  ? t("accountScreen.cancelButtonText")
+                  : t("accountScreen.editButtonText")}
               </Text>
             </Pressable>
           </View>
@@ -81,12 +88,14 @@ export default function AccountScreen() {
           <AvatarModal
             visible={changeAvatar}
             onClose={() => setChangeAvatar(false)}
-            text={"Choose your avatar"}
+            text={t("avatarModal.title")}
           />
         )}
         <View style={styles.formCard}>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>Username</Text>
+            <Text style={styles.inputLabel}>
+              {t("accountScreen.usernameLabel")}
+            </Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
               onChangeText={setName}
@@ -95,7 +104,9 @@ export default function AccountScreen() {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>Email</Text>
+            <Text style={styles.inputLabel}>
+              {t("accountScreen.emailLabel")}
+            </Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
               onChangeText={setEmail}
@@ -104,7 +115,9 @@ export default function AccountScreen() {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>Phone number</Text>
+            <Text style={styles.inputLabel}>
+              {t("accountScreen.numberLabel")}
+            </Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
               onChangeText={setNumber}
@@ -115,7 +128,9 @@ export default function AccountScreen() {
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>Date of Birth</Text>
+            <Text style={styles.inputLabel}>
+              {t("accountScreen.birthdayLabel")}
+            </Text>
             <Calendar
               onDateChange={setDateOfBirth}
               initialDate={dateOfBirth}
@@ -130,15 +145,17 @@ export default function AccountScreen() {
               accessibilityRole="button"
               onPress={addChanges}
             >
-              <Text style={styles.buttonText}>Save changes</Text>
+              <Text style={styles.buttonText}>
+                {t("accountScreen.saveButtonText")}
+              </Text>
             </Pressable>
           </View>
         )}
         {showSuccessModal && (
-          <SuccessModal
+          <SuccessChangesModal
             visible={showSuccessModal}
             onClose={onCloseModal}
-            text={"Changes saved!"}
+            text={t("successChangesModal.closeButtonText")}
           />
         )}
       </SafeAreaView>

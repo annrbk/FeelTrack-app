@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { typography } from "./typography";
 import { AppThemeColors } from "../types/themeType";
 
-export const getStyles = (colors: AppThemeColors) =>
+export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
   StyleSheet.create({
     centeredView: {
       flex: 1,
@@ -41,10 +41,10 @@ export const getStyles = (colors: AppThemeColors) =>
       alignSelf: "center",
     },
     buttonText: {
-      color: colors.textPrimary,
+      color: isDark ? colors.textPrimary : colors.white,
       ...typography.regular,
       textAlign: "center",
-      fontSize: 14,
+      fontSize: 15,
     },
     avatarContainer: {
       alignItems: "center",

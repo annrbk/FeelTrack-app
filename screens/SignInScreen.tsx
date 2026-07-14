@@ -9,12 +9,15 @@ import SignInInput from "../components/SignInInput";
 import { useSession } from "../ctx";
 import { useState } from "react";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [error, setError] = useState<string | null>(null);
   const { signIn } = useSession();
   const { styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
 
   const loginSubmit = async (values: SignInValues) => {
     try {
@@ -31,11 +34,11 @@ export default function SignInScreen() {
       onSubmit={loginSubmit}
       validationSchema={Yup.object({
         email: Yup.string()
-          .email("Please enter a valid email address")
-          .required("Required"),
+          .email(t("formik.emailInvalid"))
+          .required(t("formik.required")),
         password: Yup.string()
-          .min(6, "This password is not valid. Please try again")
-          .required("Required"),
+          .min(6, t("formik.passwordMin"))
+          .required(t("formik.required")),
       })}
     >
       {({
@@ -48,10 +51,8 @@ export default function SignInScreen() {
       }) => (
         <View style={styles.container}>
           <View style={styles.formContainer}>
-            <Text style={styles.title}>Sign In</Text>
-            <Text style={styles.subtitle}>
-              Hi! Welcome back, you've been missed
-            </Text>
+            <Text style={styles.title}>{t("signInScreen.title")}</Text>
+            <Text style={styles.subtitle}>{t("signInScreen.subtitle")}</Text>
             {error && <Text style={styles.error}>{error}</Text>}
             <SignInInput
               handleChange={handleChange}
@@ -60,7 +61,7 @@ export default function SignInScreen() {
               touched={touched}
               values={values}
               textField="email"
-              placeholder="Email"
+              placeholder={t("signInScreen.emailPlaceholder")}
             />
             <SignInInput
               handleChange={handleChange}
@@ -69,19 +70,25 @@ export default function SignInScreen() {
               touched={touched}
               values={values}
               textField="password"
-              placeholder="Password"
+              placeholder={t("signInScreen.passwordPlaceholder")}
             />
             <View style={styles.buttonContainer}>
               <Pressable style={styles.button} onPress={() => handleSubmit()}>
-                <Text style={styles.buttonText}>Sign in</Text>
+                <Text style={styles.buttonText}>
+                  {t("signInScreen.signInButtonText")}
+                </Text>
               </Pressable>
             </View>
-            <Text style={styles.forgotPassword}>Forgot password?</Text>
+            <Text style={styles.forgotPassword}>
+              {t("signInScreen.forgotPassword")}
+            </Text>
           </View>
           <View style={styles.footerContainer}>
-            <Text>Don't have an account?</Text>
+            <Text>{t("signInScreen.signUpReminder")}</Text>
             <Pressable onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.footerButton}>Sign Up</Text>
+              <Text style={styles.footerButton}>
+                {t("signInScreen.signUpButtonText")}
+              </Text>
             </Pressable>
           </View>
         </View>

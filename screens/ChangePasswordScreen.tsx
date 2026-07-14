@@ -3,9 +3,10 @@ import { Text, View, TextInput, Pressable } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/ChangePassword.styles";
 import BackButton from "../components/BackButton";
-import SuccessModal from "../components/SuccessModal";
+import SuccessModal from "../components/SuccessEmotionModal";
 import { useChangePassword } from "../hooks/useChangePassword";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function ChangePasswordScreen() {
   const {
@@ -21,37 +22,45 @@ export default function ChangePasswordScreen() {
 
   const { colors, styles } = useAppStyle(getStyles);
 
+  const { t } = useTranslation();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <View style={styles.passwordHeader}>
           <BackButton />
           <View style={styles.passwordTitleContainer}>
-            <Text style={styles.headerTitle}>Change password</Text>
+            <Text style={styles.headerTitle}>
+              {t("settingsScreen.changePasswordTitle")}
+            </Text>
           </View>
           <View style={styles.rightPart}></View>
         </View>
         <View style={styles.formCard}>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>Current password</Text>
+            <Text style={styles.inputLabel}>
+              {t("settingsScreen.currentPasswordLabel")}
+            </Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
               onChangeText={setPassword}
               value={password}
               editable={edit}
-              placeholder="Enter password"
+              placeholder={t("settingsScreen.currentPasswordPlaceholder")}
               placeholderTextColor={colors.textSecondary}
               secureTextEntry
             />
           </View>
           <View style={styles.field}>
-            <Text style={styles.inputLabel}>New password</Text>
+            <Text style={styles.inputLabel}>
+              {t("settingsScreen.newPasswordLabel")}
+            </Text>
             <TextInput
               style={[styles.input, edit && styles.editInput]}
               onChangeText={setNewPassword}
               value={newPassword}
               editable={edit}
-              placeholder="Enter new password"
+              placeholder={t("settingsScreen.newPasswordPlaceholder")}
               placeholderTextColor={colors.textSecondary}
               secureTextEntry
             />
@@ -63,14 +72,16 @@ export default function ChangePasswordScreen() {
             accessibilityRole="button"
             onPress={changePassword}
           >
-            <Text style={styles.buttonText}>Change password</Text>
+            <Text style={styles.buttonText}>
+              {t("settingsScreen.changePasswordButton")}
+            </Text>
           </Pressable>
         </View>
         {showSuccessModal && (
           <SuccessModal
             visible={showSuccessModal}
             onClose={onCloseModal}
-            text={"Password updated successfully!"}
+            text={t("successModal.passwordChangedText")}
           />
         )}
       </SafeAreaView>

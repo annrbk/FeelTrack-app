@@ -18,7 +18,7 @@ export default function ImageCard({ id, color, title, session }: CardItem) {
         <View style={styles.categoryContainer}>
           <View style={styles.informContainer}>
             <Text style={styles.imageTitle}>{title}</Text>
-            <Text style={styles.sessionText}>{session} sessions</Text>
+            <Text style={styles.sessionText}>{session}</Text>
           </View>
           <View style={styles.iconContainer}>
             <Ionicons

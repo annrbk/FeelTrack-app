@@ -4,6 +4,7 @@ import { getStyles } from "../styles/MainScreen.styles";
 import EmotionModal from "./EmotionModal";
 import type { EmotionsSectionProps } from "../types/emotionTypes";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function EmotionsSection({
   user,
@@ -15,14 +16,15 @@ export default function EmotionsSection({
   addEmotion,
 }: EmotionsSectionProps) {
   const { styles } = useAppStyle(getStyles);
+  const { t } = useTranslation();
 
   return (
     <>
       <View style={styles.description}>
-        <Text style={styles.title}>Hello, {user?.name || "User"}</Text>
-        <Text style={styles.subtitle}>
-          Today can be a <Text style={styles.accentText}>good</Text> day!
+        <Text style={styles.title}>
+          {t("home.title")}, {user?.name || t("home.user")}
         </Text>
+        <Text style={styles.subtitle}>{t("home.subtitle")}</Text>
       </View>
       <View style={styles.emotionsContainer}>
         {emotion && (
@@ -33,7 +35,7 @@ export default function EmotionsSection({
             addEmotion={addEmotion}
           />
         )}
-        <Text style={styles.emotionTitle}>How are you feeling now?</Text>
+        <Text style={styles.emotionTitle}>{t("home.emotionTitle")}</Text>
         <View style={styles.emotions}>
           {emotions.map((item, index) => {
             return (
@@ -48,7 +50,9 @@ export default function EmotionsSection({
                 }}
               >
                 <Text style={styles.emoji}>{item.emoji}</Text>
-                <Text style={styles.emotionLabel}>{item.label}</Text>
+                <Text style={styles.emotionLabel}>
+                  {t(`home.emotions.${item.label}`)}
+                </Text>
               </Pressable>
             );
           })}

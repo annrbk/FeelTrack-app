@@ -9,6 +9,7 @@ import type { SignUpValues } from "../types/signUpValuesType";
 import Button from "../components/Button";
 import FormInput from "../components/FormInput";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function SignUpScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -16,6 +17,8 @@ export default function SignUpScreen() {
   const { register, error } = useRegister();
 
   const { styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
 
   const submitForm = async (values: SignUpValues) => {
     try {
@@ -34,18 +37,18 @@ export default function SignUpScreen() {
       onSubmit={submitForm}
       validationSchema={Yup.object({
         name: Yup.string()
-          .min(2, "Name must be at least 2 characters")
-          .max(30, "Name must be at most 30 characters")
-          .required("Required"),
+          .min(2, t("formik.nameMin"))
+          .max(30, t("formik.nameMax"))
+          .required(t("formik.required")),
         email: Yup.string()
-          .email("Please enter a valid email address")
-          .required("Required"),
+          .email(t("formik.emailInvalid"))
+          .required(t("formik.required")),
         password: Yup.string()
-          .min(6, "This password is not valid. Please try again")
-          .required("Required"),
+          .min(6, t("formik.passwordMin"))
+          .required(t("formik.required")),
         confirmPassword: Yup.string()
-          .oneOf([Yup.ref("password")], "Passwords must match")
-          .required("Required"),
+          .oneOf([Yup.ref("password")], t("formik.matchPassword"))
+          .required(t("formik.required")),
       })}
     >
       {({
@@ -58,10 +61,8 @@ export default function SignUpScreen() {
       }) => (
         <View style={styles.container}>
           <View style={styles.formContainer}>
-            <Text style={styles.title}>Create an account</Text>
-            <Text style={styles.subtitle}>
-              Let's get you started — create your account below.
-            </Text>
+            <Text style={styles.title}>{t("signUpScreen.title")}</Text>
+            <Text style={styles.subtitle}>{t("signUpScreen.subtitle")}</Text>
             {error && <Text style={styles.error}>{error}</Text>}
             <FormInput
               handleChange={handleChange}
@@ -70,7 +71,7 @@ export default function SignUpScreen() {
               touched={touched}
               values={values}
               textField="name"
-              placeholder="Name"
+              placeholder={t("signUpScreen.namePlaceholder")}
             />
             <FormInput
               handleChange={handleChange}
@@ -79,7 +80,7 @@ export default function SignUpScreen() {
               touched={touched}
               values={values}
               textField="email"
-              placeholder="Email"
+              placeholder={t("signUpScreen.emailPlaceholder")}
             />
             <FormInput
               handleChange={handleChange}
@@ -88,7 +89,7 @@ export default function SignUpScreen() {
               touched={touched}
               values={values}
               textField="password"
-              placeholder="Password"
+              placeholder={t("signUpScreen.passwordPlaceholder")}
             />
             <FormInput
               handleChange={handleChange}
@@ -97,14 +98,16 @@ export default function SignUpScreen() {
               touched={touched}
               values={values}
               textField="confirmPassword"
-              placeholder="Confirm password"
+              placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
             />
             <Button handleSubmit={handleSubmit} />
           </View>
           <View style={styles.footerContainer}>
-            <Text>Already have an account?</Text>
+            <Text>{t("signUpScreen.signInReminder")}</Text>
             <Pressable onPress={() => navigation.navigate("SignIn")}>
-              <Text style={styles.footerButton}>Sign In</Text>
+              <Text style={styles.footerButton}>
+                {t("signUpScreen.signInButtonText")}
+              </Text>
             </Pressable>
           </View>
         </View>

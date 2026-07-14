@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { getStyles } from "../styles/SuccessModal.styles";
 import type { EmotionModalProps } from "../types/emotionTypes";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function EmotionModal({
   visible,
@@ -12,6 +13,7 @@ export default function EmotionModal({
   addEmotion,
 }: EmotionModalProps) {
   const { styles, colors } = useAppStyle(getStyles);
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -32,16 +34,20 @@ export default function EmotionModal({
           </Pressable>
           <Text style={styles.emoji}>{emotion.emoji}</Text>
           <Text style={styles.modalText}>
-            You have chosen
-            <Text style={styles.accentText}> "{emotion.label}"</Text>. {"\n"}
-            Confirm your choice?
+            <Trans
+              i18nKey="emotionModal.modalText"
+              values={{ emotion: t(`home.emotions.${emotion.label}`) }}
+              components={{ accent: <Text style={styles.accentText} /> }}
+            />
           </Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             aria-label="Confirm"
             onPress={() => addEmotion(emotion)}
           >
-            <Text style={styles.textStyle}>Confirm</Text>
+            <Text style={styles.textStyle}>
+              {t("emotionModal.confirmButtonText")}
+            </Text>
           </Pressable>
         </View>
       </View>

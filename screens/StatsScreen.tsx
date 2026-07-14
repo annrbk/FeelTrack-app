@@ -7,11 +7,10 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import StatsModal from "../components/StatsModal";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function StatsScreen() {
   const {
-    currentMonth,
-    currentYear,
     emotionByDate,
     visible,
     chosenDate,
@@ -24,36 +23,29 @@ export default function StatsScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const { styles, colors, isDark } = useAppStyle(getStyles);
+  const { t, i18n } = useTranslation();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mood Statistics</Text>
-      <Text style={styles.subtitle}>
-        Track your emotional journey day by day
-      </Text>
+      <Text style={styles.title}>{t("statisticsScreen.title")}</Text>
+      <Text style={styles.subtitle}>{t("statisticsScreen.subtitle")}</Text>
       <Calendar
-        key={isDark ? "dark" : "light"}
+        key={`${isDark ? "dark" : "light"}-${i18n.language}`}
         style={styles.calendarStyle}
         onMonthChange={handleMonthChange}
         hideExtraDays={true}
         markingType={"custom"}
         theme={{
           textDayFontFamily: "Montserrat_400Regular",
-          textMonthFontFamily: "Montserrat_600SemiBold",
+          textMonthFontFamily: "Montserrat_500Medium",
+          textMonthFontSize: 18,
           textDayHeaderFontFamily: "Montserrat_500Medium",
           todayTextColor: colors.btnPrimary,
           arrowColor: colors.btnPrimary,
           selectedDayBackgroundColor: colors.btnPrimary,
           calendarBackground: colors.surfacePrimary,
           backgroundColor: colors.surfacePrimary,
-        }}
-        renderHeader={() => {
-          return (
-            <View style={styles.monthContainer}>
-              <Text style={styles.monthText}>{currentMonth}</Text>
-              <Text style={styles.monthText}>{currentYear}</Text>
-            </View>
-          );
+          monthTextColor: colors.textPrimary,
         }}
         dayComponent={({ date }) => {
           const emotionsForDay =
@@ -105,7 +97,7 @@ export default function StatsScreen() {
         <StatsModal
           visible={visible}
           onClose={onClose}
-          text={`No emotions recorded for ${chosenDate}`}
+          text={t("statisticsScreen.emptyEmotions", { date: chosenDate })}
         />
       )}
     </View>

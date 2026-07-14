@@ -2,9 +2,13 @@ import { Modal, View, Text, Pressable } from "react-native";
 import { showModalProps } from "../types/modalType";
 import { getStyles } from "../styles/StatsModal.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function StatsModal({ visible, onClose, text }: showModalProps) {
   const { styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
+
   return (
     <Modal
       animationType="fade"
@@ -19,7 +23,7 @@ export default function StatsModal({ visible, onClose, text }: showModalProps) {
             <Text style={styles.text}>{text}</Text>
           </View>
           <Pressable style={styles.button} onPress={() => onClose()}>
-            <Text style={styles.buttonText}>Got it</Text>
+            <Text style={styles.buttonText}>{t("statsModal.buttonText")}</Text>
           </Pressable>
         </View>
       </View>

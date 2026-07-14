@@ -6,6 +6,7 @@ import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { getStyles } from "../styles/MainScreen.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function TodayStatistics({
   todayEmotions,
@@ -15,6 +16,12 @@ export default function TodayStatistics({
   selectedDate,
 }: TodayStatisticsProps) {
   const { styles, colors } = useAppStyle(getStyles);
+  const { t, i18n } = useTranslation();
+
+  const formattedDate = selectedDate.toLocaleDateString(i18n.language, {
+    day: "numeric",
+    month: "long",
+  });
 
   const renderRightActions = (todayEmotionId: number) => {
     return (
@@ -22,7 +29,9 @@ export default function TodayStatistics({
         style={styles.deleteButton}
         onPress={() => deleteTodayEmotion(todayEmotionId)}
       >
-        <Text style={styles.deleteButtonText}>Delete</Text>
+        <Text style={styles.deleteButtonText}>
+          {t("home.deleteButtonText")}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -37,7 +46,7 @@ export default function TodayStatistics({
           />
         </Pressable>
         <Text style={styles.statisticsTitle}>
-          Summary {selectedDate.toLocaleDateString()}
+          {t("home.statisticsTitle")} {formattedDate}
         </Text>
         <Pressable onPress={goToNextDate}>
           <Ionicons
@@ -66,7 +75,7 @@ export default function TodayStatistics({
                     {emotionData?.emoji}
                   </Text>
                   <Text style={styles.currentEmotionLabel}>
-                    {emotionData?.label}
+                    {t(`home.emotions.${todayEmotion.label}`)}
                   </Text>
                   <View style={styles.timeContainer}>
                     <Text style={styles.currentEmotionTime}>
@@ -80,10 +89,8 @@ export default function TodayStatistics({
         </View>
       ) : (
         <View style={styles.statisticsEmpty}>
-          <Text style={styles.emptyTitle}>No emotions tracked yet today</Text>
-          <Text style={styles.emptySubtitle}>
-            Start by selecting how you feel!
-          </Text>
+          <Text style={styles.emptyTitle}>{t("home.emptyTitle")}</Text>
+          <Text style={styles.emptySubtitle}>{t("home.emptySubtitle")}</Text>
         </View>
       )}
     </View>

@@ -10,6 +10,7 @@ import { careData } from "../constants/careData";
 import formatTime from "../utils/formatTime";
 import BackButton from "../components/BackButton";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function MeditationListScreen({
   route,
@@ -18,6 +19,7 @@ export default function MeditationListScreen({
 }) {
   const { id } = route.params;
   const player = usePlayer();
+  const { t } = useTranslation();
 
   const { styles, colors } = useAppStyle(getStyles);
 
@@ -41,10 +43,10 @@ export default function MeditationListScreen({
         <View style={[styles.header, { backgroundColor: meditationBg }]}>
           <View style={styles.headerTextContainer}>
             <Text key={id} style={styles.headerTitle}>
-              {currentCategory?.title}
+              {t(`careScreen.itemTitles.${currentCategory?.title}`)}
             </Text>
             <Text style={styles.headerSubtitle}>
-              {filteredMeditations.length} sessions
+              {filteredMeditations.length} {t("careScreen.session")}
             </Text>
           </View>
         </View>

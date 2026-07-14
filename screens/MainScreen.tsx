@@ -1,12 +1,13 @@
 import { Text, ScrollView } from "react-native";
 import { getStyles } from "../styles/MainScreen.styles";
-import SuccessModal from "../components/SuccessModal";
+import SuccessEmotionModal from "../components/SuccessEmotionModal";
 import { useEmotion } from "../hooks/useEmotion";
 import { useEffect } from "react";
 import TodayStatistics from "../components/TodayStatistics";
 import EmotionsSection from "../components/EmotionsSection";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function MainScreen() {
   const {
@@ -34,6 +35,8 @@ export default function MainScreen() {
     getEmotions();
   }, [selectedDate]);
 
+  const { t } = useTranslation();
+
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
@@ -59,10 +62,10 @@ export default function MainScreen() {
           selectedDate={selectedDate}
         />
         {successModal && (
-          <SuccessModal
+          <SuccessEmotionModal
             visible={successModal}
             onClose={onCloseSuccessModal}
-            text={"Your emotion added successfully!"}
+            text={t("successModal.closeButtonText")}
           />
         )}
       </ScrollView>

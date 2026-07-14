@@ -7,6 +7,7 @@ import ControlsButtons from "./ControlButtons";
 import AudioProgressBar from "./AudioProgressBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function AudioPlayer({
   toggleExpand,
@@ -21,6 +22,8 @@ export default function AudioPlayer({
 
   const { styles, colors, isDark } = useAppStyle(getStyles);
 
+  const { t } = useTranslation();
+
   if (!currentTrack) return null;
 
   return (
@@ -34,7 +37,9 @@ export default function AudioPlayer({
           />
         </Pressable>
         <View style={styles.titleContainer}>
-          <Text style={styles.nowPlayingText}>Now playing</Text>
+          <Text style={styles.nowPlayingText}>
+            {t("audioPlayer.headerTitle")}
+          </Text>
         </View>
         <View style={styles.rightPart} />
       </View>

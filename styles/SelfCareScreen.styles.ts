@@ -22,7 +22,7 @@ export const getStyles = (colors: AppThemeColors) =>
       paddingHorizontal: 8,
     },
     title: {
-      fontSize: 28,
+      fontSize: 22,
       ...typography.medium,
       color: colors.textPrimary,
       marginHorizontal: 16,

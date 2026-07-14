@@ -6,6 +6,7 @@ import { useAvatar } from "../hooks/useAvatar";
 import { avatars } from "../constants/avatars";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function AvatarModal({
   visible,
@@ -15,6 +16,8 @@ export default function AvatarModal({
   const { avatar, setAvatar, changeAvatar } = useAvatar();
 
   const { styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -56,7 +59,7 @@ export default function AvatarModal({
               onClose();
             }}
           >
-            <Text style={styles.buttonText}>Got it</Text>
+            <Text style={styles.buttonText}>{t("avatarModal.buttonText")}</Text>
           </Pressable>
         </View>
       </View>

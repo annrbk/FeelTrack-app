@@ -6,6 +6,7 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { avatars } from "../constants/avatars";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -13,6 +14,8 @@ export default function ProfileScreen() {
   const selectedAvatar = avatars.find((a) => a.id === user?.avatar)?.image;
 
   const { styles, colors } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -35,14 +38,18 @@ export default function ProfileScreen() {
             style={styles.settingItem}
             accessibilityRole="button"
           >
-            <Text style={styles.settingText}>Edit profile</Text>
+            <Text style={styles.settingText}>
+              {t("profileScreen.editButtonText")}
+            </Text>
           </Pressable>
           <Pressable
             style={styles.settingItem}
             onPress={() => navigation.navigate("Settings")}
             accessibilityRole="button"
           >
-            <Text style={styles.settingText}>Settings</Text>
+            <Text style={styles.settingText}>
+              {t("profileScreen.settingsButtonText")}
+            </Text>
           </Pressable>
           <Pressable
             style={styles.settingItemLast}
@@ -50,7 +57,7 @@ export default function ProfileScreen() {
             accessibilityRole="button"
           >
             <Text style={[styles.settingText, { color: colors.btnWarning }]}>
-              Logout
+              {t("profileScreen.logoutButtonText")}
             </Text>
           </Pressable>
         </View>

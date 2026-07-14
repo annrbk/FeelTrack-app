@@ -35,7 +35,7 @@ export const getStyles = (colors: AppThemeColors) =>
       height: 32,
     },
     title: {
-      fontSize: 28,
+      fontSize: 22,
       ...typography.medium,
       marginHorizontal: 16,
       marginBottom: 6,
@@ -48,18 +48,6 @@ export const getStyles = (colors: AppThemeColors) =>
       color: colors.textPrimary,
       marginHorizontal: 16,
       marginBottom: 24,
-    },
-    monthContainer: {
-      flexDirection: "row",
-      justifyContent: "center",
-      marginBottom: 12,
-      padding: 6,
-      gap: 8,
-    },
-    monthText: {
-      fontSize: 18,
-      ...typography.medium,
-      color: colors.textPrimary,
     },
     emotionText: {
       fontSize: 10,

@@ -7,6 +7,7 @@ import BackButton from "../components/BackButton";
 import { useAppStyle } from "../hooks/useAppStyle";
 import formatDate from "../utils/formatDate";
 import EmotionItem from "../components/EmotionItem";
+import { useTranslation } from "react-i18next";
 
 export default function StatsByDayScreen({
   route,
@@ -15,19 +16,20 @@ export default function StatsByDayScreen({
 }) {
   const { emotionsForDay, chosenDate } = route.params;
   const { styles } = useAppStyle(getStyles);
+  const { t, i18n } = useTranslation();
 
-  const formattedDate = formatDate(chosenDate);
+  const formattedDate = formatDate(chosenDate, i18n.language);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
         <BackButton />
-        <Text style={styles.headerTitle}>Statistics</Text>
+        <Text style={styles.headerTitle}>{t("statisticsScreen.header")}</Text>
       </View>
       <View style={styles.mainContainer}>
         <View style={styles.statisticsHeader}>
           <Text style={styles.statisticsTitle}>
-            How you felt on {formattedDate}
+            {t("statisticsScreen.dayTitle", { formattedDate })}
           </Text>
         </View>
         <View style={styles.emotionList}>

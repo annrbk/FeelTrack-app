@@ -3,6 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { DeleteAccountModalProps } from "../types/accountValuesType";
 import { getStyles } from "../styles/DeleteAccountModal.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export default function DeleteAccountModal({
   visible,
@@ -11,6 +12,8 @@ export default function DeleteAccountModal({
   onConfirm,
 }: DeleteAccountModalProps) {
   const { colors, styles } = useAppStyle(getStyles);
+
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -36,15 +39,18 @@ export default function DeleteAccountModal({
           />
           <Text style={styles.modalText}>{text}</Text>
           <Text style={styles.modalSubText}>
-            This action cannot be undone. All your data will be permanently
-            removed.
+            {t("deleteAccountModal.description")}
           </Text>
           <View style={styles.buttonsContainer}>
             <Pressable style={styles.cancelButton} onPress={onClose}>
-              <Text style={styles.cancelText}>Cancel</Text>
+              <Text style={styles.cancelText}>
+                {t("deleteAccountModal.cancelButtonText")}
+              </Text>
             </Pressable>
             <Pressable style={styles.deleteButton} onPress={onConfirm}>
-              <Text style={styles.deleteText}>Delete</Text>
+              <Text style={styles.deleteText}>
+                {t("deleteAccountModal.deleteButtonText")}{" "}
+              </Text>
             </Pressable>
           </View>
         </View>
