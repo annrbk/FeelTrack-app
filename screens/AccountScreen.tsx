@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, Pressable, TextInput } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import Calendar from "../components/Calendar";
 import Loading from "../components/Loading";
 import SuccessChangesModal from "../components/SuccessChangesModal";
 import { useAccount } from "../hooks/useAccount";
@@ -112,29 +111,6 @@ export default function AccountScreen() {
               onChangeText={setEmail}
               value={email}
               editable={edit}
-            />
-          </View>
-          <View style={styles.field}>
-            <Text style={styles.inputLabel}>
-              {t("accountScreen.numberLabel")}
-            </Text>
-            <TextInput
-              style={[styles.input, edit && styles.editInput]}
-              onChangeText={setNumber}
-              value={number}
-              placeholder="Add number"
-              keyboardType="phone-pad"
-              editable={edit}
-            />
-          </View>
-          <View style={styles.field}>
-            <Text style={styles.inputLabel}>
-              {t("accountScreen.birthdayLabel")}
-            </Text>
-            <Calendar
-              onDateChange={setDateOfBirth}
-              initialDate={dateOfBirth}
-              disabled={!edit}
             />
           </View>
         </View>

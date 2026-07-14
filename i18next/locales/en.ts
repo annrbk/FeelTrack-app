@@ -123,8 +123,6 @@ const en = {
       editButtonText: "Edit",
       usernameLabel: "Username",
       emailLabel: "Email",
-      numberLabel: "Phone number",
-      birthdayLabel: "Date of Birth",
       cancelButtonText: "Cancel",
       saveButtonText: "Save changes",
     },

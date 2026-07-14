@@ -124,8 +124,6 @@ const ru = {
       editButtonText: "Редактировать",
       usernameLabel: "Имя пользователя",
       emailLabel: "Электронная почта",
-      numberLabel: "Номер телефона",
-      birthdayLabel: "Дата рождения",
       cancelButtonText: "Отмена",
       saveButtonText: "Сохранить изменения",
     },

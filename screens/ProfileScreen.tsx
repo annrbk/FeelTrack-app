@@ -28,7 +28,6 @@ export default function ProfileScreen() {
           )}
           <View>
             <Text style={styles.name}>{user?.name || "User"}</Text>
-            {user?.number && <Text style={styles.email}>{user.number}</Text>}
             <Text style={styles.email}>{user?.email}</Text>
           </View>
         </View>

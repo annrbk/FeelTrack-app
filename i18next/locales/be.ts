@@ -122,8 +122,6 @@ const be = {
       editButtonText: "Рэдагаваць",
       usernameLabel: "Імя карыстальніка",
       emailLabel: "Электронная пошта",
-      numberLabel: "Нумар тэлефона",
-      birthdayLabel: "Дата нараджэння",
       cancelButtonText: "Адмяніць",
       saveButtonText: "Захаваць змены",
     },
