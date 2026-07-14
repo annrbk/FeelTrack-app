@@ -17,4 +17,5 @@ export type RootStackParamList = {
     chosenDate: string;
   };
   ChangePassword: undefined;
+  ChangeLanguage: undefined;
 };

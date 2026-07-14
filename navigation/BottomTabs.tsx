@@ -8,12 +8,15 @@ import { useTheme } from "../context/ThemeContext";
 import { DarkThemeColors, ThemeColors } from "../constants/theme";
 import { usePlayer } from "../PlayerContext";
 import CareStack from "./CareStack";
+import { useTranslation } from "react-i18next";
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs() {
   const { theme } = useTheme();
   const player = usePlayer();
+
+  const { t } = useTranslation();
 
   const isDark = theme === "dark";
   const colors = isDark ? DarkThemeColors : ThemeColors;
@@ -42,10 +45,26 @@ export default function BottomTabs() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Home" component={MainScreen} />
-      <Tab.Screen name="Care" component={CareStack} />
-      <Tab.Screen name="Statistics" component={StatsScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+        name="Home"
+        component={MainScreen}
+        options={{ tabBarLabel: t("bottomTabs.home") }}
+      />
+      <Tab.Screen
+        name="Care"
+        component={CareStack}
+        options={{ tabBarLabel: t("bottomTabs.care") }}
+      />
+      <Tab.Screen
+        name="Statistics"
+        component={StatsScreen}
+        options={{ tabBarLabel: t("bottomTabs.statistics") }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ tabBarLabel: t("bottomTabs.profile") }}
+      />
     </Tab.Navigator>
   );
 }
