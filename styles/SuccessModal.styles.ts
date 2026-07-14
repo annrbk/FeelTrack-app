@@ -29,7 +29,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
     button: {
       borderRadius: 12,
       paddingVertical: 10,
-      paddingHorizontal: 18,
+      paddingHorizontal: 20,
     },
     buttonClose: {
       backgroundColor: colors.btnPrimary,
@@ -38,8 +38,8 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       color: colors.white,
       ...typography.regular,
       textAlign: "center",
-      width: 100,
-      fontSize: 16,
+      width: "100%",
+      fontSize: 15,
     },
     accentText: {
       color: colors.btnPrimary,

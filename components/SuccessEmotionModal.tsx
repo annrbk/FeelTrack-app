@@ -4,13 +4,15 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { getStyles } from "../styles/SuccessModal.styles";
 import type { showModalProps } from "../types/modalType";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
-export default function SuccessModal({
+export default function SuccessEmotionModal({
   visible,
   onClose,
   text,
 }: showModalProps) {
   const { styles, colors } = useAppStyle(getStyles);
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -34,12 +36,12 @@ export default function SuccessModal({
             size={48}
             color={colors.btnSuccess}
           />
-          <Text style={styles.modalText}>{text}</Text>
+          <Text style={styles.modalText}>{t("successModal.modalText")}</Text>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={onClose}
           >
-            <Text style={styles.textStyle}>Got it</Text>
+            <Text style={styles.textStyle}>{text}</Text>
           </Pressable>
         </View>
       </View>
