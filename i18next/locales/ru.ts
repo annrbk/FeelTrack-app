@@ -35,7 +35,7 @@ const ru = {
       emailPlaceholder: "Электронная почта",
       passwordPlaceholder: "Пароль",
       confirmPasswordPlaceholder: "Подтвердите пароль",
-      signUpButtonText: "Создать аккаунт",
+      signUpButtonText: "Зарегистрироваться",
       signInReminder: "У тебя уже есть аккаунт?",
       signInButtonText: "Войти",
     },
@@ -51,7 +51,7 @@ const ru = {
     home: {
       title: "Привет",
       subtitle: "Всё, что ты чувствуешь, имеет значение!",
-      emotionTitle: "Как ты себя чувствуешь сейчас?",
+      emotionTitle: "Что ты чувствуешь сейчас?",
       emotions: {
         sad: "Грусть",
         laugh: "Смех",

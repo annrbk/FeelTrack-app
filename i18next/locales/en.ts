@@ -50,7 +50,7 @@ const en = {
     home: {
       title: "Hello",
       subtitle: "Everything you feel matters!",
-      emotionTitle: "How are you feeling now?",
+      emotionTitle: "What are you feeling now?",
       emotions: {
         sad: "Sad",
         laugh: "Laugh",

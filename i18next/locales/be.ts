@@ -35,7 +35,7 @@ const be = {
       emailPlaceholder: "Электронная пошта",
       passwordPlaceholder: "Пароль",
       confirmPasswordPlaceholder: "Пацвердзі пароль",
-      signUpButtonText: "Стварыць акаўнт",
+      signUpButtonText: "Зарэгістравацца",
       signInReminder: "У цябе ўжо ёсць акаўнт?",
       signInButtonText: "Увайсці",
     },
@@ -50,7 +50,7 @@ const be = {
     home: {
       title: "Прывітанне",
       subtitle: "Усё, што ты адчуваеш, мае значэнне!",
-      emotionTitle: "Як ты сябе адчуваеш зараз?",
+      emotionTitle: "Што ты адчуваеш зараз?",
       emotions: {
         sad: "Смутак",
         laugh: "Смех",
