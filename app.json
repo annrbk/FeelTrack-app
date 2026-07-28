@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Mindery",
+    "slug": "mindery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#EBF0F3"
     },
     "ios": {
       "supportsTablet": true
@@ -18,10 +18,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#EBF0F3"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.an_grbnv.frontend"
+      "package": "com.an_grbnv.mindery"
     },
     "web": {
       "favicon": "./assets/favicon.png"
