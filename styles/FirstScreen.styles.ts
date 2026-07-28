@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { AppThemeColors } from "../types/themeType";
 import { typography } from "./typography";
 
-export const getStyles = (colors: AppThemeColors) =>
+export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -11,7 +11,7 @@ export const getStyles = (colors: AppThemeColors) =>
       justifyContent: "center",
     },
     logo: {
-      fontSize: 24,
+      fontSize: 18,
       ...typography.bold,
       color: colors.textPrimary,
       marginBottom: 24,

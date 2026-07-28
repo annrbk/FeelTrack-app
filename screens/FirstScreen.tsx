@@ -14,7 +14,7 @@ export default function FirstScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Logo</Text>
+      <Text style={styles.logo}>Mindery</Text>
       <View style={styles.content}>
         <Text style={styles.title}>{t("firstScreen.title")}</Text>
         <Text style={styles.description}>{t("firstScreen.description")}</Text>

@@ -5,16 +5,20 @@ import { AppThemeColors } from "../types/themeType";
 
 export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
   StyleSheet.create({
+    safeArea: {
+      flex: 1,
+      backgroundColor: colors.backgroundColorPrimary,
+    },
     container: {
       flex: 1,
-      padding: 12,
+      paddingHorizontal: 12,
       backgroundColor: colors.backgroundColorPrimary,
     },
     scrollContent: {
       paddingBottom: 24,
     },
     description: {
-      paddingTop: 54,
+      paddingTop: 12,
       paddingBottom: 18,
       paddingHorizontal: 12,
       alignItems: "center",

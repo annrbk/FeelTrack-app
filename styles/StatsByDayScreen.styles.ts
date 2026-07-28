@@ -4,16 +4,17 @@ import { AppThemeColors } from "../types/themeType";
 
 export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
-    container: {
-      flexGrow: 1,
+    safeArea: {
+      flex: 1,
       backgroundColor: colors.backgroundColorPrimary,
-      paddingVertical: 48,
     },
     headerContainer: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 24,
       paddingHorizontal: 16,
+      paddingVertical: 12,
+      backgroundColor: colors.backgroundColorPrimary,
+      zIndex: 10,
     },
     headerTitle: {
       position: "absolute",
@@ -23,6 +24,14 @@ export const getStyles = (colors: AppThemeColors) =>
       fontSize: 18,
       ...typography.medium,
       color: colors.textPrimary,
+    },
+    scrollContainer: {
+      flex: 1,
+      backgroundColor: colors.backgroundColorPrimary,
+    },
+    scrollContent: {
+      paddingVertical: 12,
+      paddingBottom: 32,
     },
     mainContainer: {
       backgroundColor: colors.surfacePrimary,

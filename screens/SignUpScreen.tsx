@@ -90,6 +90,7 @@ export default function SignUpScreen() {
               values={values}
               textField="password"
               placeholder={t("signUpScreen.passwordPlaceholder")}
+              secureTextEntry={true}
             />
             <FormInput
               handleChange={handleChange}

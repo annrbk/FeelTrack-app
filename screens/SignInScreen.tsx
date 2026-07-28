@@ -71,6 +71,7 @@ export default function SignInScreen() {
               values={values}
               textField="password"
               placeholder={t("signInScreen.passwordPlaceholder")}
+              secureTextEntry={true}
             />
             <View style={styles.buttonContainer}>
               <Pressable style={styles.button} onPress={() => handleSubmit()}>

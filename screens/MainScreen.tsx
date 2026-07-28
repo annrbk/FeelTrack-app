@@ -5,7 +5,7 @@ import { useEmotion } from "../hooks/useEmotion";
 import { useEffect } from "react";
 import TodayStatistics from "../components/TodayStatistics";
 import EmotionsSection from "../components/EmotionsSection";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 
@@ -40,10 +40,11 @@ export default function MainScreen() {
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
       >
         <EmotionsSection
           user={user}
@@ -69,6 +70,6 @@ export default function MainScreen() {
           />
         )}
       </ScrollView>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 }
