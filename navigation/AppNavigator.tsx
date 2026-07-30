@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import AboutScreen from "../screens/AboutScreen";
 import FirstScreen from "../screens/FirstScreen";
 import AuthScreen from "../screens/AuthScreen";
 import { RootStackParamList } from "./types";
@@ -12,6 +13,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import StatsByDayScreen from "../screens/StatsByDayScreen";
 import ChangePasswordScreen from "../screens/ChangePasswordScreen";
 import ChangeLanguageScreen from "../screens/ChangeLanguageScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -26,6 +28,10 @@ export default function MyStack() {
           <Stack.Screen name="Authentication" component={AuthScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPasswordScreen}
+          />
         </>
       ) : (
         <>
@@ -45,6 +51,7 @@ export default function MyStack() {
             name="ChangeLanguage"
             component={ChangeLanguageScreen}
           />
+          <Stack.Screen name="About" component={AboutScreen} />
         </>
       )}
     </Stack.Navigator>

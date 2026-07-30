@@ -9,9 +9,11 @@ export type RootStackParamList = {
   Profile: undefined;
   Statistics: undefined;
   Care: undefined;
+  ForgotPassword: undefined;
   Account: undefined;
   MeditationList: { id: string };
   Settings: undefined;
+  About: undefined;
   StatsByDay: {
     emotionsForDay: EmotionFromDB[];
     chosenDate: string;
