@@ -14,6 +14,8 @@ import StatsByDayScreen from "../screens/StatsByDayScreen";
 import ChangePasswordScreen from "../screens/ChangePasswordScreen";
 import ChangeLanguageScreen from "../screens/ChangeLanguageScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
+import VerifyCodeScreen from "../screens/VerifyCodeScreen";
+import ResetPasswordScreen from "../screens/ResetPasswordScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -32,6 +34,8 @@ export default function MyStack() {
             name="ForgotPassword"
             component={ForgotPasswordScreen}
           />
+          <Stack.Screen name="VerifyCode" component={VerifyCodeScreen} />
+          <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
         </>
       ) : (
         <>

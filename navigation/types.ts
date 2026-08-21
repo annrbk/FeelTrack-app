@@ -20,4 +20,6 @@ export type RootStackParamList = {
   };
   ChangePassword: undefined;
   ChangeLanguage: undefined;
+  VerifyCode: { email: string };
+  ResetPassword: { email: string; code: string };
 };
