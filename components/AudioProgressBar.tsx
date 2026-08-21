@@ -5,13 +5,14 @@ import { usePlayer } from "../PlayerContext";
 import formatTime from "../utils/formatTime";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useAudio } from "../hooks/useAudio";
+import useCategoryColor from "../hooks/useCategoryColor";
 
 export default function AudioProgressBar() {
   const { currentTime, duration, seekTo } = usePlayer();
   const { styles, colors } = useAppStyle(getStyles);
   const currentCategory = useAudio();
 
-  const trackColor = currentCategory?.color || colors.btnActive;
+  const trackColor = useCategoryColor(currentCategory);
 
   return (
     <View>
@@ -22,7 +23,7 @@ export default function AudioProgressBar() {
         maximumValue={duration}
         thumbTintColor={colors.textPrimary}
         minimumTrackTintColor={trackColor}
-        maximumTrackTintColor={colors.textSecondary}
+        maximumTrackTintColor={colors.textPrimary}
         onSlidingComplete={seekTo}
       ></Slider>
       <View style={styles.progressLabelContainer}>

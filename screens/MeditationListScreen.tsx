@@ -1,4 +1,5 @@
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
+import { useMemo } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../navigation/types";
 import { RouteProp } from "@react-navigation/native";
@@ -11,6 +12,7 @@ import formatTime from "../utils/formatTime";
 import BackButton from "../components/BackButton";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import useCategoryColor from "../hooks/useCategoryColor";
 
 export default function MeditationListScreen({
   route,
@@ -21,14 +23,17 @@ export default function MeditationListScreen({
   const player = usePlayer();
   const { t } = useTranslation();
 
-  const { styles, colors } = useAppStyle(getStyles);
+  const { styles } = useAppStyle(getStyles);
 
-  const filteredMeditations = meditations.filter((m) => m.categoryId === id);
+  const filteredMeditations = useMemo(
+    () => meditations.filter((m) => m.categoryId === id),
+    [id],
+  );
   const currentCategory = careData.find((careItem) => careItem.id === id);
 
   const miniPlayerHeight = player.currentTrack ? 70 : 0;
 
-  const meditationBg = currentCategory?.color || colors.bgCalm;
+  const categoryColor = useCategoryColor(currentCategory);
 
   useEffect(() => {
     player.setQueue(filteredMeditations);
@@ -40,7 +45,7 @@ export default function MeditationListScreen({
         <View style={styles.backButtonContainer}>
           <BackButton />
         </View>
-        <View style={[styles.header, { backgroundColor: meditationBg }]}>
+        <View style={[styles.header, { backgroundColor: categoryColor }]}>
           <View style={styles.headerTextContainer}>
             <Text key={id} style={styles.headerTitle}>
               {t(`careScreen.itemTitles.${currentCategory?.title}`)}
