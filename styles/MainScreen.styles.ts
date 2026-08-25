@@ -12,6 +12,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
     container: {
       flex: 1,
       paddingHorizontal: 12,
+      paddingTop: 12,
       backgroundColor: colors.backgroundColorPrimary,
     },
     scrollContent: {
@@ -135,7 +136,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       paddingVertical: 8,
       paddingHorizontal: 8,
       borderRadius: 10,
-      backgroundColor: isDark ? colors.backgroundColorPrimary : "#ffffff",
+      backgroundColor: colors.backgroundColorPrimary,
       borderWidth: 0.5,
       borderColor: colors.dividerPrimary,
     },

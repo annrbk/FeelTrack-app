@@ -10,15 +10,8 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       padding: 24,
       justifyContent: "center",
     },
-    logo: {
-      fontSize: 18,
-      ...typography.bold,
-      color: colors.textPrimary,
-      marginBottom: 24,
-      textAlign: "center",
-    },
     content: {
-      gap: 16,
+      gap: 12,
     },
     title: {
       fontSize: 20,

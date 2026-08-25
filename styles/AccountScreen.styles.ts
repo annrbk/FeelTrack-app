@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { typography } from "./typography";
 import { AppThemeColors } from "../types/themeType";
 
-export const getStyles = (colors: AppThemeColors) =>
+export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -50,8 +50,12 @@ export const getStyles = (colors: AppThemeColors) =>
     avatar: {
       width: 96,
       height: 96,
+      alignItems: "center",
+      justifyContent: "center",
       borderRadius: 48,
-      backgroundColor: "#d9dbde",
+      backgroundColor: colors.white,
+      borderWidth: 0.5,
+      borderColor: colors.btnPrimary,
     },
     addIcon: {
       position: "absolute",
@@ -61,7 +65,7 @@ export const getStyles = (colors: AppThemeColors) =>
       borderRadius: 18,
       padding: 5,
       borderWidth: 0.5,
-      borderColor: colors.borderPrimary,
+      borderColor: isDark ? colors.btnPrimary : colors.textSecondary,
     },
     formCard: {
       marginHorizontal: 12,

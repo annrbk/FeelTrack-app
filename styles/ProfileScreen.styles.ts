@@ -8,7 +8,6 @@ export const getStyles = (colors: AppThemeColors) =>
     container: {
       flexGrow: 1,
       paddingVertical: 24,
-      paddingTop: 50,
       alignItems: "stretch",
     },
     header: {
@@ -32,9 +31,13 @@ export const getStyles = (colors: AppThemeColors) =>
     avatarPlaceholder: {
       width: 72,
       height: 72,
+      alignItems: "center",
+      justifyContent: "center",
       borderRadius: 36,
       marginRight: 16,
-      backgroundColor: colors.dividerPrimary,
+      backgroundColor: colors.white,
+      borderWidth: 0.5,
+      borderColor: colors.dividerPrimary,
     },
     name: {
       fontSize: 20,

@@ -7,7 +7,6 @@ export const getStyles = (colors: AppThemeColors) =>
     container: {
       flex: 1,
       paddingVertical: 24,
-      paddingTop: 50,
       backgroundColor: colors.backgroundColorPrimary,
       alignItems: "stretch",
     },

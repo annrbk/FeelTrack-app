@@ -7,7 +7,6 @@ export const getStyles = (colors: AppThemeColors) =>
     container: {
       flex: 1,
       paddingVertical: 24,
-      paddingTop: 50,
       backgroundColor: colors.backgroundColorPrimary,
     },
     section: {
@@ -38,8 +37,6 @@ export const getStyles = (colors: AppThemeColors) =>
       width: "98%",
       justifyContent: "center",
       borderRadius: 12,
-      borderWidth: 0.5,
-      borderColor: colors.borderPrimary,
       marginBottom: 16,
     },
     iconContainer: {

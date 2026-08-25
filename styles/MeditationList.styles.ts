@@ -19,8 +19,6 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       backgroundColor: colors.bgCalm,
       borderRadius: 12,
       marginHorizontal: 14,
-      borderWidth: 0.5,
-      borderColor: colors.borderPrimary,
       marginTop: 8,
     },
     imageContainer: {

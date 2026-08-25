@@ -64,6 +64,14 @@ export const getStyles = (colors: AppThemeColors) =>
       borderWidth: 0.5,
       borderColor: colors.borderPrimary,
     },
+    aboutContainer: {
+      padding: 12,
+      backgroundColor: colors.surfacePrimary,
+      borderRadius: 12,
+      borderWidth: 0.5,
+      borderColor: colors.borderPrimary,
+      marginTop: 14,
+    },
     settingTitle: {
       fontSize: 16,
       ...typography.regular,
