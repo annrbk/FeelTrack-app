@@ -139,6 +139,7 @@ const en = {
       newPasswordLabel: "New password",
       newPasswordPlaceholder: "Enter new password",
       changePasswordButton: "Change new password",
+      aboutLabel: "About",
     },
     deleteAccountModal: {
       title: "Delete account?",
@@ -149,6 +150,63 @@ const en = {
     },
     loadingScreen: {
       loadingText: "Loading...",
+    },
+    forgotPassword: {
+      headerForgotPassword: "Reset password",
+      headerStep2: "New password",
+      step1Description:
+        "Enter the email you used to register. We will send a code to reset your password.",
+      step2Description:
+        "We have sent a 6-digit code to {{email}}. Enter it and set a new password.",
+      step3Description:
+        "Enter a new password and confirm it to complete the password reset process.",
+      emailPlaceholder: "Email",
+      codePlaceholder: "Code from email",
+      newPasswordPlaceholder: "New password",
+      confirmPasswordPlaceholder: "Confirm new password",
+      sendCodeButton: "Send code",
+      sendCode: "Send code",
+      resetButton: "Save new password",
+      resendCode: "Resend code",
+      resendCodeIn: "Resend in {{seconds}} s",
+      successTitle: "Success!",
+      successMessage: "Your password has been successfully changed.",
+      errors: {
+        invalidEmail: "Enter a valid email address",
+        emptyField: "Enter the confirmation code",
+        passwordTooShort: "Password must be at least 6 characters long",
+        passwordsDoNotMatch: "Passwords do not match",
+      },
+    },
+    about: {
+      headerTitle: "About",
+      welcomeTitle: "Welcome to Mindery",
+      introParagraph1:
+        "Mindery was created with a simple idea: every emotion matters, and understanding how you feel is the first step toward a balanced life.",
+      introParagraph2:
+        "Easily log your mood throughout the day, check your mood history on the calendar, and unwind with guided meditations. Mindery is also a helpful companion for therapy — it allows you to look back at specific dates and share clear mood records with your psychologist during sessions.",
+      featuresTitle: "Key features",
+      featureSimplicityTitle: "Fast and easy",
+      featureSimplicityDesc:
+        "Logging your mood takes just a few seconds and doesn't distract from life.",
+      featureCalendarTitle: "Mood calendar",
+      featureCalendarDesc:
+        "A clear history of your feelings and triggers by day and month.",
+      featureMeditationsTitle: "Meditations and practices",
+      featureMeditationsDesc:
+        "Short audio practices to relieve stress, exhale, and reset.",
+      featureTherapyTitle: "Therapy assistant",
+      featureTherapyDesc:
+        "Ready-made analytics for sessions with your psychologist — no need to remember everything on the go.",
+      featurePrivacyTitle: "Complete privacy",
+      featurePrivacyDesc:
+        "Your personal records are securely protected. Your feelings are your own territory.",
+      thankYou: "Thank you for choosing self-care with Mindery!",
+      version: "Version {{version}}",
+    },
+    common: {
+      error: "Error",
+      somethingWentWrong: "Something went wrong. Please try again later.",
     },
   },
 };

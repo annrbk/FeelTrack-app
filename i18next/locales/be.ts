@@ -138,6 +138,7 @@ const be = {
       newPasswordLabel: "Новы пароль",
       newPasswordPlaceholder: "Увядзіце новы пароль",
       changePasswordButton: "Змяніць пароль",
+      aboutLabel: "Аб дадатку",
     },
     deleteAccountModal: {
       title: "Выдаліць акаўнт?",
@@ -148,6 +149,63 @@ const be = {
     },
     loadingScreen: {
       loadingText: "Загрузка...",
+    },
+    forgotPassword: {
+      headerForgotPassword: "Скід пароля",
+      headerStep2: "Новы пароль",
+      step1Description:
+        "Увядзіце email, указаны пры рэгістрацыі. Мы вышлем на яго код для скіду пароля.",
+      step2Description:
+        "Мы адправілі 6-значны код на пошту {{email}}. Увядзіце яго і ўсталюйце новы пароль.",
+      step3Description:
+        "Увядзіце новы пароль і пацвердзіце яго, каб завяршыць працэс скіду пароля.",
+      emailPlaceholder: "Email",
+      codePlaceholder: "Код з ліста",
+      newPasswordPlaceholder: "Новы пароль",
+      confirmPasswordPlaceholder: "Паўтарыце новы пароль",
+      sendCodeButton: "Атрымаць код",
+      sendCode: "Адправіць код",
+      resetButton: "Захаваць новы пароль",
+      resendCode: "Адправіць код паўторна",
+      resendCodeIn: "Паўторная адпраўка праз {{seconds}} с",
+      successTitle: "Паспяхова!",
+      successMessage: "Ваш пароль быў паспяхова зменены.",
+      errors: {
+        invalidEmail: "Увядзіце карэктны адрас электроннай пошты",
+        emptyField: "Увядзіце код пацверджання",
+        passwordTooShort: "Пароль павінен утрымліваць не менш за 6 сімвалаў",
+        passwordsDoNotMatch: "Паролі не супадаюць",
+      },
+    },
+    about: {
+      headerTitle: "Аб дадатку",
+      welcomeTitle: "Сардэчна запрашаем у Mindery",
+      introParagraph1:
+        "Mindery быў створаны з простай ідэяй: кожная эмоцыя важная, і разуменне таго, што вы адчуваеце, — першы крок да збалансаванага жыцця.",
+      introParagraph2:
+        "Лёгка фіксуйце свой настрой на працягу дня, правярайце гісторыю настрояў у календары і расслабляйцеся з дапамогай медытацый. Mindery таксама з'яўляецца карысным памочнікам для тэрапіі — ён дазваляе праглядаць канкрэтныя даты і дзяліцца дакладнымі запісамі аб настроі з вашым псіхолагам падчас сеансаў.",
+      featuresTitle: "Галоўныя магчымасці",
+      featureSimplicityTitle: "Хутка і лёгка",
+      featureSimplicityDesc:
+        "Фіксацыя настрою займае ўсяго пару секунд і не адцягвае ад жыцця.",
+      featureCalendarTitle: "Каляндар эмоцый",
+      featureCalendarDesc:
+        "Наглядная гісторыя вашых пачуццяў і трыгераў па днях і месяцах.",
+      featureMeditationsTitle: "Медытацыі і практыкі",
+      featureMeditationsDesc:
+        "Кароткія аўдыёпрактыкі, каб зняць стрэс, выдыхнуць і перазагрузіцца.",
+      featureTherapyTitle: "Памочнік у тэрапіі",
+      featureTherapyDesc:
+        "Гатовая аналітыка для сесій з псіхолагам — без неабходнасці ўспамінаць усё на хаду.",
+      featurePrivacyTitle: "Поўная канфідэнцыяльнасць",
+      featurePrivacyDesc:
+        "Вашы асабістыя запісы надзейна абаронены. Вашы пачуцці — толькі ваша тэрыторыя.",
+      thankYou: "Дзякуй, што выбіраеце клопат пра сябе разам з Mindery!",
+      version: "Версія {{version}}",
+    },
+    common: {
+      error: "Памылка",
+      somethingWentWrong: "Адбылася памылка. Паспрабуйце пазней.",
     },
   },
 };
