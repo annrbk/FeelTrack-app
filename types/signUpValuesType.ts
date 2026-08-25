@@ -10,6 +10,7 @@ export type SignUpValues = {
 export type FormInputProps = {
   textField: keyof SignUpValues;
   placeholder: string;
+  secureTextEntry?: boolean;
 };
 
 export type CustomFormikSignUp = Pick<

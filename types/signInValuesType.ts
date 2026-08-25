@@ -8,6 +8,7 @@ export type SignInValues = {
 export type SignInInputProps = {
   textField: keyof SignInValues;
   placeholder: string;
+  secureTextEntry?: boolean;
 };
 
 export type CustomFormikSignIn = Pick<

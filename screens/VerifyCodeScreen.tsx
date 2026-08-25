@@ -1,24 +1,27 @@
-import React from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
   ActivityIndicator,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  View,
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import BackButton from "../components/BackButton";
-import { useAppStyle } from "../hooks/useAppStyle";
 import { getStyles } from "../styles/ForgotPasswordScreen.styles";
+import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 import { useForgotPassword } from "../hooks/useForgotPassword";
+import BackButton from "../components/BackButton";
+import { useRoute, RouteProp } from "@react-navigation/native";
+import type { RootStackParamList } from "../navigation/types";
 
-export default function ForgotPasswordScreen() {
+export default function VerifyCodeScreen() {
   const { styles, colors } = useAppStyle(getStyles);
   const { t } = useTranslation();
-  const { email, setEmail, isLoading, requestCode } = useForgotPassword();
+  const route = useRoute<RouteProp<RootStackParamList, "VerifyCode">>();
+  const { email } = route.params;
+  const { code, setCode, isLoading, requestCode, resendTimer, verifyCode } = useForgotPassword();
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
@@ -42,26 +45,43 @@ export default function ForgotPasswordScreen() {
               </Text>
               <TextInput
                 style={styles.input}
-                placeholder={t("forgotPassword.emailPlaceholder")}
+                placeholder={t("forgotPassword.codePlaceholder")}
                 placeholderTextColor={colors.textSecondary}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
+                value={code}
+                onChangeText={setCode}
+                keyboardType="number-pad"
+                maxLength={6}
               />
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => requestCode(email)}
+                onPress={() => verifyCode(email, code)}
                 disabled={isLoading}
               >
                 {isLoading ? (
                   <ActivityIndicator color={colors.white} />
                 ) : (
                   <Text style={styles.buttonText}>
-                    {t("forgotPassword.sendCodeButton")}
+                    {t("forgotPassword.sendCode")}
                   </Text>
                 )}
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.resendButton}
+                onPress={() => requestCode(email)}
+                disabled={resendTimer > 0 || isLoading}
+              >
+                <Text
+                  style={[
+                    styles.resendText,
+                    resendTimer > 0 && styles.resendTextDisabled,
+                  ]}
+                >
+                  {resendTimer > 0
+                    ? t("forgotPassword.resendCodeIn", {
+                        seconds: resendTimer,
+                      })
+                    : t("forgotPassword.resendCode")}
+                </Text>
               </TouchableOpacity>
             </>
           </View>

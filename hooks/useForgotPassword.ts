@@ -3,9 +3,11 @@ import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NavigationProp } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
-import { API_URL } from "@env";
 import type { RootStackParamList } from "../navigation/types";
+import {
+  requestPasswordReset,
+  confirmPasswordReset,
+} from "../services/forgotPasswordService";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const RESEND_DELAY = 60;
@@ -14,7 +16,6 @@ export const useForgotPassword = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { t } = useTranslation();
 
-  const [step, setStep] = useState<1 | 2>(1);
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -28,7 +29,7 @@ export const useForgotPassword = () => {
     return () => clearTimeout(timeout);
   }, [resendTimer]);
 
-  const requestCode = async () => {
+  const requestCode = async (email: string) => {
     const trimmedEmail = email.trim().toLowerCase();
     if (!EMAIL_REGEX.test(trimmedEmail)) {
       Alert.alert(t("common.error"), t("forgotPassword.errors.invalidEmail"));
@@ -36,32 +37,30 @@ export const useForgotPassword = () => {
     }
     setIsLoading(true);
     try {
-      await axios.post(`${API_URL}/api/auth/forgot-password`, {
-        email: trimmedEmail,
-      });
-      setCode("");
-      setNewPassword("");
-      setConfirmPassword("");
+      await requestPasswordReset(trimmedEmail);
       setResendTimer(RESEND_DELAY);
-      setStep(2);
+      navigation.navigate("VerifyCode", { email: trimmedEmail });
     } catch (error: unknown) {
-      const message = axios.isAxiosError(error)
-        ? (error.response?.data?.message ?? t("common.somethingWentWrong"))
-        : t("common.somethingWentWrong");
+      const message =
+        error instanceof Error ? error.message : t("common.somethingWentWrong");
       Alert.alert(t("common.error"), message);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const resetPassword = async () => {
+  const verifyCode = (email: string, code: string) => {
     const trimmedCode = code.trim();
-    const trimmedPassword = newPassword.trim();
-    const trimmedConfirm = confirmPassword.trim();
-    if (!trimmedCode || !trimmedPassword || !trimmedConfirm) {
-      Alert.alert(t("common.error"), t("forgotPassword.errors.emptyFields"));
+    if (!trimmedCode) {
+      Alert.alert(t("common.error"), t("forgotPassword.errors.emptyField"));
       return;
     }
+    navigation.navigate("ResetPassword", { email, code: trimmedCode });
+  };
+
+  const resetPassword = async (email: string, trimmedCode: string) => {
+    const trimmedPassword = newPassword.trim();
+    const trimmedConfirm = confirmPassword.trim();
     if (trimmedPassword.length < 6) {
       Alert.alert(
         t("common.error"),
@@ -78,20 +77,19 @@ export const useForgotPassword = () => {
     }
     setIsLoading(true);
     try {
-      await axios.post(`${API_URL}/api/auth/reset-password`, {
-        email: email.trim().toLowerCase(),
-        code: trimmedCode,
-        newPassword: trimmedPassword,
-      });
+      await confirmPasswordReset(
+        email.trim().toLowerCase(),
+        trimmedCode,
+        trimmedPassword,
+      );
       Alert.alert(
         t("forgotPassword.successTitle"),
         t("forgotPassword.successMessage"),
         [{ text: "OK", onPress: () => navigation.navigate("SignIn") }],
       );
     } catch (error: unknown) {
-      const message = axios.isAxiosError(error)
-        ? (error.response?.data?.message ?? t("common.somethingWentWrong"))
-        : t("common.somethingWentWrong");
+      const message =
+        error instanceof Error ? error.message : t("common.somethingWentWrong");
       Alert.alert(t("common.error"), message);
     } finally {
       setIsLoading(false);
@@ -99,7 +97,6 @@ export const useForgotPassword = () => {
   };
 
   return {
-    step,
     email,
     setEmail,
     code,
@@ -112,5 +109,6 @@ export const useForgotPassword = () => {
     resendTimer,
     requestCode,
     resetPassword,
+    verifyCode,
   };
 };
