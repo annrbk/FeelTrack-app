@@ -46,6 +46,7 @@ export default function StatsScreen() {
           calendarBackground: colors.surfacePrimary,
           backgroundColor: colors.surfacePrimary,
           monthTextColor: colors.textPrimary,
+          textSectionTitleColor: colors.btnActive,
         }}
         dayComponent={({ date }) => {
           const emotionsForDay =

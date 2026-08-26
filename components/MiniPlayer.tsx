@@ -15,7 +15,7 @@ export default function MiniPlayer({
   const { currentTrack } = usePlayer();
   const currentCategory = useAudio();
 
-  const { styles, colors, isDark } = useAppStyle(getStyles);
+  const { styles, colors } = useAppStyle(getStyles);
 
   if (!currentTrack) return null;
 
@@ -32,7 +32,7 @@ export default function MiniPlayer({
             <Ionicons
               name="musical-notes-outline"
               size={24}
-              color={isDark ? colors.textPrimary : colors.textSecondary}
+              color={colors.textPrimary}
               style={{ opacity: 0.2 }}
             />
           </View>

@@ -80,9 +80,11 @@ export default function SignInScreen() {
                 </Text>
               </Pressable>
             </View>
-            <Text style={styles.forgotPassword}>
-              {t("signInScreen.forgotPassword")}
-            </Text>
+            <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
+              <Text style={styles.forgotPassword}>
+                {t("signInScreen.forgotPassword")}
+              </Text>
+            </Pressable>
           </View>
           <View style={styles.footerContainer}>
             <Text>{t("signInScreen.signUpReminder")}</Text>

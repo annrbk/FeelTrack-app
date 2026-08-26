@@ -1,31 +1,31 @@
 export const careData = [
   {
     id: "1",
-    color: "#dee9f093",
+    color: "bgCalm",
     title: "Calm",
     session: "8",
   },
   {
     id: "2",
-    color: "#fbece3ae",
+    color: "bgEnergize",
     title: "Energize",
     session: "9",
   },
   {
     id: "3",
-    color: "#ebe4ed9f",
+    color: "bgSleep",
     title: "Sleep",
     session: "9",
   },
   {
     id: "4",
-    color: "#f1f5c5a2",
+    color: "bgBalance",
     title: "Balance",
     session: "7",
   },
   {
     id: "5",
-    color: "#e1e9dea7",
+    color: "bgFocus",
     title: "Focus",
     session: "8",
   },

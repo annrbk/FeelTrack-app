@@ -6,7 +6,6 @@ export const useAccount = () => {
   const { user, updateUser, signOut } = useSession();
   const [name, setName] = useState<string>(user?.name || "");
   const [email, setEmail] = useState<string>(user?.email || "");
-
   const [edit, setEdit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);

@@ -1,4 +1,5 @@
 import { View, Text, Image, Pressable, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/ProfileScreen.styles";
 import { useSession } from "../ctx";
@@ -13,7 +14,7 @@ export default function ProfileScreen() {
   const { user, signOut } = useSession();
   const selectedAvatar = avatars.find((a) => a.id === user?.avatar)?.image;
 
-  const { styles, colors } = useAppStyle(getStyles);
+  const { styles, colors, isDark } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
 
@@ -24,7 +25,13 @@ export default function ProfileScreen() {
           {selectedAvatar ? (
             <Image style={styles.avatar} source={selectedAvatar} />
           ) : (
-            <View style={styles.avatarPlaceholder} />
+            <View style={styles.avatarPlaceholder}>
+              <Ionicons
+                name="person-outline"
+                size={28}
+                color={isDark ? colors.btnPrimary : colors.textSecondary}
+              />
+            </View>
           )}
           <View>
             <Text style={styles.name}>{user?.name || "User"}</Text>

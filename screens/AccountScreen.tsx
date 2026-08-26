@@ -30,7 +30,7 @@ export default function AccountScreen() {
 
   const [changeAvatar, setChangeAvatar] = useState(false);
 
-  const { colors, styles } = useAppStyle(getStyles);
+  const { colors, styles, isDark } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
 
@@ -64,7 +64,13 @@ export default function AccountScreen() {
                 source={avatars.find((a) => a.id === user.avatar)?.image}
               />
             ) : (
-              <View style={styles.avatar} />
+              <View style={styles.avatar}>
+                <Ionicons
+                  name="person-outline"
+                  size={32}
+                  color={isDark ? colors.btnPrimary : colors.textSecondary}
+                />
+              </View>
             )}
             <Pressable
               accessibilityRole="button"
@@ -74,7 +80,7 @@ export default function AccountScreen() {
               <Ionicons
                 name="add-outline"
                 size={22}
-                color={colors.btnPrimary}
+                color={isDark ? colors.btnPrimary : colors.textSecondary}
               />
             </Pressable>
           </View>

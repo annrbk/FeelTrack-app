@@ -8,10 +8,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function ImageCard({ id, color, title, session }: CardItem) {
   const { styles, colors, isDark } = useAppStyle(getStyles);
+  const cardBackgroundColor = colors[color as keyof typeof colors] || color;
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   return (
-    <View style={[styles.imageWrapper, { backgroundColor: color }]}>
+    <View
+      style={[styles.imageWrapper, { backgroundColor: cardBackgroundColor }]}
+    >
       <Pressable
         onPress={() => navigation.navigate("MeditationList", { id: id })}
       >
@@ -23,7 +26,7 @@ export default function ImageCard({ id, color, title, session }: CardItem) {
           <View style={styles.iconContainer}>
             <Ionicons
               name="play-outline"
-              size={36}
+              size={28}
               color={isDark ? colors.textPrimary : colors.textSecondary}
             />
           </View>

@@ -15,6 +15,7 @@ export default function SignInInput(
     values,
     textField,
     placeholder,
+    secureTextEntry,
   } = props;
   const { styles } = useAppStyle(getStyles);
   return (
@@ -31,6 +32,7 @@ export default function SignInInput(
         onBlur={handleBlur(textField)}
         value={values[textField]}
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
       />
     </>
   );

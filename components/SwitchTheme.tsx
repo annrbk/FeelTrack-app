@@ -9,10 +9,10 @@ export default function SwitchTheme({
   return (
     <Switch
       trackColor={{
-        false: ThemeColors.textSecondary,
-        true: ThemeColors.btnSuccess,
+        false: "#D0CECB",
+        true: "#a1b1bd",
       }}
-      thumbColor={value === "dark" ? "#ffffff" : "#f4f3f4"}
+      thumbColor={ThemeColors.white}
       onValueChange={(val) => onValueChange(val ? "dark" : "light")}
       value={value === "dark"}
     />

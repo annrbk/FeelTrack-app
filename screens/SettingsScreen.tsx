@@ -78,6 +78,22 @@ export default function SettingsScreen() {
             />
           </Pressable>
         </View>
+        <View style={styles.aboutContainer || styles.languageContainer}>
+          <Pressable
+            style={styles.buttonArrowRight}
+            accessibilityRole="button"
+            onPress={() => navigation.navigate("About")}
+          >
+            <Text style={styles.settingTitle}>
+              {t("settingsScreen.aboutLabel")}
+            </Text>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={24}
+              color={colors.textSecondary}
+            />
+          </Pressable>
+        </View>
         <View>
           <Pressable
             style={styles.settingItem}
