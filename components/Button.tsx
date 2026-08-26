@@ -1,6 +1,7 @@
 import { Pressable, View, Text } from "react-native";
 import { getStyles } from "../styles/SignInScreen";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useTranslation } from "react-i18next";
 
 export type ButtonProps = {
   handleSubmit: () => void;
@@ -8,6 +9,8 @@ export type ButtonProps = {
 
 export default function Button({ handleSubmit }: ButtonProps) {
   const { styles } = useAppStyle(getStyles);
+  const { t } = useTranslation();
+
   return (
     <View style={styles.buttonContainer}>
       <Pressable
@@ -16,7 +19,9 @@ export default function Button({ handleSubmit }: ButtonProps) {
           handleSubmit();
         }}
       >
-        <Text style={styles.buttonText}>Sign up</Text>
+        <Text style={styles.buttonText}>
+          {t("signUpScreen.signUpButtonText")}
+        </Text>
       </Pressable>
     </View>
   );
