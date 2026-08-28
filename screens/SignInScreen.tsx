@@ -6,27 +6,17 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import type { SignInValues } from "../types/signInValuesType";
 import SignInInput from "../components/SignInInput";
-import { useSession } from "../ctx";
-import { useState } from "react";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useLogin } from "../hooks/useLogin";
 
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  const [error, setError] = useState<string | null>(null);
-  const { signIn } = useSession();
-  const { styles } = useAppStyle(getStyles);
+  const { styles, colors } = useAppStyle(getStyles);
+  const { loginSubmit, showPassword, setShowPassword, error } = useLogin();
 
   const { t } = useTranslation();
-
-  const loginSubmit = async (values: SignInValues) => {
-    try {
-      setError(null);
-      await signIn(values);
-    } catch (error) {
-      if (error instanceof Error) alert(error.message);
-    }
-  };
 
   return (
     <Formik<SignInValues>
@@ -63,16 +53,30 @@ export default function SignInScreen() {
               textField="email"
               placeholder={t("signInScreen.emailPlaceholder")}
             />
-            <SignInInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="password"
-              placeholder={t("signInScreen.passwordPlaceholder")}
-              secureTextEntry={true}
-            />
+            <View style={styles.passwordContainer}>
+              <View style={{ width: "100%", position: "relative" }}>
+                <SignInInput
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
+                  values={values}
+                  textField="password"
+                  placeholder={t("signInScreen.passwordPlaceholder")}
+                  secureTextEntry={!showPassword}
+                />
+                <Pressable
+                  style={styles.eyeIcon}
+                  onPress={() => setShowPassword((prev) => !prev)}
+                >
+                  <Ionicons
+                    name={showPassword ? "eye-outline" : "eye-off-outline"}
+                    size={22}
+                    color={colors.textPrimary}
+                  />
+                </Pressable>
+              </View>
+            </View>
             <View style={styles.buttonContainer}>
               <Pressable style={styles.button} onPress={() => handleSubmit()}>
                 <Text style={styles.buttonText}>

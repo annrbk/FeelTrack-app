@@ -3,10 +3,11 @@ import { Text, View, TextInput, Pressable } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/ChangePassword.styles";
 import BackButton from "../components/BackButton";
-import SuccessModal from "../components/SuccessEmotionModal";
+import SuccessModal from "../components/SuccessChangesModal";
 import { useChangePassword } from "../hooks/useChangePassword";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function ChangePasswordScreen() {
   const {
@@ -18,6 +19,10 @@ export default function ChangePasswordScreen() {
     showSuccessModal,
     changePassword,
     onCloseModal,
+    showPassword,
+    setShowPassword,
+    showNewPassword,
+    setShowNewPassword,
   } = useChangePassword();
 
   const { colors, styles } = useAppStyle(getStyles);
@@ -41,29 +46,53 @@ export default function ChangePasswordScreen() {
             <Text style={styles.inputLabel}>
               {t("settingsScreen.currentPasswordLabel")}
             </Text>
-            <TextInput
-              style={[styles.input, edit && styles.editInput]}
-              onChangeText={setPassword}
-              value={password}
-              editable={edit}
-              placeholder={t("settingsScreen.currentPasswordPlaceholder")}
-              placeholderTextColor={colors.textSecondary}
-              secureTextEntry
-            />
+            <View style={{ width: "100%", position: "relative" }}>
+              <TextInput
+                style={[styles.input, edit && styles.editInput]}
+                onChangeText={setPassword}
+                value={password}
+                editable={edit}
+                placeholder={t("settingsScreen.currentPasswordPlaceholder")}
+                placeholderTextColor={colors.textSecondary}
+                secureTextEntry={!showPassword}
+              />
+              <Pressable
+                style={styles.eyeIcon}
+                onPress={() => setShowPassword((prev) => !prev)}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-outline" : "eye-off-outline"}
+                  size={22}
+                  color={colors.textPrimary}
+                />
+              </Pressable>
+            </View>
           </View>
           <View style={styles.field}>
             <Text style={styles.inputLabel}>
               {t("settingsScreen.newPasswordLabel")}
             </Text>
-            <TextInput
-              style={[styles.input, edit && styles.editInput]}
-              onChangeText={setNewPassword}
-              value={newPassword}
-              editable={edit}
-              placeholder={t("settingsScreen.newPasswordPlaceholder")}
-              placeholderTextColor={colors.textSecondary}
-              secureTextEntry
-            />
+            <View style={{ width: "100%", position: "relative" }}>
+              <TextInput
+                style={[styles.input, edit && styles.editInput]}
+                onChangeText={setNewPassword}
+                value={newPassword}
+                editable={edit}
+                placeholder={t("settingsScreen.newPasswordPlaceholder")}
+                placeholderTextColor={colors.textSecondary}
+                secureTextEntry={!showNewPassword}
+              />
+              <Pressable
+                style={styles.eyeIcon}
+                onPress={() => setShowNewPassword((prev) => !prev)}
+              >
+                <Ionicons
+                  name={showNewPassword ? "eye-outline" : "eye-off-outline"}
+                  size={22}
+                  color={colors.textPrimary}
+                />
+              </Pressable>
+            </View>
           </View>
         </View>
         <View style={styles.buttonContainer}>
@@ -81,7 +110,7 @@ export default function ChangePasswordScreen() {
           <SuccessModal
             visible={showSuccessModal}
             onClose={onCloseModal}
-            text={t("successModal.passwordChangedText")}
+            text={t("successModal.closeButtonText")}
           />
         )}
       </SafeAreaView>

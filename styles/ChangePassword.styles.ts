@@ -59,6 +59,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       backgroundColor: isDark ? colors.backgroundColorPrimary : "#ffffff",
       opacity: 0.55,
     },
+    eyeIcon: { position: "absolute", right: 16, bottom: 13, zIndex: 1 },
     editInput: {
       opacity: 1,
     },

@@ -59,6 +59,17 @@ export const getStyles = (colors: AppThemeColors) =>
       fontSize: 14,
       ...typography.regular,
     },
+    passwordContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      width: "100%",
+    },
+    eyeIcon: {
+      position: "absolute",
+      right: 16,
+      bottom: 24,
+      zIndex: 1,
+    },
     buttonContainer: {
       width: "100%",
     },

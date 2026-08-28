@@ -22,6 +22,8 @@ export const useForgotPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [resendTimer, setResendTimer] = useState(0);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   useEffect(() => {
     if (resendTimer <= 0) return;
@@ -110,5 +112,9 @@ export const useForgotPassword = () => {
     requestCode,
     resetPassword,
     verifyCode,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
   };
 };

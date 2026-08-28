@@ -9,6 +9,8 @@ export const useChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [edit, setEdit] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
   const toEdit = () => {
     if (edit) {
@@ -50,5 +52,9 @@ export const useChangePassword = () => {
     toEdit,
     changePassword,
     onCloseModal,
+    showPassword,
+    setShowPassword,
+    showNewPassword,
+    setShowNewPassword,
   };
 };

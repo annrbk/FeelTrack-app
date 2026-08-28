@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  Pressable,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/ForgotPasswordScreen.styles";
@@ -15,6 +16,7 @@ import { useForgotPassword } from "../hooks/useForgotPassword";
 import BackButton from "../components/BackButton";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import type { RootStackParamList } from "../navigation/types";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function ResetPasswordScreen() {
   const { styles, colors } = useAppStyle(getStyles);
@@ -28,6 +30,10 @@ export default function ResetPasswordScreen() {
     setConfirmPassword,
     isLoading,
     resetPassword,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
   } = useForgotPassword();
 
   return (
@@ -49,22 +55,46 @@ export default function ResetPasswordScreen() {
             <Text style={styles.description}>
               {t("forgotPassword.step3Description")}
             </Text>
-            <TextInput
-              style={styles.input}
-              placeholder={t("forgotPassword.newPasswordPlaceholder")}
-              placeholderTextColor={colors.textSecondary}
-              value={newPassword}
-              onChangeText={setNewPassword}
-              secureTextEntry
-            />
-            <TextInput
-              style={styles.input}
-              placeholder={t("forgotPassword.confirmPasswordPlaceholder")}
-              placeholderTextColor={colors.textSecondary}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-            />
+            <View style={{ width: "100%", position: "relative" }}>
+              <TextInput
+                style={styles.input}
+                placeholder={t("forgotPassword.newPasswordPlaceholder")}
+                placeholderTextColor={colors.textSecondary}
+                value={newPassword}
+                onChangeText={setNewPassword}
+                secureTextEntry={!showPassword}
+              />
+              <Pressable
+                style={styles.eyeIcon}
+                onPress={() => setShowPassword((prev) => !prev)}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-outline" : "eye-off-outline"}
+                  size={22}
+                  color={colors.textPrimary}
+                />
+              </Pressable>
+            </View>
+            <View style={{ width: "100%", position: "relative" }}>
+              <TextInput
+                style={styles.input}
+                placeholder={t("forgotPassword.confirmPasswordPlaceholder")}
+                placeholderTextColor={colors.textSecondary}
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry={!showConfirmPassword}
+              />
+              <Pressable
+                style={styles.eyeIcon}
+                onPress={() => setShowConfirmPassword((prev) => !prev)}
+              >
+                <Ionicons
+                  name={showConfirmPassword ? "eye-outline" : "eye-off-outline"}
+                  size={22}
+                  color={colors.textPrimary}
+                />
+              </Pressable>
+            </View>
             <TouchableOpacity
               style={styles.button}
               onPress={() => resetPassword(email, code)}
@@ -74,7 +104,7 @@ export default function ResetPasswordScreen() {
                 <ActivityIndicator color={colors.white} />
               ) : (
                 <Text style={styles.buttonText}>
-                  {t("forgotPassword.sendCode")}
+                  {t("forgotPassword.resetButton")}
                 </Text>
               )}
             </TouchableOpacity>

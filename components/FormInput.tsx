@@ -14,6 +14,7 @@ export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
     values,
     textField,
     placeholder,
+    secureTextEntry,
   } = props;
   return (
     <>
@@ -29,6 +30,7 @@ export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
         onBlur={handleBlur(textField)}
         value={values[textField]}
         placeholder={placeholder}
+        secureTextEntry={secureTextEntry}
       />
     </>
   );

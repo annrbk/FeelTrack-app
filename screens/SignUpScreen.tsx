@@ -2,34 +2,27 @@ import { Pressable, View, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { getStyles } from "../styles/SignInScreen";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
-import { RootStackParamList } from "../navigation/types";
 import { useRegister } from "../hooks/useRegister";
 import type { SignUpValues } from "../types/signUpValuesType";
 import Button from "../components/Button";
 import FormInput from "../components/FormInput";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function SignUpScreen() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const {
+    error,
+    showPassword,
+    setShowPassword,
+    showConfirmPassword,
+    setShowConfirmPassword,
+    submitForm,
+  } = useRegister();
 
-  const { register, error } = useRegister();
-
-  const { styles } = useAppStyle(getStyles);
+  const { styles, colors } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
-
-  const submitForm = async (values: SignUpValues) => {
-    try {
-      const newUser = await register(values);
-      if (newUser) {
-        navigation.navigate("SignIn");
-      }
-    } catch (error) {
-      if (error instanceof Error) alert(error.message);
-    }
-  };
 
   return (
     <Formik<SignUpValues>
@@ -82,25 +75,56 @@ export default function SignUpScreen() {
               textField="email"
               placeholder={t("signUpScreen.emailPlaceholder")}
             />
-            <FormInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="password"
-              placeholder={t("signUpScreen.passwordPlaceholder")}
-              secureTextEntry={true}
-            />
-            <FormInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="confirmPassword"
-              placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
-            />
+            <View style={styles.passwordContainer}>
+              <View style={{ width: "100%", position: "relative" }}>
+                <FormInput
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
+                  values={values}
+                  textField="password"
+                  placeholder={t("signUpScreen.passwordPlaceholder")}
+                  secureTextEntry={!showPassword}
+                />
+                <Pressable
+                  style={styles.eyeIcon}
+                  onPress={() => setShowPassword((prev) => !prev)}
+                >
+                  <Ionicons
+                    name={showPassword ? "eye-outline" : "eye-off-outline"}
+                    size={22}
+                    color={colors.textPrimary}
+                  />
+                </Pressable>
+              </View>
+            </View>
+            <View style={styles.passwordContainer}>
+              <View style={{ width: "100%", position: "relative" }}>
+                <FormInput
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  errors={errors}
+                  touched={touched}
+                  values={values}
+                  textField="confirmPassword"
+                  placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
+                  secureTextEntry={!showConfirmPassword}
+                />
+                <Pressable
+                  style={styles.eyeIcon}
+                  onPress={() => setShowConfirmPassword((prev) => !prev)}
+                >
+                  <Ionicons
+                    name={
+                      showConfirmPassword ? "eye-outline" : "eye-off-outline"
+                    }
+                    size={22}
+                    color={colors.textPrimary}
+                  />
+                </Pressable>
+              </View>
+            </View>
             <Button handleSubmit={handleSubmit} />
           </View>
           <View style={styles.footerContainer}>

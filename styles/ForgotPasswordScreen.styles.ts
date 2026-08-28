@@ -62,6 +62,12 @@ export const getStyles = (colors: AppThemeColors) =>
       borderColor: colors.dividerPrimary,
       marginBottom: 14,
     },
+    eyeIcon: {
+      position: "absolute",
+      right: 16,
+      bottom: 24,
+      zIndex: 1,
+    },
     button: {
       height: 48,
       backgroundColor: colors.btnPrimary,
