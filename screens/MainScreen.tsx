@@ -53,7 +53,7 @@ export default function MainScreen() {
           modal={modal}
           setModal={setModal}
           onCloseEmotionModal={onCloseEmotionModal}
-          addEmotion={addEmotion}
+          addEmotion={(emotion) => addEmotion(emotion, selectedDate)}
         />
         <TodayStatistics
           todayEmotions={todayEmotions}

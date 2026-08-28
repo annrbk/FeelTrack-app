@@ -2,7 +2,7 @@ import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 import { API_URL } from "@env";
 
-export const addEmotionToUser = async (emotion: string) => {
+export const addEmotionToUser = async (emotion: string, selectedDate: Date) => {
   try {
     const token = await SecureStore.getItemAsync("session");
     if (!token) {
@@ -10,7 +10,7 @@ export const addEmotionToUser = async (emotion: string) => {
     }
     const response = await axios.post(
       `${API_URL}/api/emotions/add`,
-      { emotion },
+      { emotion, date: selectedDate.toISOString() },
       {
         headers: {
           Authorization: `Bearer ${token}`,

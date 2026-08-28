@@ -25,7 +25,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       alignItems: "center",
     },
     title: {
-      fontSize: 28,
+      fontSize: 27,
       ...typography.medium,
       textAlign: "center",
       color: colors.textPrimary,

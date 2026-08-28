@@ -15,10 +15,10 @@ export const useEmotion = () => {
   const [todayEmotions, setTodayEmotions] = useState<EmotionFromDB[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
-  const addEmotion = async (emotion: Emotion) => {
+  const addEmotion = async (emotion: Emotion, selectedDate: Date) => {
     if (!emotion) return;
     try {
-      await addEmotionToUser(emotion.label);
+      await addEmotionToUser(emotion.label, selectedDate);
       setModal(false);
       setSuccessModal(true);
       getEmotions();
