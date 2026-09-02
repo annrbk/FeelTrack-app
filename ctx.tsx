@@ -1,8 +1,9 @@
-import { use, createContext, type PropsWithChildren } from "react";
+import { use, createContext, useEffect, type PropsWithChildren } from "react";
 import { useStorageState } from "./hooks/useStorageState";
 import { loginUser } from "./services/loginService";
 import { SignInValues } from "./types/signInValuesType";
 import type { User } from "./types/userType";
+import { registerSignOut } from "./services/authSignOut";
 
 const AuthContext = createContext<{
   session: string | null;
@@ -24,6 +25,13 @@ export function useSession() {
 export function SessionProvider({ children }: PropsWithChildren) {
   const [[isLoadingSession, session], setSession] = useStorageState("session");
   const [[isLoadingUser, storedUser], setStoredUser] = useStorageState("user");
+
+  useEffect(() => {
+    registerSignOut(() => {
+      setSession(null);
+      setStoredUser(null);
+    });
+  }, []);
 
   const user = storedUser ? (JSON.parse(storedUser) as User) : null;
 

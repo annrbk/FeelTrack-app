@@ -1,84 +1,45 @@
-import axios from "axios";
-import * as SecureStore from "expo-secure-store";
-import { API_URL } from "@env";
+import apiClient, { isAxiosError } from "./apiClient";
 
 export const addEmotionToUser = async (emotion: string, selectedDate: Date) => {
   try {
-    const token = await SecureStore.getItemAsync("session");
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
-    const response = await axios.post(
-      `${API_URL}/api/emotions/add`,
-      { emotion, date: selectedDate.toISOString() },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
+    const response = await apiClient.post("/api/emotions/add", {
+      emotion,
+      date: selectedDate.toISOString(),
+    });
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.error("Error adding emotion:", error);
       throw new Error("Adding emotion failed");
-    } else {
-      console.error(error);
-      throw new Error("Unexpected error");
     }
+    throw new Error("Unexpected error");
   }
 };
 
 export const getCurrentEmotions = async (selectedDate: Date) => {
   try {
-    const token = await SecureStore.getItemAsync("session");
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
-
-    const response = await axios.get(`${API_URL}/api/emotions/get`, {
-      params: {
-        date: selectedDate.toISOString(),
-      },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+    const response = await apiClient.get("/api/emotions/get", {
+      params: { date: selectedDate.toISOString() },
     });
     return response.data.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.error("Error getting emotion:", error);
       throw new Error("Getting emotion failed");
-    } else {
-      console.error(error);
-      throw new Error("Unexpected error");
     }
+    throw new Error("Unexpected error");
   }
 };
 
 export const deleteEmotion = async (id: number) => {
   try {
-    const token = await SecureStore.getItemAsync("session");
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
-    const response = await axios.delete(
-      `${API_URL}/api/emotions/delete/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+    const response = await apiClient.delete(`/api/emotions/delete/${id}`);
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.error("Error delete emotion:", error);
       throw new Error("Deleting emotion failed");
-    } else {
-      console.error(error);
-      throw new Error("Unexpected error");
     }
+    throw new Error("Unexpected error");
   }
 };

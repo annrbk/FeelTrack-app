@@ -1,30 +1,16 @@
-import axios from "axios";
-import { API_URL } from "@env";
-import * as SecureStore from "expo-secure-store";
+import apiClient, { isAxiosError } from "./apiClient";
 
 export const updateAvatar = async (avatar: string) => {
   try {
-    const token = await SecureStore.getItemAsync("session");
-    if (!token) {
-      throw new Error("No authentication token found");
-    }
-    const response = await axios.patch(
-      `${API_URL}/api/account/avatar/update`,
-      { avatar },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+    const response = await apiClient.patch("/api/account/avatar/update", {
+      avatar,
+    });
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
+    if (isAxiosError(error)) {
       console.error("Avatar update error:", error);
       throw new Error("Avatar update failed");
-    } else {
-      console.error(error);
-      throw new Error("Unexpected error");
     }
+    throw new Error("Unexpected error");
   }
 };
