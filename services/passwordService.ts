@@ -10,7 +10,6 @@ export const updatePassword = async (passwords: Passwords) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error("Password update error:", error);
       throw new Error("Password update failed");
     }
     throw new Error("Unexpected error");

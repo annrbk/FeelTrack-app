@@ -7,7 +7,6 @@ export const updateAccount = async (editedData: updateUserData) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error("Account update error:", error);
       throw new Error("Account update failed");
     }
     throw new Error("Unexpected error");
@@ -20,7 +19,6 @@ export const deleteAccount = async () => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error("Account delete error:", error);
       throw new Error("Account delete failed");
     }
     throw new Error("Unexpected error");

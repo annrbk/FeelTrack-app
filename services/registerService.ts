@@ -11,16 +11,13 @@ export const registerUser = async (values: SignUpValues) => {
         email: values.email,
         password: values.password,
       },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json" } },
     );
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error(error.response);
-      console.log(error);
       throw new Error(error.response?.data?.message || "Registration failed");
     } else {
-      console.error(error);
       throw new Error("Unexpected error");
     }
   }

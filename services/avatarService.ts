@@ -8,7 +8,6 @@ export const updateAvatar = async (avatar: string) => {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      console.error("Avatar update error:", error);
       throw new Error("Avatar update failed");
     }
     throw new Error("Unexpected error");

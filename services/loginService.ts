@@ -10,7 +10,7 @@ export const loginUser = async (values: SignInValues) => {
         email: values.email,
         password: values.password,
       },
-      { headers: { "Content-Type": "application/json" } }
+      { headers: { "Content-Type": "application/json" } },
     );
     return response.data;
   } catch (error) {
@@ -19,10 +19,8 @@ export const loginUser = async (values: SignInValues) => {
         error.response && error.response.data && error.response.data.message
           ? error.response.data.message
           : "Login failed";
-      console.error("Login error:", message);
       throw new Error(message);
     } else {
-      console.error(error);
       throw new Error("Unexpected error");
     }
   }
