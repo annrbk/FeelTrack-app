@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import getCurrentDate from "../utils/getCurrentDate";
 import { getEmotionsWithDates } from "../services/statisticsService";
 import { EmotionFromDB } from "../types/emotionTypes";
@@ -8,10 +8,23 @@ export const useStats = () => {
   const [currentDay, setCurrentDay] = useState("");
   const [currentMonth, setCurrentMonth] = useState("");
   const [currentYear, setCurrentYear] = useState(0);
+  const [calendarDate, setCalendarDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
   const [emotions, setEmotions] = useState<EmotionFromDB[]>([]);
   const [emotionByDate, setEmotionByDate] = useState<EmotionFromDB[]>([]);
   const [visible, setVisible] = useState(false);
   const [chosenDate, setChosenDate] = useState("");
+
+  const resetToToday = useCallback(() => {
+    const today = new Date().toISOString().split("T")[0];
+    setCalendarDate(today);
+
+    const { dayOfMonth, monthName, year } = getCurrentDate();
+    setCurrentDay(dayOfMonth);
+    setCurrentMonth(monthName);
+    setCurrentYear(year);
+  }, []);
 
   useEffect(() => {
     const { dayOfMonth, monthName, year } = getCurrentDate();
@@ -25,6 +38,7 @@ export const useStats = () => {
   }, []);
 
   const handleMonthChange = (month: DateData) => {
+    setCalendarDate(month.dateString);
     const date = new Date(month.dateString);
     const monthName = date.toLocaleString("default", { month: "long" });
     const year = date.getFullYear();
@@ -75,6 +89,7 @@ export const useStats = () => {
     currentDay,
     currentMonth,
     currentYear,
+    calendarDate,
     emotionByDate,
     visible,
     chosenDate,
@@ -83,5 +98,6 @@ export const useStats = () => {
     filterEmotion,
     groupedEmotionsByDate,
     onClose,
+    resetToToday,
   };
 };

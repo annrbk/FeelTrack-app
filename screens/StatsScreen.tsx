@@ -1,5 +1,7 @@
 import { Calendar } from "react-native-calendars";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useCallback, useRef } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { getStyles } from "../styles/StatsScreen.styles";
 import { useStats } from "../hooks/useStats";
 import { emotions } from "../constants/emotions";
@@ -14,27 +16,41 @@ export default function StatsScreen() {
     emotionByDate,
     visible,
     chosenDate,
+    calendarDate,
     handleMonthChange,
     filterEmotionByDate,
     groupedEmotionsByDate,
     onClose,
+    resetToToday,
   } = useStats();
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const { styles, colors, isDark } = useAppStyle(getStyles);
   const { t, i18n } = useTranslation();
+  const skipNextResetRef = useRef(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (skipNextResetRef.current) {
+        skipNextResetRef.current = false;
+        return;
+      }
+      resetToToday();
+    }, [resetToToday]),
+  );
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{t("statisticsScreen.title")}</Text>
       <Text style={styles.subtitle}>{t("statisticsScreen.subtitle")}</Text>
       <Calendar
-        key={`${isDark ? "dark" : "light"}-${i18n.language}`}
+        key={`${calendarDate}-${isDark ? "dark" : "light"}-${i18n.language}`}
         style={styles.calendarStyle}
         onMonthChange={handleMonthChange}
         hideExtraDays={true}
         markingType={"custom"}
+        current={calendarDate}
         theme={{
           textDayFontFamily: "Montserrat_400Regular",
           textMonthFontFamily: "Montserrat_500Medium",
@@ -55,6 +71,7 @@ export default function StatsScreen() {
             <TouchableOpacity
               onPress={() => {
                 if (emotionsForDay.length > 0) {
+                  skipNextResetRef.current = true;
                   navigation.navigate("StatsByDay", {
                     emotionsForDay,
                     chosenDate: date?.dateString ?? "",
