@@ -1,16 +1,21 @@
-import { Pressable, View, Text } from "react-native";
+import { Linking, Pressable, View, Text } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { getStyles } from "../styles/SignInScreen";
 import { useRegister } from "../hooks/useRegister";
 import type { SignUpValues } from "../types/signUpValuesType";
+import { useNavigation } from "@react-navigation/native";
+import type { NavigationProp } from "@react-navigation/native";
+import type { RootStackParamList } from "../navigation/types";
 import Button from "../components/Button";
 import FormInput from "../components/FormInput";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from "@env";
 
 export default function SignUpScreen() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const {
     error,
     showPassword,
@@ -126,6 +131,22 @@ export default function SignUpScreen() {
               </View>
             </View>
             <Button handleSubmit={handleSubmit} />
+            <Text style={styles.consentText}>
+              {t("signUpScreen.consentText")}
+              <Text
+                style={styles.consentLink}
+                onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
+              >
+                {t("signUpScreen.termsOfUse")}
+              </Text>
+              {t("signUpScreen.and")}
+              <Text
+                style={styles.consentLink}
+                onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
+              >
+                {t("signUpScreen.privacyPolicy")}
+              </Text>
+            </Text>
           </View>
           <View style={styles.footerContainer}>
             <Text>{t("signUpScreen.signInReminder")}</Text>
