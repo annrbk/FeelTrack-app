@@ -1,11 +1,10 @@
 import axios from "axios";
-import { API_URL } from "@env";
 import { SignInValues } from "../types/signInValuesType";
 
 export const loginUser = async (values: SignInValues) => {
   try {
     const response = await axios.post(
-      `${API_URL}/api/auth/signin`,
+      `${process.env.EXPO_PUBLIC_API_URL}/api/auth/signin`,
       {
         email: values.email,
         password: values.password,
