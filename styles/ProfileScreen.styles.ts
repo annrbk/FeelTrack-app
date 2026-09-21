@@ -27,6 +27,8 @@ export const getStyles = (colors: AppThemeColors) =>
       height: 72,
       borderRadius: 36,
       marginRight: 16,
+      borderWidth: 0.5,
+      borderColor: colors.borderPrimary,
     },
     avatarPlaceholder: {
       width: 72,

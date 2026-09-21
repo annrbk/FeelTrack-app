@@ -45,8 +45,6 @@ export const getStyles = (colors: AppThemeColors) =>
       marginTop: 16,
       justifyContent: "center",
       alignItems: "center",
-      borderWidth: 0.2,
-      borderColor: colors.textSecondary,
     },
     trackTitle: {
       fontSize: 22,

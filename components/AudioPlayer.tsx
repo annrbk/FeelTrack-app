@@ -8,6 +8,7 @@ import AudioProgressBar from "./AudioProgressBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import useCategoryColor from "../hooks/useCategoryColor";
 
 export default function AudioPlayer({
   toggleExpand,
@@ -23,6 +24,8 @@ export default function AudioPlayer({
   const { styles, colors, isDark } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
+
+  const trackColor = useCategoryColor(currentCategory);
 
   if (!currentTrack) return null;
 
@@ -44,16 +47,11 @@ export default function AudioPlayer({
         <View style={styles.rightPart} />
       </View>
       <View style={styles.headerContainer}>
-        <View
-          style={[
-            styles.coverContainer,
-            { backgroundColor: currentCategory?.color },
-          ]}
-        >
+        <View style={[styles.coverContainer, { backgroundColor: trackColor }]}>
           <Ionicons
             name="musical-notes-outline"
             size={72}
-            color={isDark ? colors.textPrimary : colors.textSecondary}
+            color={colors.btnActive}
             style={{ opacity: 0.2 }}
           />
         </View>

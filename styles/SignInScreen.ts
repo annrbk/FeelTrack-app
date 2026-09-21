@@ -86,6 +86,19 @@ export const getStyles = (colors: AppThemeColors) =>
       fontSize: 16,
       ...typography.medium,
     },
+    consentText: {
+      marginTop: 4,
+      marginBottom: 12,
+      color: colors.textSecondary,
+      fontSize: 12,
+      lineHeight: 18,
+      textAlign: "center",
+      ...typography.regular,
+    },
+    consentLink: {
+      color: colors.btnActive,
+      ...typography.bold,
+    },
     footerButton: {
       color: colors.btnActive,
       ...typography.bold,
