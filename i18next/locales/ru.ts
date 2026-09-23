@@ -145,6 +145,8 @@ const ru = {
       newPasswordPlaceholder: "Введите новый пароль",
       changePasswordButton: "Сменить пароль",
       aboutLabel: "О приложении",
+      privacyPolicyLabel: "Политика конфиденциальности",
+      termsOfUseLabel: "Условия использования",
     },
     deleteAccountModal: {
       title: "Удалить аккаунт?",

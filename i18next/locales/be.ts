@@ -143,6 +143,8 @@ const be = {
       newPasswordPlaceholder: "Увядзіце новы пароль",
       changePasswordButton: "Змяніць пароль",
       aboutLabel: "Аб дадатку",
+      privacyPolicyLabel: "Палітыка канфідэнцыяльнасці",
+      termsOfUseLabel: "Умовы выкарыстання",
     },
     deleteAccountModal: {
       title: "Выдаліць акаўнт?",

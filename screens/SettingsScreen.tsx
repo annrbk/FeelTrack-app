@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Linking, Pressable, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import SwitchTheme from "../components/SwitchTheme";
@@ -11,6 +11,7 @@ import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useAccount } from "../hooks/useAccount";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from "@env";
 
 export default function SettingsScreen() {
   const { theme, switchTheme } = useTheme();
@@ -86,6 +87,38 @@ export default function SettingsScreen() {
           >
             <Text style={styles.settingTitle}>
               {t("settingsScreen.aboutLabel")}
+            </Text>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={24}
+              color={colors.textSecondary}
+            />
+          </Pressable>
+        </View>
+        <View style={styles.privacyContainer}>
+          <Pressable
+            style={styles.buttonArrowRight}
+            accessibilityRole="button"
+            onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
+          >
+            <Text style={styles.settingTitle}>
+              {t("settingsScreen.privacyPolicyLabel")}
+            </Text>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={24}
+              color={colors.textSecondary}
+            />
+          </Pressable>
+        </View>
+        <View style={styles.termsContainer}>
+          <Pressable
+            style={styles.buttonArrowRight}
+            accessibilityRole="button"
+            onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
+          >
+            <Text style={styles.settingTitle}>
+              {t("settingsScreen.termsOfUseLabel")}
             </Text>
             <Ionicons
               name="chevron-forward-outline"

@@ -144,6 +144,8 @@ const en = {
       newPasswordPlaceholder: "Enter new password",
       changePasswordButton: "Change new password",
       aboutLabel: "About",
+      privacyPolicyLabel: "Privacy Policy",
+      termsOfUseLabel: "Terms of Use",
     },
     deleteAccountModal: {
       title: "Delete account?",

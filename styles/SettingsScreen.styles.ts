@@ -64,6 +64,22 @@ export const getStyles = (colors: AppThemeColors) =>
       borderWidth: 0.5,
       borderColor: colors.borderPrimary,
     },
+    privacyContainer: {
+      padding: 12,
+      backgroundColor: colors.surfacePrimary,
+      borderRadius: 12,
+      borderWidth: 0.5,
+      borderColor: colors.borderPrimary,
+      marginTop: 14,
+    },
+    termsContainer: {
+      padding: 12,
+      backgroundColor: colors.surfacePrimary,
+      borderRadius: 12,
+      borderWidth: 0.5,
+      borderColor: colors.borderPrimary,
+      marginTop: 14,
+    },
     aboutContainer: {
       padding: 12,
       backgroundColor: colors.surfacePrimary,
