@@ -7,6 +7,7 @@ export interface AppThemeColors {
   surfacePrimary: string;
   textPrimary: string;
   textSecondary: string;
+  textPlaceholder: string;
   borderPrimary: string;
   dividerPrimary: string;
   btnPrimary: string;

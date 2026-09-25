@@ -52,6 +52,7 @@ export default function SignInScreen() {
               values={values}
               textField="email"
               placeholder={t("signInScreen.emailPlaceholder")}
+              placeholderTextColor={colors.textPlaceholder}
             />
             <View style={styles.passwordContainer}>
               <View style={{ width: "100%", position: "relative" }}>
@@ -64,6 +65,7 @@ export default function SignInScreen() {
                   textField="password"
                   placeholder={t("signInScreen.passwordPlaceholder")}
                   secureTextEntry={!showPassword}
+                  placeholderTextColor={colors.textPlaceholder}
                 />
                 <Pressable
                   style={styles.eyeIcon}
@@ -78,7 +80,13 @@ export default function SignInScreen() {
               </View>
             </View>
             <View style={styles.buttonContainer}>
-              <Pressable style={styles.button} onPress={() => handleSubmit()}>
+              <Pressable
+                style={({ pressed }) => [
+                  styles.button,
+                  pressed && styles.buttonPressed,
+                ]}
+                onPress={() => handleSubmit()}
+              >
                 <Text style={styles.buttonText}>
                   {t("signInScreen.signInButtonText")}
                 </Text>

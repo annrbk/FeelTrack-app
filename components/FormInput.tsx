@@ -15,6 +15,7 @@ export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
     textField,
     placeholder,
     secureTextEntry,
+    placeholderTextColor,
   } = props;
   return (
     <>
@@ -31,6 +32,7 @@ export default function FormInput(props: CustomFormikSignUp & FormInputProps) {
         value={values[textField]}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        placeholderTextColor={placeholderTextColor}
       />
     </>
   );

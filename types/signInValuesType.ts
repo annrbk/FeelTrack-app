@@ -8,6 +8,7 @@ export type SignInValues = {
 export type SignInInputProps = {
   textField: keyof SignInValues;
   placeholder: string;
+  placeholderTextColor: string;
   secureTextEntry?: boolean;
 };
 

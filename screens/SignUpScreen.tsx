@@ -70,6 +70,7 @@ export default function SignUpScreen() {
               values={values}
               textField="name"
               placeholder={t("signUpScreen.namePlaceholder")}
+              placeholderTextColor={colors.textPlaceholder}
             />
             <FormInput
               handleChange={handleChange}
@@ -79,6 +80,7 @@ export default function SignUpScreen() {
               values={values}
               textField="email"
               placeholder={t("signUpScreen.emailPlaceholder")}
+              placeholderTextColor={colors.textPlaceholder}
             />
             <View style={styles.passwordContainer}>
               <View style={{ width: "100%", position: "relative" }}>
@@ -90,6 +92,7 @@ export default function SignUpScreen() {
                   values={values}
                   textField="password"
                   placeholder={t("signUpScreen.passwordPlaceholder")}
+                  placeholderTextColor={colors.textPlaceholder}
                   secureTextEntry={!showPassword}
                 />
                 <Pressable
@@ -114,6 +117,7 @@ export default function SignUpScreen() {
                   values={values}
                   textField="confirmPassword"
                   placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
+                  placeholderTextColor={colors.textPlaceholder}
                   secureTextEntry={!showConfirmPassword}
                 />
                 <Pressable
