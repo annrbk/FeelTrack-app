@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { emotions } from "../constants/emotions";
 import type { TodayStatisticsProps } from "../types/emotionTypes";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
@@ -7,6 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { getStyles } from "../styles/MainScreen.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import DeleteSwipeAction from "./DeleteSwipeAction";
 
 export default function TodayStatistics({
   todayEmotions,
@@ -23,18 +24,6 @@ export default function TodayStatistics({
     month: "long",
   });
 
-  const renderRightActions = (todayEmotionId: number) => {
-    return (
-      <TouchableOpacity
-        style={styles.deleteButton}
-        onPress={() => deleteTodayEmotion(todayEmotionId)}
-      >
-        <Text style={styles.deleteButtonText}>
-          {t("home.deleteButtonText")}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
   return (
     <View style={styles.statistics}>
       <View style={styles.statisticsHeader}>
@@ -62,13 +51,21 @@ export default function TodayStatistics({
             const emotionData = emotions.find(
               (e) => e.label === todayEmotion.label,
             );
-            const timeOfEmotion = new Date(todayEmotion.createdAt)
-              .toLocaleTimeString()
-              .slice(0, 5);
+            const timeOfEmotion = new Date(
+              todayEmotion.createdAt,
+            ).toLocaleTimeString(i18n.language, {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            });
             return (
               <Swipeable
                 key={todayEmotion.id}
-                renderRightActions={() => renderRightActions(todayEmotion.id)}
+                renderRightActions={() => (
+                  <DeleteSwipeAction
+                    onDelete={() => deleteTodayEmotion(todayEmotion.id)}
+                  />
+                )}
               >
                 <View style={styles.currentEmotion}>
                   <Text style={styles.currentEmotionEmoji}>

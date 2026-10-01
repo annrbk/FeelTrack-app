@@ -9,6 +9,10 @@ import { useAppStyle } from "../hooks/useAppStyle";
 import formatDate from "../utils/formatDate";
 import EmotionItem from "../components/EmotionItem";
 import { useTranslation } from "react-i18next";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import DeleteSwipeAction from "../components/DeleteSwipeAction";
+import { useEmotion } from "../hooks/useEmotion";
+import { useState } from "react";
 
 export default function StatsByDayScreen({
   route,
@@ -16,10 +20,24 @@ export default function StatsByDayScreen({
   route: RouteProp<RootStackParamList, "StatsByDay">;
 }) {
   const { emotionsForDay, chosenDate } = route.params;
+  const [currentEmotions, setCurrentEmotions] = useState(emotionsForDay);
+  const { deleteDayEmotion } = useEmotion();
+
   const { styles } = useAppStyle(getStyles);
   const { t, i18n } = useTranslation();
 
   const formattedDate = formatDate(chosenDate, i18n.language);
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteDayEmotion(id);
+      setCurrentEmotions((prevEmotions) =>
+        prevEmotions.filter((emotion) => emotion.id !== id),
+      );
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
@@ -41,21 +59,33 @@ export default function StatsByDayScreen({
             </Text>
           </View>
           <View style={styles.emotionList}>
-            {emotionsForDay.length > 0 &&
-              emotionsForDay.map((emotion) => {
+            {currentEmotions.length > 0 &&
+              currentEmotions.map((emotion) => {
                 const emotionData = emotions.find(
                   (e) => e.label === emotion.label,
                 );
-                const timeOfEmotion = new Date(emotion.createdAt)
-                  .toLocaleTimeString()
-                  .slice(0, 5);
+                const timeOfEmotion = new Date(
+                  emotion.createdAt,
+                ).toLocaleTimeString(i18n.language, {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: false,
+                });
                 return (
-                  <EmotionItem
+                  <Swipeable
                     key={emotion.id}
-                    emotionEmoji={emotionData?.emoji || ""}
-                    emotion={emotion}
-                    timeOfEmotion={timeOfEmotion}
-                  />
+                    renderRightActions={() => (
+                      <DeleteSwipeAction
+                        onDelete={() => handleDelete(emotion.id)}
+                      />
+                    )}
+                  >
+                    <EmotionItem
+                      emotionEmoji={emotionData?.emoji || ""}
+                      emotion={emotion}
+                      timeOfEmotion={timeOfEmotion}
+                    />
+                  </Swipeable>
                 );
               })}
           </View>

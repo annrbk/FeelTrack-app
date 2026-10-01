@@ -1,10 +1,29 @@
 import apiClient, { isAxiosError } from "./apiClient";
 
 export const addEmotionToUser = async (emotion: string, selectedDate: Date) => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const checkDate = new Date(selectedDate);
+  checkDate.setHours(0, 0, 0, 0);
+
+  if (checkDate > today) {
+    throw new Error("You cannot add an emotion for a future date.");
+  }
+
+  const now = new Date();
+  const dateWithCurrentTime = new Date(selectedDate);
+
+  dateWithCurrentTime.setHours(
+    now.getHours(),
+    now.getMinutes(),
+    now.getSeconds(),
+    now.getMilliseconds(),
+  );
   try {
     const response = await apiClient.post("/api/emotions/add", {
       emotion,
-      date: selectedDate.toISOString(),
+      date: dateWithCurrentTime.toISOString(),
     });
     return response.data;
   } catch (error) {

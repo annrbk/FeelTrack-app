@@ -22,6 +22,7 @@ export default function StatsScreen() {
     groupedEmotionsByDate,
     onClose,
     resetToToday,
+    getEmotions,
   } = useStats();
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -32,12 +33,13 @@ export default function StatsScreen() {
 
   useFocusEffect(
     useCallback(() => {
+      getEmotions();
       if (skipNextResetRef.current) {
         skipNextResetRef.current = false;
         return;
       }
       resetToToday();
-    }, [resetToToday]),
+    }, [getEmotions, resetToToday]),
   );
 
   return (

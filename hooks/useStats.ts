@@ -33,10 +33,6 @@ export const useStats = () => {
     setCurrentYear(year);
   }, []);
 
-  useEffect(() => {
-    getEmotions();
-  }, []);
-
   const handleMonthChange = (month: DateData) => {
     setCalendarDate(month.dateString);
     const date = new Date(month.dateString);
@@ -46,22 +42,20 @@ export const useStats = () => {
     setCurrentYear(year);
   };
 
-  const getEmotions = async () => {
+  const getEmotions = useCallback(async () => {
     try {
       const emotionData = await getEmotionsWithDates();
       setEmotions(emotionData);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
-  };
+  }, []);
 
   const filterEmotionByDate = (chosenDate: string) => {
     setChosenDate(chosenDate);
-    const emotionByDate = emotions.filter((emotion) => {
-      if (emotion.createdAt.slice(0, 10) === chosenDate) {
-        return emotion;
-      }
-    });
+    const emotionByDate = emotions.filter(
+      (emotion) => emotion.createdAt.slice(0, 10) === chosenDate,
+    );
     setEmotionByDate(emotionByDate);
     setVisible(true);
   };
@@ -99,5 +93,6 @@ export const useStats = () => {
     groupedEmotionsByDate,
     onClose,
     resetToToday,
+    getEmotions,
   };
 };

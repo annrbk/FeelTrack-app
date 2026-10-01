@@ -14,6 +14,7 @@ export const useEmotion = () => {
   const [successModal, setSuccessModal] = useState<boolean>(false);
   const [todayEmotions, setTodayEmotions] = useState<EmotionFromDB[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [emotionsForDay, setEmotionsForDay] = useState<EmotionFromDB[]>([]);
 
   const addEmotion = async (emotion: Emotion, selectedDate: Date) => {
     if (!emotion) return;
@@ -21,7 +22,7 @@ export const useEmotion = () => {
       await addEmotionToUser(emotion.label, selectedDate);
       setModal(false);
       setSuccessModal(true);
-      getEmotions();
+      await getEmotions();
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -45,6 +46,15 @@ export const useEmotion = () => {
       setTodayEmotions(updatedEmotions);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
+    }
+  };
+
+  const deleteDayEmotion = async (id: number) => {
+    try {
+      await deleteEmotion(id);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+      throw error;
     }
   };
 
@@ -85,5 +95,8 @@ export const useEmotion = () => {
     goToNextDate,
     goToPreviousDate,
     selectedDate,
+    emotionsForDay,
+    setEmotionsForDay,
+    deleteDayEmotion,
   };
 };
