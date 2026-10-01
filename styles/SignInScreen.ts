@@ -81,6 +81,9 @@ export const getStyles = (colors: AppThemeColors) =>
       marginBottom: 12,
       alignItems: "center",
     },
+    buttonPressed: {
+      backgroundColor: colors.btnActive,
+    },
     buttonText: {
       color: colors.white,
       fontSize: 16,

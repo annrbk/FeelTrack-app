@@ -14,7 +14,10 @@ export default function Button({ handleSubmit }: ButtonProps) {
   return (
     <View style={styles.buttonContainer}>
       <Pressable
-        style={styles.button}
+        style={({ pressed }) => [
+          styles.button,
+          pressed && styles.buttonPressed,
+        ]}
         onPress={() => {
           handleSubmit();
         }}

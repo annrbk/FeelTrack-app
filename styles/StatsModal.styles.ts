@@ -35,6 +35,9 @@ export const getStyles = (colors: AppThemeColors) =>
       paddingHorizontal: 24,
       alignSelf: "center",
     },
+    buttonPressed: {
+      backgroundColor: colors.btnActive,
+    },
     buttonText: {
       color: colors.white,
       ...typography.regular,

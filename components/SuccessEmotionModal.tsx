@@ -38,7 +38,11 @@ export default function SuccessEmotionModal({
           />
           <Text style={styles.modalText}>{t("successModal.modalText")}</Text>
           <Pressable
-            style={[styles.button, styles.buttonClose]}
+            style={({ pressed }) => [
+              styles.button,
+              styles.buttonClose,
+              pressed && styles.buttonPressed,
+            ]}
             onPress={onClose}
           >
             <Text style={styles.textStyle}>{text}</Text>

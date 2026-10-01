@@ -22,7 +22,13 @@ export default function StatsModal({ visible, onClose, text }: showModalProps) {
           <View>
             <Text style={styles.text}>{text}</Text>
           </View>
-          <Pressable style={styles.button} onPress={() => onClose()}>
+          <Pressable
+            style={({ pressed }) => [
+              styles.button,
+              pressed && styles.buttonPressed,
+            ]}
+            onPress={onClose}
+          >
             <Text style={styles.buttonText}>{t("statsModal.buttonText")}</Text>
           </Pressable>
         </View>

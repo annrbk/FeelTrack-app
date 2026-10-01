@@ -1,5 +1,5 @@
-import React from "react";
-import { Modal, Text, Pressable, View } from "react-native";
+import React, { useState } from "react";
+import { Modal, Text, Pressable, View, ActivityIndicator } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getStyles } from "../styles/SuccessModal.styles";
 import type { EmotionModalProps } from "../types/emotionTypes";
@@ -14,6 +14,19 @@ export default function EmotionModal({
 }: EmotionModalProps) {
   const { styles, colors } = useAppStyle(getStyles);
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleConfirm = async () => {
+    if (isLoading) return;
+    try {
+      setIsLoading(true);
+      await addEmotion(emotion);
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Modal
@@ -41,13 +54,22 @@ export default function EmotionModal({
             />
           </Text>
           <Pressable
-            style={[styles.button, styles.buttonClose]}
+            style={({ pressed }) => [
+              styles.button,
+              styles.buttonClose,
+              pressed && styles.buttonPressed,
+            ]}
             aria-label="Confirm"
-            onPress={() => addEmotion(emotion)}
+            disabled={isLoading}
+            onPress={handleConfirm}
           >
-            <Text style={styles.textStyle}>
-              {t("emotionModal.confirmButtonText")}
-            </Text>
+            {isLoading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.textStyle}>
+                {t("emotionModal.confirmButtonText")}
+              </Text>
+            )}
           </Pressable>
         </View>
       </View>
