@@ -50,7 +50,12 @@ export default function EmotionsSection({
                 }}
               >
                 <Text style={styles.emoji}>{item.emoji}</Text>
-                <Text style={styles.emotionLabel}>
+                <Text
+                  style={styles.emotionLabel}
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.75}
+                >
                   {t(`home.emotions.${item.label}`)}
                 </Text>
               </Pressable>

@@ -16,7 +16,7 @@ export type EmotionModalProps = {
   visible: boolean;
   emotion: Emotion;
   onClose: () => void;
-  addEmotion: (emotion: Emotion) => void;
+  addEmotion: (emotion: Emotion) => Promise<void>;
 };
 
 export type TodayStatisticsProps = {
