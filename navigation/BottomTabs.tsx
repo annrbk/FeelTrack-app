@@ -40,7 +40,7 @@ export default function BottomTabs() {
           elevation: 0,
           shadowOpacity: 0,
         },
-        tabBarActiveTintColor: colors.btnPrimary,
+        tabBarActiveTintColor: colors.bottomActive,
         tabBarInactiveTintColor: colors.btnInactive,
         headerShown: false,
       })}

@@ -21,7 +21,8 @@ export default function VerifyCodeScreen() {
   const { t } = useTranslation();
   const route = useRoute<RouteProp<RootStackParamList, "VerifyCode">>();
   const { email } = route.params;
-  const { code, setCode, isLoading, requestCode, resendTimer, verifyCode } = useForgotPassword();
+  const { code, setCode, isLoading, requestCode, resendTimer, verifyCode } =
+    useForgotPassword();
 
   return (
     <SafeAreaView style={styles.safeArea} edges={["top"]}>
@@ -41,7 +42,7 @@ export default function VerifyCodeScreen() {
           <View style={styles.mainCard}>
             <>
               <Text style={styles.description}>
-                {t("forgotPassword.step1Description")}
+                {t("forgotPassword.step2Description", { email })}
               </Text>
               <TextInput
                 style={styles.input}
