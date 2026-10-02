@@ -12,6 +12,7 @@ import { avatars } from "../constants/avatars";
 import { getStyles } from "../styles/AccountScreen.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
+import { scale } from "../utils/responsive";
 
 export default function AccountScreen() {
   const {
@@ -67,7 +68,7 @@ export default function AccountScreen() {
               <View style={styles.avatar}>
                 <Ionicons
                   name="person-outline"
-                  size={32}
+                  size={scale(32)}
                   color={isDark ? colors.btnPrimary : colors.textSecondary}
                 />
               </View>
@@ -79,7 +80,7 @@ export default function AccountScreen() {
             >
               <Ionicons
                 name="add-outline"
-                size={22}
+                size={scale(22)}
                 color={isDark ? colors.btnPrimary : colors.textSecondary}
               />
             </Pressable>
