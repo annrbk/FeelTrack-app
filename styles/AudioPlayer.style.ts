@@ -45,9 +45,11 @@ export const getStyles = (colors: AppThemeColors) =>
       marginTop: 16,
       justifyContent: "center",
       alignItems: "center",
+      shadowColor: colors.textSecondary,
+      elevation: 8,
     },
     trackTitle: {
-      fontSize: 22,
+      fontSize: 24,
       ...typography.medium,
       color: colors.textPrimary,
       textAlign: "center",
@@ -61,7 +63,7 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     progressContainer: {
       width: "100%",
-      height: 32,
+      height: 44,
     },
     progressLabelContainer: {
       flexDirection: "row",
@@ -79,7 +81,30 @@ export const getStyles = (colors: AppThemeColors) =>
       justifyContent: "space-around",
       alignItems: "center",
       width: "100%",
-      paddingHorizontal: 12,
+      paddingHorizontal: 4,
       marginTop: 18,
+    },
+    controlButton: {
+      width: 46,
+      height: 46,
+      borderRadius: 23,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.backgroundColorPrimary,
+      borderWidth: 0.8,
+      borderColor: colors.btnPlayer,
+    },
+    controlButtonActive: {
+      backgroundColor: colors.btnPlayer,
+      borderColor: colors.btnPlayer,
+    },
+    mainControlButton: {
+      width: 68,
+      height: 68,
+      borderRadius: 34,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.btnPlayer,
+      elevation: 5,
     },
   });

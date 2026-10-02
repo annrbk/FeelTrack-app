@@ -50,9 +50,9 @@ export default function AudioPlayer({
         <View style={[styles.coverContainer, { backgroundColor: trackColor }]}>
           <Ionicons
             name="musical-notes-outline"
-            size={72}
-            color={colors.btnActive}
-            style={{ opacity: 0.2 }}
+            size={124}
+            color={colors.textSecondary}
+            style={{ opacity: 0.1 }}
           />
         </View>
         <Text style={styles.trackTitle}>{currentTrack?.title}</Text>

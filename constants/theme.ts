@@ -10,17 +10,19 @@ export const ThemeColors: AppThemeColors = {
   textPlaceholder: "#A9A9A9",
   btnPrimary: "#9E9A97",
   btnActive: "#9b928b",
-  btnInactive: "#D0CECB",
+  btnInactive: "#cdcbc7",
+  btnPlayer: "#cbc7c4",
   btnWarning: "#DD5A5A",
   btnSuccess: "#5AAD72",
   white: "#FFFFFF",
   btnControl: "#B5B1AE",
+  bottomActive: "#9e978e",
 
   bgCalm: "#d5d1cd",
   bgEnergize: "#f1e3ca",
   bgSleep: "#e2dce7",
-  bgBalance: "#dfdcc9",
-  bgFocus: "#DCE5DC",
+  bgBalance: "#e6e3d6",
+  bgFocus: "#e3e8e3",
 };
 
 export const DarkThemeColors: AppThemeColors = {
@@ -33,11 +35,13 @@ export const DarkThemeColors: AppThemeColors = {
   textPlaceholder: "#A9A9A9",
   btnPrimary: "#a1b1bd",
   btnActive: "#99A3AB",
-  btnInactive: "#D4DBE1",
+  btnInactive: "#bac6d1",
+  btnPlayer: "#c1c7cb",
   btnWarning: "#DD5A5A",
   btnSuccess: "#5AAD72",
   white: "#FFFFFF",
   btnControl: "#B2BBC2",
+  bottomActive: "#7a8f9f",
 
   bgCalm: "#dde6ed",
   bgEnergize: "#eddfc7",

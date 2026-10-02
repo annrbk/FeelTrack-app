@@ -21,37 +21,47 @@ export default function ControlsButtons() {
 
   return (
     <View style={styles.musicControls}>
-      <TouchableOpacity onPress={shuffleQueue}>
+      <TouchableOpacity
+        style={[styles.controlButton, isShuffled && styles.controlButtonActive]}
+        onPress={shuffleQueue}
+      >
         <Ionicons
-          name="shuffle-outline"
-          size={38}
-          color={isShuffled ? colors.btnControl : colors.textPrimary}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={playPrevious}>
-        <Ionicons name="play-skip-back" size={38} color={colors.textPrimary} />
-      </TouchableOpacity>
-      {isPlaying ? (
-        <TouchableOpacity onPress={pauseTrack}>
-          <Ionicons name="pause-circle" size={78} color={colors.textPrimary} />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity onPress={resumeTrack}>
-          <Ionicons name="play-circle" size={78} color={colors.textPrimary} />
-        </TouchableOpacity>
-      )}
-      <TouchableOpacity onPress={playNext}>
-        <Ionicons
-          name="play-skip-forward"
-          size={38}
+          name={isShuffled ? "shuffle" : "shuffle-outline"}
+          size={30}
           color={colors.textPrimary}
         />
       </TouchableOpacity>
-      <TouchableOpacity onPress={toggleRepeat}>
+      <TouchableOpacity style={styles.controlButton} onPress={playPrevious}>
         <Ionicons
-          name="repeat-outline"
-          size={38}
-          color={repeatMode === "off" ? colors.textPrimary : colors.btnControl}
+          name="play-skip-back-outline"
+          size={30}
+          color={colors.textPrimary}
+        />
+      </TouchableOpacity>
+      {isPlaying ? (
+        <TouchableOpacity style={styles.mainControlButton} onPress={pauseTrack}>
+          <Ionicons name="pause" size={34} color={colors.textPrimary} />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={styles.mainControlButton} onPress={resumeTrack}>
+          <Ionicons name="play" size={34} color={colors.textPrimary} />
+        </TouchableOpacity>
+      )}
+      <TouchableOpacity style={styles.controlButton} onPress={playNext}>
+        <Ionicons
+          name="play-skip-forward-outline"
+          size={30}
+          color={colors.textPrimary}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.controlButton, repeatMode === "one" && styles.controlButtonActive]}
+        onPress={toggleRepeat}
+      >
+        <Ionicons
+          name={repeatMode === "one" ? "repeat" : "repeat-outline"}
+          size={30}
+          color={colors.textPrimary}
         />
       </TouchableOpacity>
     </View>

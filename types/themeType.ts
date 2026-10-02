@@ -15,8 +15,10 @@ export interface AppThemeColors {
   btnInactive: string;
   btnWarning: string;
   btnSuccess: string;
+  btnPlayer: string;
   white?: string;
   btnControl: string;
+  bottomActive: string;
 
   bgCalm?: string;
   bgEnergize?: string;

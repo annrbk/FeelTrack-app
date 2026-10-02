@@ -6,25 +6,17 @@ import { useAppStyle } from "../hooks/useAppStyle";
 
 export default function MiniControlButtons() {
   const { isPlaying, pauseTrack, resumeTrack } = usePlayer();
-  const { styles, colors, isDark } = useAppStyle(getStyles);
+  const { styles, colors } = useAppStyle(getStyles);
 
   return (
     <>
       {isPlaying ? (
         <TouchableOpacity style={styles.playButton} onPress={pauseTrack}>
-          <Ionicons
-            name="pause-circle-outline"
-            size={35}
-            color={isDark ? colors.textSecondary : colors.btnPrimary}
-          />
+          <Ionicons name="pause" size={24} color={colors.textPrimary} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity style={styles.playButton} onPress={resumeTrack}>
-          <Ionicons
-            name="play-circle-outline"
-            size={35}
-            color={isDark ? colors.textSecondary : colors.btnPrimary}
-          />
+          <Ionicons name="play" size={24} color={colors.textPrimary} />
         </TouchableOpacity>
       )}
     </>

@@ -6,6 +6,7 @@ import MiniControlButtons from "./MiniControlButtons";
 import { useAudio } from "../hooks/useAudio";
 import { useAppStyle } from "../hooks/useAppStyle";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import useCategoryColor from "../hooks/useCategoryColor";
 
 export default function MiniPlayer({
   toggleExpand,
@@ -14,6 +15,7 @@ export default function MiniPlayer({
 }) {
   const { currentTrack } = usePlayer();
   const currentCategory = useAudio();
+  const categoryColor = useCategoryColor(currentCategory);
 
   const { styles, colors } = useAppStyle(getStyles);
 
@@ -22,20 +24,13 @@ export default function MiniPlayer({
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.leftSection} onPress={toggleExpand}>
-        <View style={styles.leftSection}>
-          <View
-            style={[
-              styles.miniCover,
-              { backgroundColor: currentCategory?.color },
-            ]}
-          >
-            <Ionicons
-              name="musical-notes-outline"
-              size={24}
-              color={colors.textPrimary}
-              style={{ opacity: 0.2 }}
-            />
-          </View>
+        <View style={[styles.miniCover, { backgroundColor: categoryColor }]}>
+          <Ionicons
+            name="musical-notes-outline"
+            size={34}
+            color={colors.textSecondary}
+            style={{ opacity: 0.1 }}
+          />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{currentTrack?.title}</Text>
