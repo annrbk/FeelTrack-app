@@ -1,13 +1,15 @@
 import { StyleSheet } from "react-native";
 import { AppThemeColors } from "../types/themeType";
 import { typography } from "./typography";
+import { scale } from "../utils/responsive";
 
 export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
       alignItems: "center",
-      padding: 24,
+      paddingHorizontal: scale(24),
+      paddingVertical: scale(12),
       backgroundColor: colors.backgroundColorPrimary,
     },
     formContainer: {
@@ -20,32 +22,32 @@ export const getStyles = (colors: AppThemeColors) =>
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-      marginBottom: 24,
-      paddingVertical: 14,
-      gap: 4,
+      marginBottom: scale(12),
+      paddingVertical: scale(14),
+      gap: scale(4),
     },
     title: {
-      fontSize: 28,
+      fontSize: scale(28),
       ...typography.semiBold,
-      marginBottom: 16,
+      marginBottom: scale(16),
       color: colors.textPrimary,
     },
     subtitle: {
-      fontSize: 16,
-      marginBottom: 32,
+      fontSize: scale(16),
+      marginBottom: scale(32),
       color: colors.textSecondary,
       textAlign: "center",
       ...typography.regular,
     },
     input: {
       width: "100%",
-      height: 48,
+      height: scale(48),
       borderColor: colors.borderPrimary,
       borderWidth: 1,
-      borderRadius: 8,
-      paddingHorizontal: 16,
-      marginBottom: 12,
-      fontSize: 16,
+      borderRadius: scale(8),
+      paddingHorizontal: scale(16),
+      marginBottom: scale(12),
+      fontSize: scale(16),
       color: colors.textPrimary,
       ...typography.regular,
     },
@@ -54,9 +56,9 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     error: {
       color: colors.btnWarning,
-      marginBottom: 4,
+      marginBottom: scale(4),
       alignSelf: "flex-start",
-      fontSize: 14,
+      fontSize: scale(14),
       ...typography.regular,
     },
     passwordContainer: {
@@ -66,8 +68,8 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     eyeIcon: {
       position: "absolute",
-      right: 16,
-      bottom: 24,
+      right: scale(16),
+      bottom: scale(24),
       zIndex: 1,
     },
     buttonContainer: {
@@ -75,10 +77,10 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     button: {
       backgroundColor: colors.btnPrimary,
-      paddingVertical: 12,
-      paddingHorizontal: 20,
-      borderRadius: 8,
-      marginBottom: 12,
+      paddingVertical: scale(12),
+      paddingHorizontal: scale(20),
+      borderRadius: scale(8),
+      marginBottom: scale(12),
       alignItems: "center",
     },
     buttonPressed: {
@@ -86,15 +88,15 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     buttonText: {
       color: colors.white,
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.medium,
     },
     consentText: {
-      marginTop: 4,
-      marginBottom: 12,
+      marginTop: scale(4),
+      marginBottom: scale(12),
       color: colors.textSecondary,
-      fontSize: 12,
-      lineHeight: 18,
+      fontSize: scale(12),
+      lineHeight: scale(18),
       textAlign: "center",
       ...typography.regular,
     },

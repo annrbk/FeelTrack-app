@@ -1,43 +1,44 @@
 import { StyleSheet } from "react-native";
 import { AppThemeColors } from "../types/themeType";
 import { typography } from "./typography";
+import { scale } from "../utils/responsive";
 
-export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
+export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: colors.backgroundColorPrimary,
-      padding: 24,
+      padding: scale(24),
       justifyContent: "center",
     },
     content: {
-      gap: 12,
+      gap: scale(12),
     },
     title: {
-      fontSize: 20,
+      fontSize: scale(20),
       ...typography.semiBold,
       color: colors.textPrimary,
       textAlign: "center",
     },
     description: {
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.regular,
       color: colors.textSecondary,
       textAlign: "center",
     },
     button: {
       backgroundColor: colors.btnPrimary,
-      paddingVertical: 12,
-      paddingHorizontal: 20,
-      borderRadius: 8,
-      marginBottom: 12,
+      paddingVertical: scale(12),
+      paddingHorizontal: scale(20),
+      borderRadius: scale(8),
+      marginBottom: scale(12),
     },
     buttonPressed: {
       backgroundColor: colors.btnActive,
     },
     buttonText: {
       color: colors.white,
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.medium,
       textAlign: "center",
     },

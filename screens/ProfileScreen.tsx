@@ -19,7 +19,7 @@ export default function ProfileScreen() {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           {selectedAvatar ? (

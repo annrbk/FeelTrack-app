@@ -40,7 +40,7 @@ export default function StatsByDayScreen({
   };
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={["top"]}>
+    <SafeAreaView style={styles.safeArea} edges={["top", "bottom"]}>
       <View style={styles.headerContainer}>
         <BackButton />
         <Text style={styles.headerTitle} pointerEvents="none">

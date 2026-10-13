@@ -35,10 +35,12 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
     },
     button: {
       backgroundColor: colors.btnPrimary,
+      width: 160,
+      height: 44,
       borderRadius: 14,
-      paddingVertical: 10,
-      paddingHorizontal: 24,
       alignSelf: "center",
+      alignItems: "center",
+      justifyContent: "center",
     },
     buttonText: {
       color: isDark ? colors.textPrimary : colors.white,

@@ -1,4 +1,5 @@
 import { Linking, Pressable, View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { getStyles } from "../styles/SignInScreen";
@@ -57,7 +58,7 @@ export default function SignUpScreen() {
         errors,
         touched,
       }) => (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
           <View style={styles.formContainer}>
             <Text style={styles.title}>{t("signUpScreen.title")}</Text>
             <Text style={styles.subtitle}>{t("signUpScreen.subtitle")}</Text>
@@ -160,7 +161,7 @@ export default function SignUpScreen() {
               </Text>
             </Pressable>
           </View>
-        </View>
+        </SafeAreaView>
       )}
     </Formik>
   );

@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import BackButton from "../components/BackButton";
 import { getStyles } from "../styles/ChangeLanguageScreen.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
@@ -23,7 +24,7 @@ export default function ChangeLanguageScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <View style={styles.headerContainer}>
         <BackButton />
         <Text style={styles.headerTitle}>
@@ -82,6 +83,6 @@ export default function ChangeLanguageScreen() {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { getStyles } from "../styles/AuthScreen.styles";
@@ -13,7 +14,7 @@ export default function AuthScreen() {
   const { t } = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <Text style={styles.title}>{t("authScreen.title")}</Text>
       <Text style={styles.subtitle}>{t("authScreen.subtitle")}</Text>
 
@@ -41,6 +42,6 @@ export default function AuthScreen() {
           </Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

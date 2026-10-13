@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { AppThemeColors } from "../types/themeType";
 import { typography } from "./typography";
+import { scale } from "../utils/responsive";
 
 export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
@@ -12,82 +13,88 @@ export const getStyles = (colors: AppThemeColors) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      paddingHorizontal: 16,
-      paddingVertical: 12,
+      width: "100%",
+      maxWidth: 560,
+      alignSelf: "center",
+      paddingHorizontal: scale(16),
+      paddingVertical: scale(12),
     },
     headerTitle: {
       ...typography.semiBold,
-      fontSize: 18,
+      fontSize: scale(18),
       color: colors.textPrimary,
     },
     rightPart: {
-      width: 40,
+      width: scale(40),
     },
     scrollView: {
       flex: 1,
     },
     contentContainer: {
-      padding: 16,
-      paddingBottom: 24,
+      width: "100%",
+      maxWidth: 560,
+      alignSelf: "center",
+      padding: scale(16),
+      paddingBottom: scale(24),
     },
     card: {
       backgroundColor: colors.surfacePrimary,
-      borderRadius: 16,
-      padding: 16,
-      marginBottom: 12,
+      borderRadius: scale(16),
+      padding: scale(16),
+      marginBottom: scale(12),
       borderWidth: 0.5,
       borderColor: colors.borderPrimary,
     },
     subtitle: {
       ...typography.semiBold,
-      fontSize: 18,
+      fontSize: scale(18),
       color: colors.textPrimary,
-      marginBottom: 8,
+      marginBottom: scale(8),
     },
     paragraph: {
       ...typography.regular,
-      fontSize: 14,
-      lineHeight: 20,
+      fontSize: scale(14),
+      lineHeight: scale(20),
       color: colors.textSecondary,
-      marginBottom: 8,
+      marginBottom: scale(8),
     },
     sectionTitle: {
       ...typography.semiBold,
-      fontSize: 16,
+      fontSize: scale(16),
       color: colors.textPrimary,
-      marginBottom: 12,
+      marginBottom: scale(12),
     },
     featureItem: {
-      marginBottom: 8,
+      marginBottom: scale(8),
     },
     featureName: {
       ...typography.medium,
-      fontSize: 14,
+      fontSize: scale(14),
       color: colors.textPrimary,
-      marginBottom: 2,
+      marginBottom: scale(2),
     },
     featureDesc: {
       ...typography.regular,
-      fontSize: 13,
-      lineHeight: 18,
+      fontSize: scale(13),
+      lineHeight: scale(18),
       color: colors.textSecondary,
     },
     footer: {
       alignItems: "center",
-      marginTop: 8,
-      paddingHorizontal: 16,
+      marginTop: scale(8),
+      paddingHorizontal: scale(16),
     },
     thankYouText: {
       ...typography.medium,
-      fontSize: 14,
+      fontSize: scale(14),
       color: colors.textPrimary,
       textAlign: "center",
-      marginBottom: 8,
+      marginBottom: scale(8),
     },
     versionText: {
       ...typography.regular,
-      fontSize: 12,
+      fontSize: scale(12),
       color: colors.textSecondary,
-      marginBottom: 2,
+      marginBottom: scale(2),
     },
   });

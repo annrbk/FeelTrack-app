@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/SelfCareScreen.styles";
 import CareSection from "../components/CareSection";
 import { careData } from "../constants/careData";
@@ -11,12 +11,12 @@ export default function SelfCareScreen() {
   const { t } = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <CareSection
         data={careData}
         title={t("careScreen.title")}
         subtitle={t("careScreen.subtitle")}
       />
-    </View>
+    </SafeAreaView>
   );
 }

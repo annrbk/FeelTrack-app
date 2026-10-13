@@ -5,7 +5,7 @@ import { usePlayer } from "../PlayerContext";
 import { useAudio } from "../hooks/useAudio";
 import ControlsButtons from "./ControlButtons";
 import AudioProgressBar from "./AudioProgressBar";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 import useCategoryColor from "../hooks/useCategoryColor";
@@ -19,8 +19,6 @@ export default function AudioPlayer({
 
   const currentCategory = useAudio();
 
-  const insets = useSafeAreaInsets();
-
   const { styles, colors, isDark } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
@@ -30,7 +28,7 @@ export default function AudioPlayer({
   if (!currentTrack) return null;
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom + 16 }]}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <View style={styles.topHeader}>
         <Pressable style={styles.closeButton} onPress={toggleExpand}>
           <Ionicons
@@ -60,6 +58,6 @@ export default function AudioPlayer({
       </View>
       <AudioProgressBar />
       <ControlsButtons />
-    </View>
+    </SafeAreaView>
   );
 }

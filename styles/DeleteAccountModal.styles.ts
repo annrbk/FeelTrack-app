@@ -48,12 +48,14 @@ export const getStyles = (colors: AppThemeColors) =>
       marginTop: 6,
     },
     cancelButton: {
+      width: 110,
+      height: 44,
       borderRadius: 14,
-      paddingVertical: 10,
-      paddingHorizontal: 20,
       backgroundColor: colors.surfacePrimary,
       borderWidth: 0.5,
       borderColor: colors.borderPrimary,
+      alignItems: "center",
+      justifyContent: "center",
     },
     cancelText: {
       color: colors.textPrimary,
@@ -62,10 +64,12 @@ export const getStyles = (colors: AppThemeColors) =>
       fontSize: 16,
     },
     deleteButton: {
+      width: 110,
+      height: 44,
       borderRadius: 14,
-      paddingVertical: 10,
-      paddingHorizontal: 20,
       backgroundColor: colors.btnWarning,
+      alignItems: "center",
+      justifyContent: "center",
     },
     deleteText: {
       color: colors.white,

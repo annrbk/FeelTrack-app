@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { typography } from "./typography";
 import { AppThemeColors } from "../types/themeType";
+import { scale } from "../utils/responsive";
 
 export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
   StyleSheet.create({
@@ -9,80 +10,80 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       backgroundColor: colors.backgroundColorPrimary,
     },
     backButtonContainer: {
-      paddingHorizontal: 16,
-      paddingTop: 16,
+      paddingHorizontal: scale(16),
+      paddingTop: scale(16),
     },
     header: {
       flexDirection: "row",
-      padding: 12,
+      padding: scale(12),
       alignItems: "center",
       backgroundColor: colors.bgCalm,
-      borderRadius: 12,
-      marginHorizontal: 14,
-      marginTop: 8,
+      borderRadius: scale(12),
+      marginHorizontal: scale(14),
+      marginTop: scale(8),
     },
     imageContainer: {
-      marginRight: 16,
+      marginRight: scale(16),
     },
     image: {
-      width: 100,
-      height: 100,
-      borderRadius: 12,
+      width: scale(100),
+      height: scale(100),
+      borderRadius: scale(12),
     },
     headerTextContainer: {
       flex: 1,
       justifyContent: "center",
     },
     headerTitle: {
-      fontSize: 28,
+      fontSize: scale(28),
       ...typography.medium,
       color: colors.textPrimary,
     },
     headerSubtitle: {
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.regular,
       color: isDark ? colors.textPrimary : colors.textSecondary,
-      marginTop: 4,
+      marginTop: scale(4),
     },
     listContainer: {
-      paddingHorizontal: 16,
-      paddingTop: 16,
+      paddingHorizontal: scale(16),
+      paddingTop: scale(16),
     },
     listItem: {
       flexDirection: "row",
       alignItems: "center",
       backgroundColor: colors.backgroundColorPrimary,
-      padding: 12,
-      marginBottom: 8,
-      borderRadius: 10,
+      padding: scale(12),
+      marginBottom: scale(8),
+      borderRadius: scale(10),
       borderWidth: 0.5,
       borderColor: colors.dividerPrimary,
     },
     trackNumber: {
-      width: 30,
-      fontSize: 14,
+      width: scale(30),
+      fontSize: scale(14),
       ...typography.medium,
       color: colors.textSecondary,
     },
     trackInfo: {
       flex: 1,
-      marginLeft: 12,
+      marginLeft: scale(12),
     },
     trackTitle: {
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.medium,
       color: colors.textPrimary,
-      marginBottom: 2,
+      marginBottom: scale(2),
     },
     trackAlbum: {
-      fontSize: 13,
+      fontSize: scale(13),
       ...typography.regular,
       color: colors.textSecondary,
     },
     trackDuration: {
-      fontSize: 13,
+      fontSize: scale(13),
       ...typography.regular,
       color: colors.textSecondary,
-      marginLeft: 12,
+      marginLeft: scale(12),
     },
   });

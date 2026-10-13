@@ -1,5 +1,6 @@
 import { Calendar } from "react-native-calendars";
 import { View, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useCallback, useRef } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { getStyles } from "../styles/StatsScreen.styles";
@@ -43,7 +44,7 @@ export default function StatsScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <Text style={styles.title}>{t("statisticsScreen.title")}</Text>
       <Text style={styles.subtitle}>{t("statisticsScreen.subtitle")}</Text>
       <Calendar
@@ -120,6 +121,6 @@ export default function StatsScreen() {
           text={t("statisticsScreen.emptyEmotions", { date: chosenDate })}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }

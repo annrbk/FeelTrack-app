@@ -1,4 +1,5 @@
 import { View, Text, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { getStyles } from "../styles/FirstScreen.styles";
@@ -13,7 +14,7 @@ export default function FirstScreen() {
   const { t } = useTranslation();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <View style={styles.content}>
         <Text style={styles.title}>{t("firstScreen.title")}</Text>
         <Text style={styles.description}>{t("firstScreen.description")}</Text>
@@ -27,6 +28,6 @@ export default function FirstScreen() {
           <Text style={styles.buttonText}>{t("firstScreen.buttonText")}</Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

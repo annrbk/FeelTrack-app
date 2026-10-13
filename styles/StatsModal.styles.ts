@@ -30,10 +30,12 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     button: {
       backgroundColor: colors.btnPrimary,
+      width: 160,
+      height: 44,
       borderRadius: 14,
-      paddingVertical: 10,
-      paddingHorizontal: 24,
       alignSelf: "center",
+      alignItems: "center",
+      justifyContent: "center",
     },
     buttonPressed: {
       backgroundColor: colors.btnActive,

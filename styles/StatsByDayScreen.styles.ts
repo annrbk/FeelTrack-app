@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { typography } from "./typography";
 import { AppThemeColors } from "../types/themeType";
+import { scale } from "../utils/responsive";
 
 export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
@@ -11,8 +12,8 @@ export const getStyles = (colors: AppThemeColors) =>
     headerContainer: {
       flexDirection: "row",
       alignItems: "center",
-      paddingHorizontal: 16,
-      paddingVertical: 12,
+      paddingHorizontal: scale(16),
+      paddingVertical: scale(16),
       backgroundColor: colors.backgroundColorPrimary,
       zIndex: 10,
     },
@@ -21,7 +22,7 @@ export const getStyles = (colors: AppThemeColors) =>
       left: 0,
       right: 0,
       textAlign: "center",
-      fontSize: 18,
+      fontSize: scale(18),
       ...typography.medium,
       color: colors.textPrimary,
     },
@@ -30,14 +31,14 @@ export const getStyles = (colors: AppThemeColors) =>
       backgroundColor: colors.backgroundColorPrimary,
     },
     scrollContent: {
-      paddingVertical: 12,
-      paddingBottom: 32,
+      paddingVertical: scale(12),
+      paddingBottom: scale(32),
     },
     mainContainer: {
       backgroundColor: colors.surfacePrimary,
-      borderRadius: 16,
-      padding: 16,
-      marginHorizontal: 16,
+      borderRadius: scale(16),
+      padding: scale(16),
+      marginHorizontal: scale(16),
       borderWidth: 0.5,
       borderColor: colors.borderPrimary,
     },
@@ -45,44 +46,44 @@ export const getStyles = (colors: AppThemeColors) =>
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "flex-start",
-      marginBottom: 14,
+      marginBottom: scale(14),
     },
     statisticsTitle: {
-      fontSize: 18,
+      fontSize: scale(18),
       ...typography.medium,
       color: colors.textPrimary,
     },
     emotionList: {
-      gap: 8,
+      gap: scale(8),
       width: "100%",
     },
     emotionRow: {
       flexDirection: "row",
       alignItems: "center",
-      paddingVertical: 8,
-      paddingHorizontal: 8,
-      borderRadius: 10,
+      paddingVertical: scale(8),
+      paddingHorizontal: scale(8),
+      borderRadius: scale(10),
       backgroundColor: colors.backgroundColorPrimary,
       borderWidth: 0.5,
       borderColor: colors.dividerPrimary,
     },
     emotionEmoji: {
-      fontSize: 24,
+      fontSize: scale(24),
     },
     emotionLabel: {
-      fontSize: 15,
+      fontSize: scale(15),
       ...typography.regular,
-      marginLeft: 8,
+      marginLeft: scale(8),
       color: colors.textPrimary,
     },
     timeContainer: {
       justifyContent: "flex-end",
       flex: 1,
-      paddingRight: 4,
+      paddingRight: scale(4),
     },
     emotionTime: {
       textAlign: "right",
-      fontSize: 13,
+      fontSize: scale(13),
       ...typography.regular,
       color: colors.textPrimary,
       opacity: 0.75,

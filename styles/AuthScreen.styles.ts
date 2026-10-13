@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 import { AppThemeColors } from "../types/themeType";
 import { typography } from "./typography";
+import { scale } from "../utils/responsive";
 
 export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
@@ -8,19 +9,20 @@ export const getStyles = (colors: AppThemeColors) =>
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      padding: 24,
+      paddingHorizontal: scale(24),
+      paddingVertical: scale(16),
       backgroundColor: colors.backgroundColorPrimary,
     },
     title: {
-      fontSize: 28,
+      fontSize: scale(28),
       ...typography.semiBold,
-      marginBottom: 16,
+      marginBottom: scale(16),
       color: colors.textPrimary,
     },
     subtitle: {
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.regular,
-      marginBottom: 32,
+      marginBottom: scale(32),
       color: colors.textSecondary,
       textAlign: "center",
     },
@@ -29,17 +31,17 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     button: {
       backgroundColor: colors.btnPrimary,
-      paddingVertical: 12,
-      paddingHorizontal: 20,
-      borderRadius: 8,
-      marginBottom: 12,
+      paddingVertical: scale(12),
+      paddingHorizontal: scale(20),
+      borderRadius: scale(8),
+      marginBottom: scale(12),
     },
     buttonPressed: {
       backgroundColor: colors.btnActive,
     },
     buttonText: {
       color: colors.white,
-      fontSize: 16,
+      fontSize: scale(16),
       ...typography.medium,
       textAlign: "center",
     },

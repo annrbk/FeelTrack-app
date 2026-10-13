@@ -17,7 +17,7 @@ export default function AudioProgressBar() {
         minimumValue={0}
         maximumValue={duration}
         thumbTintColor={colors.textPrimary}
-        minimumTrackTintColor={colors.btnPlayer}
+        minimumTrackTintColor={colors.progressFill}
         maximumTrackTintColor={colors.textPlaceholder}
         onSlidingComplete={seekTo}
       ></Slider>

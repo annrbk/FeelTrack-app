@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { typography } from "./typography";
 import { AppThemeColors } from "../types/themeType";
+import { scale } from "../utils/responsive";
 
 const { width } = Dimensions.get("window");
 
@@ -9,70 +10,73 @@ export const getStyles = (colors: AppThemeColors) =>
     container: {
       flex: 1,
       backgroundColor: colors.backgroundColorPrimary,
-      paddingHorizontal: 24,
-      paddingTop: 24,
+      width: "100%",
+      maxWidth: 560,
+      alignSelf: "center",
+      paddingHorizontal: scale(24),
+      paddingTop: 0,
     },
     headerContainer: {
       alignItems: "center",
-      marginBottom: 32,
-      marginTop: 24,
+      marginBottom: scale(32),
+      marginTop: scale(16),
     },
     topHeader: {
       flexDirection: "row",
       alignItems: "center",
-      marginTop: 24,
+      marginTop: scale(24),
     },
     nowPlayingText: {
-      fontSize: 18,
+      fontSize: scale(18),
       ...typography.medium,
       color: colors.textPrimary,
     },
     closeButton: {
-      width: 40,
+      width: scale(40),
     },
     titleContainer: {
       flex: 1,
       alignItems: "center",
     },
     rightPart: {
-      width: 40,
+      width: scale(40),
     },
     coverContainer: {
-      width: width * 0.8,
-      height: width * 0.8,
-      borderRadius: 16,
-      marginBottom: 24,
-      marginTop: 16,
+      width: Math.min(width * 0.8, scale(360)),
+      height: Math.min(width * 0.8, scale(360)),
+      borderRadius: scale(16),
+      marginBottom: scale(24),
+      marginTop: scale(16),
       justifyContent: "center",
       alignItems: "center",
       shadowColor: colors.textSecondary,
       elevation: 8,
     },
     trackTitle: {
-      fontSize: 24,
+      fontSize: scale(24),
       ...typography.medium,
       color: colors.textPrimary,
       textAlign: "center",
-      marginBottom: 6,
+      marginBottom: scale(6),
     },
     trackCategory: {
-      fontSize: 15,
+      fontSize: scale(15),
       ...typography.regular,
       color: colors.textSecondary,
       textAlign: "center",
     },
     progressContainer: {
       width: "100%",
-      height: 44,
+      height: scale(44),
     },
     progressLabelContainer: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingHorizontal: 4,
-      marginTop: 8,
+      paddingHorizontal: scale(4),
+      marginTop: scale(8),
     },
     progressLabelText: {
-      fontSize: 12,
+      fontSize: scale(12),
       ...typography.regular,
       color: colors.textSecondary,
     },
@@ -81,13 +85,13 @@ export const getStyles = (colors: AppThemeColors) =>
       justifyContent: "space-around",
       alignItems: "center",
       width: "100%",
-      paddingHorizontal: 4,
-      marginTop: 18,
+      paddingHorizontal: scale(4),
+      marginTop: scale(18),
     },
     controlButton: {
-      width: 46,
-      height: 46,
-      borderRadius: 23,
+      width: scale(46),
+      height: scale(46),
+      borderRadius: scale(23),
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: colors.backgroundColorPrimary,
@@ -99,9 +103,9 @@ export const getStyles = (colors: AppThemeColors) =>
       borderColor: colors.btnPlayer,
     },
     mainControlButton: {
-      width: 68,
-      height: 68,
-      borderRadius: 34,
+      width: scale(68),
+      height: scale(68),
+      borderRadius: scale(34),
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: colors.btnPlayer,

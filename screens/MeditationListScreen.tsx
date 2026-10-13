@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { useMemo } from "react";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../navigation/types";
 import { RouteProp } from "@react-navigation/native";
 import { meditations } from "../constants/meditations";
@@ -40,49 +40,47 @@ export default function MeditationListScreen({
   }, [id]);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.backButtonContainer}>
-          <BackButton />
+    <SafeAreaView style={styles.container} edges={["top"]}>
+      <View style={styles.backButtonContainer}>
+        <BackButton />
+      </View>
+      <View style={[styles.header, { backgroundColor: categoryColor }]}>
+        <View style={styles.headerTextContainer}>
+          <Text key={id} style={styles.headerTitle}>
+            {t(`careScreen.itemTitles.${currentCategory?.title}`)}
+          </Text>
+          <Text style={styles.headerSubtitle}>
+            {filteredMeditations.length} {t("careScreen.session")}
+          </Text>
         </View>
-        <View style={[styles.header, { backgroundColor: categoryColor }]}>
-          <View style={styles.headerTextContainer}>
-            <Text key={id} style={styles.headerTitle}>
-              {t(`careScreen.itemTitles.${currentCategory?.title}`)}
-            </Text>
-            <Text style={styles.headerSubtitle}>
-              {filteredMeditations.length} {t("careScreen.session")}
-            </Text>
-          </View>
-        </View>
-        <FlatList
-          data={filteredMeditations}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={[
-            styles.listContainer,
-            { paddingBottom: miniPlayerHeight },
-          ]}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => player.playTrack(item)}
-              activeOpacity={0.7}
-            >
-              <View style={styles.listItem}>
-                <Text style={styles.trackNumber}>{index + 1}</Text>
-                <View style={styles.trackInfo}>
-                  <Text style={styles.trackTitle}>{item.title}</Text>
-                  <Text key={id} style={styles.trackAlbum}>
-                    {currentCategory?.title}
-                  </Text>
-                </View>
-                <Text style={styles.trackDuration}>
-                  <Text>{formatTime(item.duration)}</Text>
+      </View>
+      <FlatList
+        data={filteredMeditations}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={[
+          styles.listContainer,
+          { paddingBottom: miniPlayerHeight },
+        ]}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            onPress={() => player.playTrack(item)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.listItem}>
+              <Text style={styles.trackNumber}>{index + 1}</Text>
+              <View style={styles.trackInfo}>
+                <Text style={styles.trackTitle}>{item.title}</Text>
+                <Text key={id} style={styles.trackAlbum}>
+                  {currentCategory?.title}
                 </Text>
               </View>
-            </TouchableOpacity>
-          )}
-        />
-      </SafeAreaView>
-    </SafeAreaProvider>
+              <Text style={styles.trackDuration}>
+                <Text>{formatTime(item.duration)}</Text>
+              </Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </SafeAreaView>
   );
 }
