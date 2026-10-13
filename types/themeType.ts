@@ -16,6 +16,7 @@ export interface AppThemeColors {
   btnWarning: string;
   btnSuccess: string;
   btnPlayer: string;
+  progressFill: string;
   white?: string;
   btnControl: string;
   bottomActive: string;
