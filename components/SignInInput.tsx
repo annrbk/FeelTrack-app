@@ -16,6 +16,7 @@ export default function SignInInput(
     textField,
     placeholder,
     secureTextEntry,
+    placeholderTextColor,
   } = props;
   const { styles } = useAppStyle(getStyles);
   return (
@@ -33,6 +34,7 @@ export default function SignInInput(
         value={values[textField]}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        placeholderTextColor={placeholderTextColor}
       />
     </>
   );

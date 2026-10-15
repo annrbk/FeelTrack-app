@@ -8,9 +8,7 @@ import {
   requestPasswordReset,
   confirmPasswordReset,
 } from "../services/forgotPasswordService";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const RESEND_DELAY = 60;
+import { EMAIL_REGEX, RESEND_DELAY } from "../constants/forgotPassword";
 
 export const useForgotPassword = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

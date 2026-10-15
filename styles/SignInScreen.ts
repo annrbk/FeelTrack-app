@@ -86,6 +86,9 @@ export const getStyles = (colors: AppThemeColors) =>
     buttonPressed: {
       backgroundColor: colors.btnActive,
     },
+    buttonDisabled: {
+      opacity: 0.5,
+    },
     buttonText: {
       color: colors.white,
       fontSize: scale(16),

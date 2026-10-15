@@ -1,11 +1,13 @@
 import { SignInValues } from "../types/signInValuesType";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { loginUser } from "../services/loginService";
 import { useSession } from "../ctx";
 
 export const useLogin = () => {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submissionInProgress = useRef(false);
 
   const { signIn } = useSession();
 
@@ -22,12 +24,26 @@ export const useLogin = () => {
   };
 
   const loginSubmit = async (values: SignInValues) => {
+    if (submissionInProgress.current) return;
+    submissionInProgress.current = true;
+    setIsSubmitting(true);
     try {
       setError(null);
       await signIn(values);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
+    } finally {
+      submissionInProgress.current = false;
+      setIsSubmitting(false);
     }
   };
-  return { login, loginSubmit, error, setError, showPassword, setShowPassword };
+  return {
+    login,
+    loginSubmit,
+    error,
+    setError,
+    showPassword,
+    setShowPassword,
+    isSubmitting,
+  };
 };

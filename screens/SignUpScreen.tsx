@@ -24,6 +24,7 @@ export default function SignUpScreen() {
     showConfirmPassword,
     setShowConfirmPassword,
     submitForm,
+    isSubmitting,
   } = useRegister();
 
   const { styles, colors } = useAppStyle(getStyles);
@@ -135,7 +136,7 @@ export default function SignUpScreen() {
                 </Pressable>
               </View>
             </View>
-            <Button handleSubmit={handleSubmit} />
+            <Button handleSubmit={handleSubmit} isLoading={isSubmitting} />
             <Text style={styles.consentText}>
               {t("signUpScreen.consentText")}
               <Text

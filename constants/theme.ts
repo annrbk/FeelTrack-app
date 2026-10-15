@@ -33,7 +33,7 @@ export const DarkThemeColors: AppThemeColors = {
   dividerPrimary: "#D4DBE1",
   textPrimary: "#2E3438",
   textSecondary: "#636C72",
-  textPlaceholder: "#A9A9A9",
+  textPlaceholder: "#868686",
   btnPrimary: "#a1b1bd",
   btnActive: "#99A3AB",
   btnInactive: "#bac6d1",

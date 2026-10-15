@@ -1,4 +1,4 @@
-import { Pressable, View, Text } from "react-native";
+import { ActivityIndicator, Pressable, View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -15,7 +15,13 @@ import { useLogin } from "../hooks/useLogin";
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { styles, colors } = useAppStyle(getStyles);
-  const { loginSubmit, showPassword, setShowPassword, error } = useLogin();
+  const {
+    loginSubmit,
+    showPassword,
+    setShowPassword,
+    error,
+    isSubmitting,
+  } = useLogin();
 
   const { t } = useTranslation();
 
@@ -84,13 +90,19 @@ export default function SignInScreen() {
               <Pressable
                 style={({ pressed }) => [
                   styles.button,
-                  pressed && styles.buttonPressed,
+                  pressed && !isSubmitting && styles.buttonPressed,
+                  isSubmitting && styles.buttonDisabled,
                 ]}
+                disabled={isSubmitting}
                 onPress={() => handleSubmit()}
               >
-                <Text style={styles.buttonText}>
-                  {t("signInScreen.signInButtonText")}
-                </Text>
+                {isSubmitting ? (
+                  <ActivityIndicator size="small" color={colors.white} />
+                ) : (
+                  <Text style={styles.buttonText}>
+                    {t("signInScreen.signInButtonText")}
+                  </Text>
+                )}
               </Pressable>
             </View>
             <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
