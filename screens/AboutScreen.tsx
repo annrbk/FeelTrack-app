@@ -72,7 +72,7 @@ export default function AboutScreen() {
         <View style={styles.footer}>
           <Text style={styles.thankYouText}>{t("about.thankYou")}</Text>
           <Text style={styles.versionText}>
-            {t("about.version", { version: "1.0.2" })}
+            {t("about.version", { version: "1.0.3" })}
           </Text>
         </View>
       </ScrollView>
