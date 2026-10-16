@@ -16,6 +16,7 @@ export default function ImageCard({ id, color, title, session }: CardItem) {
       style={[styles.imageWrapper, { backgroundColor: cardBackgroundColor }]}
     >
       <Pressable
+        style={({ pressed }) => pressed && styles.cardPressed}
         onPress={() => navigation.navigate("MeditationList", { id: id })}
       >
         <View style={styles.categoryContainer}>

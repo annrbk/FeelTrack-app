@@ -50,7 +50,7 @@ export const getStyles = (colors: AppThemeColors) =>
       justifyContent: "center",
       alignItems: "center",
       shadowColor: colors.textSecondary,
-      elevation: 8,
+      elevation: 6,
     },
     trackTitle: {
       fontSize: scale(24),

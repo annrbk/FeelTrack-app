@@ -23,7 +23,11 @@ export default function MiniPlayer({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.leftSection} onPress={toggleExpand}>
+      <TouchableOpacity
+        style={styles.leftSection}
+        activeOpacity={1}
+        onPress={toggleExpand}
+      >
         <View style={[styles.miniCover, { backgroundColor: categoryColor }]}>
           <Ionicons
             name="musical-notes-outline"

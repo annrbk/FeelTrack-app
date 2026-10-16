@@ -57,7 +57,9 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       marginBottom: scale(8),
       borderRadius: scale(10),
       borderWidth: 0.5,
-      borderColor: colors.dividerPrimary,
+      borderColor: colors.borderSecondary,
+      shadowColor: colors.textSecondary,
+      elevation: 3,
     },
     trackNumber: {
       width: scale(30),

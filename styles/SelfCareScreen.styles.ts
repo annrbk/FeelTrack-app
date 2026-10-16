@@ -7,7 +7,7 @@ export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingVertical: scale(16),
+      paddingVertical: scale(12),
       backgroundColor: colors.backgroundColorPrimary,
     },
     section: {
@@ -36,9 +36,14 @@ export const getStyles = (colors: AppThemeColors) =>
     },
     imageWrapper: {
       width: "98%",
+      minHeight: scale(88),
       justifyContent: "center",
       borderRadius: scale(12),
       marginBottom: scale(16),
+      borderWidth: 0.4,
+      borderColor: colors.borderSecondary,
+      shadowColor: colors.textSecondary,
+      elevation: 3,
     },
     iconContainer: {
       padding: scale(8),
@@ -51,6 +56,7 @@ export const getStyles = (colors: AppThemeColors) =>
       margin: scale(4),
       gap: scale(4),
       marginLeft: scale(8),
+      minHeight: scale(80),
     },
     informContainer: {
       flexDirection: "column",
@@ -59,10 +65,16 @@ export const getStyles = (colors: AppThemeColors) =>
       fontSize: scale(18),
       ...typography.medium,
       color: colors.textPrimary,
+      marginBottom: scale(4),
     },
     sessionText: {
       fontSize: scale(16),
       ...typography.regular,
       color: colors.textPrimary,
+      opacity: 0.7,
+    },
+    cardPressed: {
+      opacity: 0.7,
+      transform: [{ scale: 0.98 }],
     },
   });

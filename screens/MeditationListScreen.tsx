@@ -63,21 +63,20 @@ export default function MeditationListScreen({
         ]}
         renderItem={({ item, index }) => (
           <TouchableOpacity
+            style={styles.listItem}
             onPress={() => player.playTrack(item)}
             activeOpacity={0.7}
           >
-            <View style={styles.listItem}>
-              <Text style={styles.trackNumber}>{index + 1}</Text>
-              <View style={styles.trackInfo}>
-                <Text style={styles.trackTitle}>{item.title}</Text>
-                <Text key={id} style={styles.trackAlbum}>
-                  {currentCategory?.title}
-                </Text>
-              </View>
-              <Text style={styles.trackDuration}>
-                <Text>{formatTime(item.duration)}</Text>
+            <Text style={styles.trackNumber}>{index + 1}</Text>
+            <View style={styles.trackInfo}>
+              <Text style={styles.trackTitle}>{item.title}</Text>
+              <Text key={id} style={styles.trackAlbum}>
+                {currentCategory?.title}
               </Text>
             </View>
+            <Text style={styles.trackDuration}>
+              <Text>{formatTime(item.duration)}</Text>
+            </Text>
           </TouchableOpacity>
         )}
       />
