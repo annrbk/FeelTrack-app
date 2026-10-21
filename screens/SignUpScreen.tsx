@@ -1,4 +1,11 @@
-import { Linking, Pressable, View, Text } from "react-native";
+import {
+  Linking,
+  Pressable,
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -60,108 +67,122 @@ export default function SignUpScreen() {
         touched,
       }) => (
         <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
-          <View style={styles.formContainer}>
-            <Text style={styles.title}>{t("signUpScreen.title")}</Text>
-            <Text style={styles.subtitle}>{t("signUpScreen.subtitle")}</Text>
-            {error && <Text style={styles.error}>{error}</Text>}
-            <FormInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="name"
-              placeholder={t("signUpScreen.namePlaceholder")}
-              placeholderTextColor={colors.textPlaceholder}
-            />
-            <FormInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="email"
-              placeholder={t("signUpScreen.emailPlaceholder")}
-              placeholderTextColor={colors.textPlaceholder}
-            />
-            <View style={styles.passwordContainer}>
-              <View style={{ width: "100%", position: "relative" }}>
+          <KeyboardAvoidingView behavior="height" style={styles.keyboardView}>
+            <ScrollView
+              contentContainerStyle={styles.scrollContent}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.formContainer}>
+                <Text style={styles.title}>{t("signUpScreen.title")}</Text>
+                <Text style={styles.subtitle}>
+                  {t("signUpScreen.subtitle")}
+                </Text>
+                {error && <Text style={styles.error}>{error}</Text>}
                 <FormInput
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   errors={errors}
                   touched={touched}
                   values={values}
-                  textField="password"
-                  placeholder={t("signUpScreen.passwordPlaceholder")}
+                  textField="name"
+                  placeholder={t("signUpScreen.namePlaceholder")}
                   placeholderTextColor={colors.textPlaceholder}
-                  secureTextEntry={!showPassword}
                 />
-                <Pressable
-                  style={styles.eyeIcon}
-                  onPress={() => setShowPassword((prev) => !prev)}
-                >
-                  <Ionicons
-                    name={showPassword ? "eye-outline" : "eye-off-outline"}
-                    size={22}
-                    color={colors.textPrimary}
-                  />
-                </Pressable>
-              </View>
-            </View>
-            <View style={styles.passwordContainer}>
-              <View style={{ width: "100%", position: "relative" }}>
                 <FormInput
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   errors={errors}
                   touched={touched}
                   values={values}
-                  textField="confirmPassword"
-                  placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
+                  textField="email"
+                  placeholder={t("signUpScreen.emailPlaceholder")}
                   placeholderTextColor={colors.textPlaceholder}
-                  secureTextEntry={!showConfirmPassword}
                 />
-                <Pressable
-                  style={styles.eyeIcon}
-                  onPress={() => setShowConfirmPassword((prev) => !prev)}
-                >
-                  <Ionicons
-                    name={
-                      showConfirmPassword ? "eye-outline" : "eye-off-outline"
-                    }
-                    size={22}
-                    color={colors.textPrimary}
-                  />
+                <View style={styles.passwordContainer}>
+                  <View style={{ width: "100%", position: "relative" }}>
+                    <FormInput
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      errors={errors}
+                      touched={touched}
+                      values={values}
+                      textField="password"
+                      placeholder={t("signUpScreen.passwordPlaceholder")}
+                      placeholderTextColor={colors.textPlaceholder}
+                      secureTextEntry={!showPassword}
+                    />
+                    <Pressable
+                      style={styles.eyeIcon}
+                      onPress={() => setShowPassword((prev) => !prev)}
+                    >
+                      <Ionicons
+                        name={showPassword ? "eye-outline" : "eye-off-outline"}
+                        size={22}
+                        color={colors.textPrimary}
+                      />
+                    </Pressable>
+                  </View>
+                </View>
+                <View style={styles.passwordContainer}>
+                  <View style={{ width: "100%", position: "relative" }}>
+                    <FormInput
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      errors={errors}
+                      touched={touched}
+                      values={values}
+                      textField="confirmPassword"
+                      placeholder={t("signUpScreen.confirmPasswordPlaceholder")}
+                      placeholderTextColor={colors.textPlaceholder}
+                      secureTextEntry={!showConfirmPassword}
+                    />
+                    <Pressable
+                      style={styles.eyeIcon}
+                      onPress={() => setShowConfirmPassword((prev) => !prev)}
+                    >
+                      <Ionicons
+                        name={
+                          showConfirmPassword
+                            ? "eye-outline"
+                            : "eye-off-outline"
+                        }
+                        size={22}
+                        color={colors.textPrimary}
+                      />
+                    </Pressable>
+                  </View>
+                </View>
+                <Button handleSubmit={handleSubmit} isLoading={isSubmitting} />
+                <Text style={styles.consentText}>
+                  {t("signUpScreen.consentText")}
+                  <Text
+                    style={styles.consentLink}
+                    onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
+                  >
+                    {t("signUpScreen.termsOfUse")}
+                  </Text>
+                  {t("signUpScreen.and")}
+                  <Text
+                    style={styles.consentLink}
+                    onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
+                  >
+                    {t("signUpScreen.privacyPolicy")}
+                  </Text>
+                </Text>
+              </View>
+              <View style={styles.footerContainer}>
+                <Text style={styles.footerText}>
+                  {t("signUpScreen.signInReminder")}
+                </Text>
+                <Pressable onPress={() => navigation.navigate("SignIn")}>
+                  <Text style={styles.footerButton}>
+                    {t("signUpScreen.signInButtonText")}
+                  </Text>
                 </Pressable>
               </View>
-            </View>
-            <Button handleSubmit={handleSubmit} isLoading={isSubmitting} />
-            <Text style={styles.consentText}>
-              {t("signUpScreen.consentText")}
-              <Text
-                style={styles.consentLink}
-                onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
-              >
-                {t("signUpScreen.termsOfUse")}
-              </Text>
-              {t("signUpScreen.and")}
-              <Text
-                style={styles.consentLink}
-                onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
-              >
-                {t("signUpScreen.privacyPolicy")}
-              </Text>
-            </Text>
-          </View>
-          <View style={styles.footerContainer}>
-            <Text>{t("signUpScreen.signInReminder")}</Text>
-            <Pressable onPress={() => navigation.navigate("SignIn")}>
-              <Text style={styles.footerButton}>
-                {t("signUpScreen.signInButtonText")}
-              </Text>
-            </Pressable>
-          </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
         </SafeAreaView>
       )}
     </Formik>

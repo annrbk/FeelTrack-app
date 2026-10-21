@@ -18,13 +18,26 @@ export const getStyles = (colors: AppThemeColors) =>
       justifyContent: "center",
       alignItems: "center",
     },
+    keyboardView: {
+      flex: 1,
+      width: "100%",
+    },
+    scrollContent: {
+      flexGrow: 1,
+    },
     footerContainer: {
       flexDirection: "row",
       justifyContent: "center",
-      alignItems: "center",
+      alignItems: "baseline",
       marginBottom: scale(12),
       paddingVertical: scale(14),
       gap: scale(4),
+    },
+    footerText: {
+      fontSize: scale(14),
+      lineHeight: scale(20),
+      color: colors.textPrimary,
+      ...typography.regular,
     },
     title: {
       fontSize: scale(28),
@@ -108,6 +121,8 @@ export const getStyles = (colors: AppThemeColors) =>
       ...typography.bold,
     },
     footerButton: {
+      fontSize: scale(14),
+      lineHeight: scale(20),
       color: colors.btnActive,
       ...typography.bold,
     },

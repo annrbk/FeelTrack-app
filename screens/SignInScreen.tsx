@@ -1,4 +1,11 @@
-import { ActivityIndicator, Pressable, View, Text } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  View,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -15,13 +22,8 @@ import { useLogin } from "../hooks/useLogin";
 export default function SignInScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { styles, colors } = useAppStyle(getStyles);
-  const {
-    loginSubmit,
-    showPassword,
-    setShowPassword,
-    error,
-    isSubmitting,
-  } = useLogin();
+  const { loginSubmit, showPassword, setShowPassword, error, isSubmitting } =
+    useLogin();
 
   const { t } = useTranslation();
 
@@ -47,78 +49,92 @@ export default function SignInScreen() {
         touched,
       }) => (
         <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
-          <View style={styles.formContainer}>
-            <Text style={styles.title}>{t("signInScreen.title")}</Text>
-            <Text style={styles.subtitle}>{t("signInScreen.subtitle")}</Text>
-            {error && <Text style={styles.error}>{error}</Text>}
-            <SignInInput
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              errors={errors}
-              touched={touched}
-              values={values}
-              textField="email"
-              placeholder={t("signInScreen.emailPlaceholder")}
-              placeholderTextColor={colors.textPlaceholder}
-            />
-            <View style={styles.passwordContainer}>
-              <View style={{ width: "100%", position: "relative" }}>
+          <KeyboardAvoidingView behavior="height" style={styles.keyboardView}>
+            <ScrollView
+              contentContainerStyle={styles.scrollContent}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.formContainer}>
+                <Text style={styles.title}>{t("signInScreen.title")}</Text>
+                <Text style={styles.subtitle}>
+                  {t("signInScreen.subtitle")}
+                </Text>
+                {error && <Text style={styles.error}>{error}</Text>}
                 <SignInInput
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                   errors={errors}
                   touched={touched}
                   values={values}
-                  textField="password"
-                  placeholder={t("signInScreen.passwordPlaceholder")}
-                  secureTextEntry={!showPassword}
+                  textField="email"
+                  placeholder={t("signInScreen.emailPlaceholder")}
                   placeholderTextColor={colors.textPlaceholder}
                 />
+                <View style={styles.passwordContainer}>
+                  <View style={{ width: "100%", position: "relative" }}>
+                    <SignInInput
+                      handleChange={handleChange}
+                      handleBlur={handleBlur}
+                      errors={errors}
+                      touched={touched}
+                      values={values}
+                      textField="password"
+                      placeholder={t("signInScreen.passwordPlaceholder")}
+                      secureTextEntry={!showPassword}
+                      placeholderTextColor={colors.textPlaceholder}
+                    />
+                    <Pressable
+                      style={styles.eyeIcon}
+                      onPress={() => setShowPassword((prev) => !prev)}
+                    >
+                      <Ionicons
+                        name={showPassword ? "eye-outline" : "eye-off-outline"}
+                        size={22}
+                        color={colors.textPrimary}
+                      />
+                    </Pressable>
+                  </View>
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.button,
+                      pressed && !isSubmitting && styles.buttonPressed,
+                      isSubmitting && styles.buttonDisabled,
+                    ]}
+                    disabled={isSubmitting}
+                    onPress={() => handleSubmit()}
+                  >
+                    {isSubmitting ? (
+                      <ActivityIndicator size="small" color={colors.white} />
+                    ) : (
+                      <Text style={styles.buttonText}>
+                        {t("signInScreen.signInButtonText")}
+                      </Text>
+                    )}
+                  </Pressable>
+                </View>
                 <Pressable
-                  style={styles.eyeIcon}
-                  onPress={() => setShowPassword((prev) => !prev)}
+                  onPress={() => navigation.navigate("ForgotPassword")}
                 >
-                  <Ionicons
-                    name={showPassword ? "eye-outline" : "eye-off-outline"}
-                    size={22}
-                    color={colors.textPrimary}
-                  />
+                  <Text style={styles.forgotPassword}>
+                    {t("signInScreen.forgotPassword")}
+                  </Text>
                 </Pressable>
               </View>
-            </View>
-            <View style={styles.buttonContainer}>
-              <Pressable
-                style={({ pressed }) => [
-                  styles.button,
-                  pressed && !isSubmitting && styles.buttonPressed,
-                  isSubmitting && styles.buttonDisabled,
-                ]}
-                disabled={isSubmitting}
-                onPress={() => handleSubmit()}
-              >
-                {isSubmitting ? (
-                  <ActivityIndicator size="small" color={colors.white} />
-                ) : (
-                  <Text style={styles.buttonText}>
-                    {t("signInScreen.signInButtonText")}
+              <View style={styles.footerContainer}>
+                <Text style={styles.footerText}>
+                  {t("signInScreen.signUpReminder")}
+                </Text>
+                <Pressable onPress={() => navigation.navigate("SignUp")}>
+                  <Text style={styles.footerButton}>
+                    {t("signInScreen.signUpButtonText")}
                   </Text>
-                )}
-              </Pressable>
-            </View>
-            <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
-              <Text style={styles.forgotPassword}>
-                {t("signInScreen.forgotPassword")}
-              </Text>
-            </Pressable>
-          </View>
-          <View style={styles.footerContainer}>
-            <Text>{t("signInScreen.signUpReminder")}</Text>
-            <Pressable onPress={() => navigation.navigate("SignUp")}>
-              <Text style={styles.footerButton}>
-                {t("signInScreen.signUpButtonText")}
-              </Text>
-            </Pressable>
-          </View>
+                </Pressable>
+              </View>
+            </ScrollView>
+          </KeyboardAvoidingView>
         </SafeAreaView>
       )}
     </Formik>
