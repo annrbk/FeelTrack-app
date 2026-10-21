@@ -1,4 +1,4 @@
-import { Modal, View, Text, Pressable } from "react-native";
+import { ActivityIndicator, Modal, View, Text, Pressable } from "react-native";
 import { showModalProps } from "../types/modalType";
 import { getStyles } from "../styles/AvatarModal.styles";
 import { Image } from "react-native";
@@ -13,9 +13,9 @@ export default function AvatarModal({
   onClose,
   text,
 }: showModalProps) {
-  const { avatar, setAvatar, changeAvatar } = useAvatar();
+  const { avatar, setAvatar, changeAvatar, isSubmitting } = useAvatar();
 
-  const { styles } = useAppStyle(getStyles);
+  const { styles, colors } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
 
@@ -54,12 +54,19 @@ export default function AvatarModal({
           </View>
           <Pressable
             style={styles.button}
+            disabled={isSubmitting}
             onPress={async () => {
-              await changeAvatar(avatar);
-              onClose();
+              const updated = await changeAvatar(avatar);
+              if (updated) onClose();
             }}
           >
-            <Text style={styles.buttonText}>{t("avatarModal.buttonText")}</Text>
+            {isSubmitting ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.buttonText}>
+                {t("avatarModal.buttonText")}
+              </Text>
+            )}
           </Pressable>
         </View>
       </View>
