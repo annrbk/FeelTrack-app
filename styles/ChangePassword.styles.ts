@@ -85,4 +85,7 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
       color: "#ffffff",
       fontSize: scale(15),
     },
+    buttonDisabled: {
+      opacity: 0.5,
+    },
   });

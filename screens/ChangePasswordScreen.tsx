@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, View, TextInput, Pressable } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getStyles } from "../styles/ChangePassword.styles";
 import BackButton from "../components/BackButton";
@@ -23,11 +29,14 @@ export default function ChangePasswordScreen() {
     setShowPassword,
     showNewPassword,
     setShowNewPassword,
+    isSubmitting,
   } = useChangePassword();
 
   const { colors, styles } = useAppStyle(getStyles);
 
   const { t } = useTranslation();
+  const isButtonDisabled =
+    isSubmitting || !password.trim() || !newPassword.trim();
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
@@ -96,13 +105,18 @@ export default function ChangePasswordScreen() {
       </View>
       <View style={styles.buttonContainer}>
         <Pressable
-          style={styles.button}
+          style={[styles.button, isButtonDisabled && styles.buttonDisabled]}
           accessibilityRole="button"
+          disabled={isButtonDisabled}
           onPress={changePassword}
         >
-          <Text style={styles.buttonText}>
-            {t("settingsScreen.changePasswordButton")}
-          </Text>
+          {isSubmitting ? (
+            <ActivityIndicator size="small" color={colors.white} />
+          ) : (
+            <Text style={styles.buttonText}>
+              {t("settingsScreen.changePasswordButton")}
+            </Text>
+          )}
         </Pressable>
       </View>
       {showSuccessModal && (
