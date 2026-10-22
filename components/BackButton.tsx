@@ -4,6 +4,7 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/types";
 import { getStyles } from "../styles/BackButton.styles";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { scale } from "../utils/responsive";
 
 export default function BackButton() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -17,7 +18,11 @@ export default function BackButton() {
         accessibilityRole="button"
         style={styles.backButton}
       >
-        <Ionicons name="chevron-back" size={24} color={colors.textSecondary} />
+        <Ionicons
+          name="chevron-back"
+          size={scale(24)}
+          color={colors.textSecondary}
+        />
       </Pressable>
     </View>
   );

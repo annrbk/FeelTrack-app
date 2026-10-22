@@ -9,6 +9,7 @@ import { DarkThemeColors, ThemeColors } from "../constants/theme";
 import { usePlayer } from "../PlayerContext";
 import CareStack from "./CareStack";
 import { useTranslation } from "react-i18next";
+import { TAB_BAR_HEIGHT } from "../constants/layout";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,6 +35,7 @@ export default function BottomTabs() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarStyle: {
+          height: TAB_BAR_HEIGHT,
           borderTopWidth: 0.5,
           borderTopColor: colors.borderPrimary,
           backgroundColor: colors.backgroundColorPrimary,

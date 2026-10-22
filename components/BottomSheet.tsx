@@ -10,6 +10,7 @@ import { usePlayer } from "../PlayerContext";
 import MiniPlayer from "./MiniPlayer";
 import AudioPlayer from "./AudioPlayer";
 import { styles as sheetStyles } from "../styles/BottomSheet.styles";
+import { TAB_BAR_HEIGHT } from "../constants/layout";
 
 const { height: screenHeight } = Dimensions.get("screen");
 
@@ -23,7 +24,7 @@ export default function BottomSheet({ duration = 400 }) {
     easing: Easing.bezier(0.25, 1, 0.5, 1),
   };
 
-  const animatedHeight = useSharedValue(80);
+  const animatedHeight = useSharedValue(70);
   const animatedBottom = useSharedValue(-150);
 
   useEffect(() => {
@@ -36,8 +37,8 @@ export default function BottomSheet({ duration = 400 }) {
         animatedHeight.value = withTiming(screenHeight, timingConfig);
         animatedBottom.value = withTiming(0, timingConfig);
       } else {
-        animatedHeight.value = withTiming(80, timingConfig);
-        animatedBottom.value = withTiming(82, timingConfig);
+        animatedHeight.value = withTiming(70, timingConfig);
+        animatedBottom.value = withTiming(TAB_BAR_HEIGHT, timingConfig);
       }
     }
   }, [currentTrack, isExpanded]);

@@ -7,12 +7,14 @@ export const getStyles = (colors: AppThemeColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingVertical: scale(12),
+      paddingTop: scale(20),
+      paddingBottom: scale(12),
       backgroundColor: colors.backgroundColorPrimary,
     },
     section: {
       flex: 1,
-      paddingVertical: scale(16),
+      paddingTop: 0,
+      paddingBottom: scale(16),
     },
     grid: {
       flex: 1,

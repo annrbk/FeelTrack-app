@@ -8,7 +8,8 @@ export const getStyles = (colors: AppThemeColors) =>
     safeArea: { flex: 1, backgroundColor: colors.backgroundColorPrimary },
     container: {
       flexGrow: 1,
-      paddingVertical: scale(18),
+      paddingTop: scale(20),
+      paddingBottom: scale(18),
       alignItems: "stretch",
     },
     header: {
