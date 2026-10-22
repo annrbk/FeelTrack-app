@@ -1,4 +1,4 @@
-import { Linking, Pressable, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import SwitchTheme from "../components/SwitchTheme";
@@ -12,6 +12,7 @@ import { useAccount } from "../hooks/useAccount";
 import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from "@env";
+import { openExternalUrl } from "../utils/openExternalUrl";
 
 export default function SettingsScreen() {
   const { theme, switchTheme } = useTheme();
@@ -98,7 +99,7 @@ export default function SettingsScreen() {
         <Pressable
           style={styles.buttonArrowRight}
           accessibilityRole="button"
-          onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
+          onPress={() => openExternalUrl(PRIVACY_POLICY_URL)}
         >
           <Text style={styles.settingTitle}>
             {t("settingsScreen.privacyPolicyLabel")}
@@ -114,7 +115,7 @@ export default function SettingsScreen() {
         <Pressable
           style={styles.buttonArrowRight}
           accessibilityRole="button"
-          onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
+          onPress={() => openExternalUrl(TERMS_OF_SERVICE_URL)}
         >
           <Text style={styles.settingTitle}>
             {t("settingsScreen.termsOfUseLabel")}

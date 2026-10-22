@@ -1,5 +1,4 @@
 import {
-  Linking,
   Pressable,
   View,
   Text,
@@ -21,6 +20,7 @@ import { useAppStyle } from "../hooks/useAppStyle";
 import { useTranslation } from "react-i18next";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from "@env";
+import { openExternalUrl } from "../utils/openExternalUrl";
 
 export default function SignUpScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -158,14 +158,14 @@ export default function SignUpScreen() {
                   {t("signUpScreen.consentText")}
                   <Text
                     style={styles.consentLink}
-                    onPress={() => Linking.openURL(TERMS_OF_SERVICE_URL)}
+                    onPress={() => openExternalUrl(TERMS_OF_SERVICE_URL)}
                   >
                     {t("signUpScreen.termsOfUse")}
                   </Text>
                   {t("signUpScreen.and")}
                   <Text
                     style={styles.consentLink}
-                    onPress={() => Linking.openURL(PRIVACY_POLICY_URL)}
+                    onPress={() => openExternalUrl(PRIVACY_POLICY_URL)}
                   >
                     {t("signUpScreen.privacyPolicy")}
                   </Text>
