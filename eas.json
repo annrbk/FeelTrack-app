@@ -14,11 +14,17 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://mindery-backend-88ih.onrender.com"
+        "EXPO_PUBLIC_API_URL": "https://mindery-backend-88ih.onrender.com",
+        "PRIVACY_POLICY_URL": "https://mindery-legal.netlify.app/privacy/",
+        "TERMS_OF_SERVICE_URL": "https://mindery-legal.netlify.app/terms/"
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "PRIVACY_POLICY_URL": "https://mindery-legal.netlify.app/privacy/",
+        "TERMS_OF_SERVICE_URL": "https://mindery-legal.netlify.app/terms/"
+      }
     }
   },
   "submit": {
