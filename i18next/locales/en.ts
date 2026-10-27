@@ -146,6 +146,10 @@ const en = {
       aboutLabel: "About",
       privacyPolicyLabel: "Privacy Policy",
       termsOfUseLabel: "Terms of Use",
+      contactUsLabel: "Contact us",
+      mailUnavailableTitle: "Mail unavailable",
+      mailUnavailableMessage:
+        "No email app was found on this device.",
     },
     deleteAccountModal: {
       title: "Delete account?",

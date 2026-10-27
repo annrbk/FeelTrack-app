@@ -145,6 +145,10 @@ const be = {
       aboutLabel: "Аб дадатку",
       privacyPolicyLabel: "Палітыка канфідэнцыяльнасці",
       termsOfUseLabel: "Умовы выкарыстання",
+      contactUsLabel: "Звязацца з намі",
+      mailUnavailableTitle: "Пошта недаступная",
+      mailUnavailableMessage:
+        "На прыладзе не знойдзена праграма для адпраўкі email.",
     },
     deleteAccountModal: {
       title: "Выдаліць акаўнт?",

@@ -10,6 +10,7 @@ import { RootStackParamList } from "../navigation/types";
 import DeleteAccountModal from "../components/DeleteAccountModal";
 import { useAccount } from "../hooks/useAccount";
 import { useAppStyle } from "../hooks/useAppStyle";
+import { useContactUs } from "../hooks/useContactUs";
 import { useTranslation } from "react-i18next";
 import { PRIVACY_POLICY_URL, TERMS_OF_SERVICE_URL } from "@env";
 import { openExternalUrl } from "../utils/openExternalUrl";
@@ -25,6 +26,7 @@ export default function SettingsScreen() {
   } = useAccount();
 
   const { styles, colors } = useAppStyle(getStyles);
+  const { handleContactUs } = useContactUs();
 
   const { t } = useTranslation();
 
@@ -119,6 +121,22 @@ export default function SettingsScreen() {
         >
           <Text style={styles.settingTitle}>
             {t("settingsScreen.termsOfUseLabel")}
+          </Text>
+          <Ionicons
+            name="chevron-forward-outline"
+            size={24}
+            color={colors.textSecondary}
+          />
+        </Pressable>
+      </View>
+      <View style={styles.termsContainer}>
+        <Pressable
+          style={styles.buttonArrowRight}
+          accessibilityRole="button"
+          onPress={handleContactUs}
+        >
+          <Text style={styles.settingTitle}>
+            {t("settingsScreen.contactUsLabel")}
           </Text>
           <Ionicons
             name="chevron-forward-outline"

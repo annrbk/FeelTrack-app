@@ -147,6 +147,10 @@ const ru = {
       aboutLabel: "О приложении",
       privacyPolicyLabel: "Политика конфиденциальности",
       termsOfUseLabel: "Условия использования",
+      contactUsLabel: "Связаться с нами",
+      mailUnavailableTitle: "Почта недоступна",
+      mailUnavailableMessage:
+        "На устройстве не найдено приложение для отправки email.",
     },
     deleteAccountModal: {
       title: "Удалить аккаунт?",
