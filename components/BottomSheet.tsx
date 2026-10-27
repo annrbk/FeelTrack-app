@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { TouchableOpacity, Dimensions } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { TouchableOpacity, Dimensions, PanResponder } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -18,6 +18,7 @@ export default function BottomSheet({ duration = 400 }) {
   const { currentTrack } = usePlayer();
   const [isExpanded, setIsExpanded] = useState(false);
   const [showFullPlayer, setShowFullPlayer] = useState(false);
+  const isExpandedRef = useRef(false);
 
   const timingConfig = {
     duration,
@@ -31,6 +32,7 @@ export default function BottomSheet({ duration = 400 }) {
     if (!currentTrack) {
       animatedBottom.value = withTiming(-150, timingConfig);
       setIsExpanded(false);
+      isExpandedRef.current = false;
       setShowFullPlayer(false);
     } else {
       if (isExpanded) {
@@ -44,14 +46,30 @@ export default function BottomSheet({ duration = 400 }) {
   }, [currentTrack, isExpanded]);
 
   const toggleExpand = () => {
-    if (isExpanded) {
+    if (isExpandedRef.current) {
       setIsExpanded(false);
+      isExpandedRef.current = false;
       setTimeout(() => setShowFullPlayer(false), duration - 80);
     } else {
       setShowFullPlayer(true);
       setIsExpanded(true);
+      isExpandedRef.current = true;
     }
   };
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (_, gestureState) =>
+        isExpandedRef.current &&
+        gestureState.dy > 8 &&
+        Math.abs(gestureState.dy) > Math.abs(gestureState.dx),
+      onPanResponderRelease: (_, gestureState) => {
+        if (gestureState.dy > 80) {
+          toggleExpand();
+        }
+      },
+    }),
+  ).current;
 
   const sheetStyle = useAnimatedStyle(() => {
     return {
@@ -77,11 +95,17 @@ export default function BottomSheet({ duration = 400 }) {
       >
         <TouchableOpacity
           style={{ flex: 1 }}
-          onPress={() => setIsExpanded(false)}
+          onPress={() => {
+            setIsExpanded(false);
+            isExpandedRef.current = false;
+          }}
           activeOpacity={1}
         />
       </Animated.View>
-      <Animated.View style={[sheetStyles.sheet, sheetStyle]}>
+      <Animated.View
+        style={[sheetStyles.sheet, sheetStyle]}
+        {...panResponder.panHandlers}
+      >
         {showFullPlayer ? (
           <AudioPlayer toggleExpand={toggleExpand} />
         ) : (
