@@ -35,6 +35,22 @@ export default function ChangeLanguageScreen() {
         <Pressable
           style={[
             styles.languageButton,
+            currentLang === "ka" && styles.languageButtonActive,
+          ]}
+          onPress={() => changeLanguage("ka")}
+        >
+          <Text
+            style={[
+              styles.languageText,
+              currentLang === "ka" && styles.languageTextActive,
+            ]}
+          >
+            ქართული
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[
+            styles.languageButton,
             currentLang === "pl" && styles.languageButtonActive,
           ]}
           onPress={() => changeLanguage("pl")}

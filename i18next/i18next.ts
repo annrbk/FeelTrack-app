@@ -6,6 +6,7 @@ import en from "./locales/en";
 import be from "./locales/be";
 import ru from "./locales/ru";
 import pl from "./locales/pl";
+import ka from "./locales/ka";
 import { setupCalendarLocale } from "./calendarLocales";
 
 export const lng = getLocales()[0].languageCode ?? "en";
@@ -34,9 +35,9 @@ i18n
   .use(languageStorage)
   .use(initReactI18next)
   .init({
-    resources: { en, be, ru, pl },
+    resources: { en, be, ru, pl, ka },
     fallbackLng: "en",
-    supportedLngs: ["en", "be", "ru", "pl"],
+    supportedLngs: ["en", "be", "ru", "pl", "ka"],
     interpolation: { escapeValue: false },
   });
 

@@ -168,7 +168,49 @@ LocaleConfig.locales["pl"] = {
   today: "Dzisiaj",
 };
 
+LocaleConfig.locales["ka"] = {
+  monthNames: [
+    "იანვარი",
+    "თებერვალი",
+    "მარტი",
+    "აპრილი",
+    "მაისი",
+    "ივნისი",
+    "ივლისი",
+    "აგვისტო",
+    "სექტემბერი",
+    "ოქტომბერი",
+    "ნოემბერი",
+    "დეკემბერი",
+  ],
+  monthNamesShort: [
+    "იან",
+    "თებ",
+    "მარ",
+    "აპრ",
+    "მაი",
+    "ივნ",
+    "ივლ",
+    "აგვ",
+    "სექ",
+    "ოქტ",
+    "ნოე",
+    "დეკ",
+  ],
+  dayNames: [
+    "კვირა",
+    "ორშაბათი",
+    "სამშაბათი",
+    "ოთხშაბათი",
+    "ხუთშაბათი",
+    "პარასკევი",
+    "შაბათი",
+  ],
+  dayNamesShort: ["კვი", "ორშ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ"],
+  today: "დღეს",
+};
+
 export function setupCalendarLocale(lang: string) {
-  const supported = ["en", "ru", "be", "pl"];
+  const supported = ["en", "ru", "be", "pl", "ka"];
   LocaleConfig.defaultLocale = supported.includes(lang) ? lang : "en";
 }
