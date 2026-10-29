@@ -119,17 +119,28 @@ export const getStyles = (colors: AppThemeColors, isDark: boolean) =>
     navIconButton: {
       width: scale(28),
       height: scale(28),
-      borderRadius: scale(14),
       alignItems: "center",
       justifyContent: "center",
-      borderWidth: 0.7,
-      borderColor: colors.btnPrimary,
       backgroundColor: "transparent",
     },
     statisticsTitle: {
       fontSize: scale(18),
       ...typography.medium,
       color: colors.textPrimary,
+      textAlign: "center",
+    },
+    statisticsTitleContainer: {
+      flex: 1,
+      flexShrink: 1,
+      alignItems: "center",
+      marginHorizontal: scale(4),
+    },
+    statisticsDate: {
+      fontSize: scale(16),
+      ...typography.regular,
+      color: colors.textPrimary,
+      textAlign: "center",
+      marginTop: scale(-2),
     },
     statisticsContent: {
       gap: scale(8),

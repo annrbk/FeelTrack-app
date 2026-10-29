@@ -27,17 +27,25 @@ export default function TodayStatistics({
   return (
     <View style={styles.statistics}>
       <View style={styles.statisticsHeader}>
-        <Pressable onPress={goToPreviousDate}>
+        <Pressable
+          style={styles.navIconButton}
+          onPress={goToPreviousDate}
+        >
           <Ionicons
             name="chevron-back-outline"
             size={24}
             color={colors.textPrimary}
           />
         </Pressable>
-        <Text style={styles.statisticsTitle}>
-          {t("home.statisticsTitle")} {formattedDate}
-        </Text>
-        <Pressable onPress={goToNextDate}>
+        <View style={styles.statisticsTitleContainer}>
+          <Text style={styles.statisticsTitle} numberOfLines={1}>
+            {t("home.statisticsTitle")}
+          </Text>
+          <Text style={styles.statisticsDate} numberOfLines={1}>
+            {formattedDate}
+          </Text>
+        </View>
+        <Pressable style={styles.navIconButton} onPress={goToNextDate}>
           <Ionicons
             name="chevron-forward-outline"
             size={24}
