@@ -126,7 +126,49 @@ LocaleConfig.locales["be"] = {
   today: "Сёння",
 };
 
+LocaleConfig.locales["pl"] = {
+  monthNames: [
+    "Styczeń",
+    "Luty",
+    "Marzec",
+    "Kwiecień",
+    "Maj",
+    "Czerwiec",
+    "Lipiec",
+    "Sierpień",
+    "Wrzesień",
+    "Październik",
+    "Listopad",
+    "Grudzień",
+  ],
+  monthNamesShort: [
+    "Sty",
+    "Lut",
+    "Mar",
+    "Kwi",
+    "Maj",
+    "Cze",
+    "Lip",
+    "Sie",
+    "Wrz",
+    "Paź",
+    "Lis",
+    "Gru",
+  ],
+  dayNames: [
+    "Niedziela",
+    "Poniedziałek",
+    "Wtorek",
+    "Środa",
+    "Czwartek",
+    "Piątek",
+    "Sobota",
+  ],
+  dayNamesShort: ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "Sb"],
+  today: "Dzisiaj",
+};
+
 export function setupCalendarLocale(lang: string) {
-  const supported = ["en", "ru", "be"];
+  const supported = ["en", "ru", "be", "pl"];
   LocaleConfig.defaultLocale = supported.includes(lang) ? lang : "en";
 }

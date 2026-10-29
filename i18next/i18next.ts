@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import en from "./locales/en";
 import be from "./locales/be";
 import ru from "./locales/ru";
+import pl from "./locales/pl";
 import { setupCalendarLocale } from "./calendarLocales";
 
 export const lng = getLocales()[0].languageCode ?? "en";
@@ -33,9 +34,9 @@ i18n
   .use(languageStorage)
   .use(initReactI18next)
   .init({
-    resources: { en, be, ru },
+    resources: { en, be, ru, pl },
     fallbackLng: "en",
-    supportedLngs: ["en", "be", "ru"],
+    supportedLngs: ["en", "be", "ru", "pl"],
     interpolation: { escapeValue: false },
   });
 
